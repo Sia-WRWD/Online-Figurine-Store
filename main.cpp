@@ -31,7 +31,9 @@ void handleAction(int options) {
 int main() {
     //Initialize Data
     ull.InitUserData();
-    poll.InitPurchaseOrders();
+    poll.InitPurchaseOrdersData();
+    cll.InitClientData();
+    ill.InitItemData();
 
     //Get User Input for Initial Menu
     while(true) {
@@ -41,6 +43,7 @@ int main() {
 
         cout << "Your Input:";
         cin >> init_input;
+        cout << endl;
 
         handleAction(init_input);
 

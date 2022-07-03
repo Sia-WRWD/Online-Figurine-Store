@@ -6,8 +6,11 @@
 #define ONLINE_FIGURINE_STORE_STORE_USER_H
 
 #include <iostream>
+#include "store_namespacer.h"
 
 using namespace std;
+
+store_namespacer ns;
 
 struct User {
     int id;
@@ -26,7 +29,7 @@ struct UserLinkedList {
     }
 
     // Insertion---------------------------------------------------------------------------
-    void insertAtBeginning(int id, string username, string password, string role) {
+    void insertUserAtBeginning(int id, string username, string password, string role) {
         User * newUser = new User;
         newUser->id = id;
         newUser->username = username;
@@ -37,7 +40,7 @@ struct UserLinkedList {
         user_size++;
     }
 
-    void insertAtEnd(int id, string username, string password, string role) {
+    void insertUserAtEnd(int id, string username, string password, string role) {
         User * newUser = new User;
         newUser->id = id;
         newUser->username = username;
@@ -62,7 +65,7 @@ struct UserLinkedList {
         string role[5] = {"Admin", "SoE", "Admin", "SoE", "SoE"};
 
         for (int i = 0; i < 5; i++) {
-            insertAtEnd(id[i], username[i], password[i], role[i]);
+            insertUserAtEnd(id[i], username[i], password[i], role[i]);
         }
 
 //        ull.showUserDetails();
@@ -83,6 +86,11 @@ struct UserLinkedList {
         }
     }
 
+    void displayUserDetails(int id, string username, string password, string role) {
+        cout << "ID" << "Username" << "Password" << "Role" << endl;
+        cout << id << " " << username << " " << password << " " << role << endl;
+    }
+
     //Search---------------------------------------------------------------------------
     bool verifyLogin(string username, string password, string role) {
         User * curr = head;
@@ -96,24 +104,33 @@ struct UserLinkedList {
         return false;
     }
 
-    bool searchUser (int id) {
-        User * curr = head;
-        while( curr != nullptr ) {
-            if (curr->id == id) {
-                return true;
-            } else {
-                curr = curr->next;
+    void searchUser (int id) {
+        if (user_size > 0) {
+            User * curr = head;
+            int totalResults = 0;
+
+            while( curr != nullptr ) {
+                if (curr->id == id) {
+                    displayUserDetails(curr->id, curr->username, curr->password,
+                                       curr->role);
+                    totalResults++;
+                    curr = curr->next;
+                } else {
+                    curr = curr->next;
+                }
             }
+            cout << "(Total Results Found: " << totalResults << ")" << endl << endl;
         }
-        return false;
     }
 
     //Update---------------------------------------------------------------------------
 
-
-
-
     //Delete---------------------------------------------------------------------------
+
+    //Sort---------------------------------------------------------------------------
+    void sortBasedUserID() {
+        //Sort Based on User's ID.
+    }
 };
 
 #endif //ONLINE_FIGURINE_STORE_STORE_USER_H
