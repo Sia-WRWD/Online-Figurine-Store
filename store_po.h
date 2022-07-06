@@ -76,9 +76,9 @@ class PurchaseOrderLinkedList {
         int client_id[5] = {5, 4, 2, 3, 1};
         int item_id[5] = {3, 2, 5, 4, 1};
         int quantity[5] = {2, 5, 2, 5, 2};
-        string po_total[5] = {"RM10.00", "RM15.00", "RM20.00", "RM30.00", "RM40.00"};
-        string delivery_status[5] = {"Processed", "Not Processed", "Processed", "Processed",
-                                     "Not Processed"};
+        string po_total[5] = {"RM20.00", "RM15.00", "RM41.10", "RM30.00", "RM10.00"};
+        string delivery_status[5] = {"Processed", "Ongoing", "Processed", "Processed",
+                                     "Ongoing"};
 
         for (int i = 0; i < 5; i++) {
             insertPOAtEnd(po_id[i], date[i], client_id[i], item_id[i],
@@ -135,7 +135,79 @@ class PurchaseOrderLinkedList {
         }
     }
 
+    int searchItemID(int id) {
+
+        if(po_size > 0) {
+            PurchaseOrder * curr = head;
+
+            while(curr != nullptr) {
+                if (curr->po_id == id) {
+                    return curr->item_id;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        }
+    }
+
     //Update---------------------------------------------------------------------------
+    void updatePODate(int id, string Date) {
+        if (id < po_size && id != 0) {
+            PurchaseOrder * curr = head;
+            while(curr != nullptr) {
+                if (curr->po_id == id) {
+                    curr->date = Date;
+
+                    cout << "Successfully Updated Date." << endl << endl;
+
+                    return;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        } else {
+            cout << "Error: ID is Out of Bounds!" << endl;
+        }
+    }
+
+    void updatePOQty(int id, int quantity, string total) {
+        if (id < po_size && id != 0) {
+            PurchaseOrder * curr = head;
+            while(curr != nullptr) {
+                if (curr->po_id == id) {
+                    curr->quantity = quantity;
+                    curr->po_total = total;
+
+                    cout << "Successfully Updated Quantity." << endl << endl;
+
+                    return;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        } else {
+            cout << "Error: ID is Out of Bounds!" << endl;
+        }
+    }
+
+    void updatePODeliStatus(int id, string delivery_status) {
+        if (id < po_size && id != 0) {
+            PurchaseOrder * curr = head;
+            while(curr != nullptr) {
+                if (curr->po_id == id) {
+                    curr->delivery_status = delivery_status;
+
+                    cout << "Successfully Updated Delivery Status." << endl << endl;
+
+                    return;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        } else {
+            cout << "Error: ID is Out of Bounds!" << endl;
+        }
+    }
 
     //Delete---------------------------------------------------------------------------
 

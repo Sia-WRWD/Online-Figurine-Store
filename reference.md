@@ -10,4 +10,6 @@
    (Speight & dev gr, 2017)
 7. https://stackoverflow.com/questions/20731/how-do-you-clear-a-stringstream-variable
    (BartoszKP & Wilka, 2015)
-8. 
+8. https://www.tutorialspoint.com/learn_c_by_examples/linked_list_update_program_in_c.htm
+   (tutorialspoint, n.d.)
+9. 

@@ -30,7 +30,7 @@ void runSoe() {
     //Menu Variables
     string SoeUsername, SoePassword, SoeRole = "SoE";
     int main_opt, actions_opt, actions_input, sort_opt, sort_dir_opt, search_opt, search_input;
-    int settings_opt;
+    int update_opt, settings_opt;
 
     //CRUD Variables
     int po_size, client_size, item_size, user_size;
@@ -38,7 +38,7 @@ void runSoe() {
     string date_input, f_day, f_month, f_year, f_total_input, f_unit_price_input;
     string client_name_input, item_name_input, delivery_input;
     string client_address_input, client_contact_input;
-    int client_id_input, item_id_input, quantity_input, RM_pos;
+    int po_id_input, client_id_input, item_id_input, RM_pos, quantity_input;
     float total_input, unit_price_input;
     bool valiResp;
 
@@ -315,12 +315,12 @@ void runSoe() {
                                 f_total_input = validation.checkFormatPrice(ss.str());
 
                                 //Delivery Status Input
-                                cout << "Input Delivery Status (Processed/ Not Processed):";
+                                cout << "Input Delivery Status (Processed/ Ongoing):";
                                 cin >> delivery_input;
 
                                 while (cin.fail() || (delivery_input != "Processed" &&
-                                       delivery_input != "Not Processed")) {
-                                    cout << "Input Delivery Status (Processed/ Not Processed):";
+                                       delivery_input != "Ongoing")) {
+                                    cout << "Input Delivery Status (Processed/ Ongoing):";
                                     cin.clear();
                                     cin.ignore(256, '\n');
                                     cin >> delivery_input;
@@ -335,6 +335,145 @@ void runSoe() {
 
                                 break;
                             case 3: //Update Data
+                                while (true) {
+                                    menu.updatePOMenu();
+                                    po_size = poll.getSize();
+
+                                    cout << "Your Input:";
+                                    cin >> update_opt;
+
+                                    if(update_opt == 4) {
+                                        break;
+                                    }
+
+                                    switch (update_opt) {
+                                        case 1: //Update Date
+                                            //Get Purchase Order ID to update
+                                            cout << "Purchase Order ID to update (1-" << po_size << "):";
+                                            cin >> po_id_input;
+
+                                            while(cin.fail() || po_id_input > po_size) {
+                                                cout << "Error: Invalid ID or ID Format!" << endl;
+                                                cout << "Purchase Order ID to update (1-" << po_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> po_id_input;
+                                            }
+
+                                            //Get New Date
+                                            cout << "Input New Date (i.e. 11 02 2024):";
+                                            cin >> day_input >> month_input >> year_input;
+
+                                            while(cin.fail()) {
+                                                cout << "Input New Date (i.e. 11 02 2024):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> day_input >> month_input >> year_input;
+                                            }
+
+                                            valiResp = validation.checkDate(day_input, month_input, year_input); //First-Check
+
+                                            while (valiResp == false) {
+                                                cout << "Either Your Date Format is Wrong or Date is False!" << endl;
+                                                cout << "Input Date (i.e. 11 02 2024):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> setw(2) >> day_input >> setw(2) >> month_input >>
+                                                       setw (4) >> year_input;
+
+                                                valiResp = validation.checkDate(day_input, month_input, year_input); //Re-Check
+                                            }
+
+                                            //Processing Date Format
+                                            date_input = validation.formatDate(day_input, month_input, year_input);
+                                            f_day = date_input.substr(0, 2); //Get Day
+                                            f_month = date_input.substr(2, 2); //Get Month
+                                            f_year = date_input.substr(4, 7); //Get Year
+
+                                            date_input = f_day + "/" + f_month + "/" + f_year; //Formatting (dd/mm/yyyy)
+
+                                            poll.updatePODate(po_id_input, date_input);
+                                            poll.showPODetails();
+
+                                            break;
+                                        case 2: //Update Quantity
+                                            //Get Purchase Order ID to update
+                                            cout << "Purchase Order ID to update (1-" << po_size << "):";
+                                            cin >> po_id_input;
+
+                                            while(cin.fail() || po_id_input > po_size) {
+                                                cout << "Error: Invalid ID or ID Format!" << endl;
+                                                cout << "Purchase Order ID to update (1-" << po_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> po_id_input;
+                                            }
+
+                                            //Get New Quantity
+                                            cout << "Input New Quantity:";
+                                            cin >> quantity_input;
+
+                                            while (cin.fail() || quantity_input > 1000) {
+                                                cout << "Input Quantity:";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> quantity_input;
+                                            }
+
+                                            //Get Item ID
+                                            item_id_input = poll.searchItemID(po_id_input);
+
+                                            //Re-Calculate Total (geeksforgeeks n.d., w3schools, n.d.)
+                                            f_total_input = ill.getItemPrice(item_id_input); //Get item unit price.
+
+                                            cout << f_total_input << endl;
+
+                                            RM_pos = f_total_input.find("RM"); //Find RM position
+                                            f_total_input = f_total_input.substr(RM_pos+2, f_total_input.length());
+
+                                            total_input = stof(f_total_input) * quantity_input; //Convert to Float and Total.
+                                            total_input = floor(total_input * 100) / 100; //Round off to 2 dp.
+
+                                            ss << total_input; //Convert Float to String.
+
+                                            f_total_input = validation.checkFormatPrice(ss.str());
+
+                                            poll.updatePOQty(po_id_input, quantity_input, f_total_input);
+                                            poll.showPODetails();
+
+                                            break;
+                                        case 3: //Update Delivery Status
+                                            //Get Purchase Order ID to update
+                                            cout << "Purchase Order ID to update (1-" << po_size << "):";
+                                            cin >> po_id_input;
+
+                                            while(cin.fail() || po_id_input > po_size) {
+                                                cout << "Error: Invalid ID or ID Format!" << endl;
+                                                cout << "Purchase Order ID to update (1-" << po_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> po_id_input;
+                                            }
+
+                                            //Delivery Status Input
+                                            cout << "Input Delivery Status (Processed/ Ongoing):";
+                                            cin >> delivery_input;
+
+                                            while (cin.fail() || (delivery_input != "Processed" &&
+                                                                  delivery_input != "Ongoing")) {
+                                                cout << "Input Delivery Status (Processed/ Ongoing):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> delivery_input;
+                                            }
+
+                                            poll.updatePODeliStatus(po_id_input, delivery_input);
+                                            poll.showPODetails();
+
+                                            break;
+                                    }
+                                }
+
                                 break;
                             case 4: //Delete Data
                                 break;
@@ -785,7 +924,7 @@ void runAdmin() {
     string date_input, f_day, f_month, f_year, f_total_input, f_unit_price_input;
     string client_name_input, item_name_input, delivery_input;
     string client_address_input, client_contact_input, username_input, password_input, role_input;
-    int client_id_input, item_id_input, quantity_input, RM_pos;
+    int po_id_input, client_id_input, item_id_input, quantity_input, RM_pos;
     float total_input, unit_price_input;
     bool valiResp;
 
@@ -1062,12 +1201,12 @@ void runAdmin() {
                                 f_total_input = validation.checkFormatPrice(ss.str());
 
                                 //Delivery Status Input
-                                cout << "Input Delivery Status (Processed/ Not Processed):";
+                                cout << "Input Delivery Status (Processed/ Ongoing):";
                                 cin >> delivery_input;
 
                                 while (cin.fail() || (delivery_input != "Processed" &&
-                                       delivery_input != "Not Processed")) {
-                                    cout << "Input Delivery Status (Processed/ Not Processed):";
+                                       delivery_input != "Ongoing")) {
+                                    cout << "Input Delivery Status (Processed/ Ongoing):";
                                     cin.clear();
                                     cin.ignore(256, '\n');
                                     cin >> delivery_input;
@@ -1082,6 +1221,145 @@ void runAdmin() {
 
                                 break;
                             case 3: //Update Data
+                                while (true) {
+                                    menu.updatePOMenu();
+                                    po_size = poll.getSize();
+
+                                    cout << "Your Input:";
+                                    cin >> update_opt;
+
+                                    if(update_opt == 4) {
+                                        break;
+                                    }
+
+                                    switch (update_opt) {
+                                        case 1: //Update Date
+                                            //Get Purchase Order ID to update
+                                            cout << "Purchase Order ID to update (1-" << po_size << "):";
+                                            cin >> po_id_input;
+
+                                            while(cin.fail() || po_id_input > po_size) {
+                                                cout << "Error: Invalid ID or ID Format!" << endl;
+                                                cout << "Purchase Order ID to update (1-" << po_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> po_id_input;
+                                            }
+
+                                            //Get New Date
+                                            cout << "Input New Date (i.e. 11 02 2024):";
+                                            cin >> day_input >> month_input >> year_input;
+
+                                            while(cin.fail()) {
+                                                cout << "Input New Date (i.e. 11 02 2024):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> day_input >> month_input >> year_input;
+                                            }
+
+                                            valiResp = validation.checkDate(day_input, month_input, year_input); //First-Check
+
+                                            while (valiResp == false) {
+                                                cout << "Either Your Date Format is Wrong or Date is False!" << endl;
+                                                cout << "Input Date (i.e. 11 02 2024):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> setw(2) >> day_input >> setw(2) >> month_input >>
+                                                    setw (4) >> year_input;
+
+                                                valiResp = validation.checkDate(day_input, month_input, year_input); //Re-Check
+                                            }
+
+                                            //Processing Date Format
+                                            date_input = validation.formatDate(day_input, month_input, year_input);
+                                            f_day = date_input.substr(0, 2); //Get Day
+                                            f_month = date_input.substr(2, 2); //Get Month
+                                            f_year = date_input.substr(4, 7); //Get Year
+
+                                            date_input = f_day + "/" + f_month + "/" + f_year; //Formatting (dd/mm/yyyy)
+
+                                            poll.updatePODate(po_id_input, date_input);
+                                            poll.showPODetails();
+
+                                            break;
+                                        case 2: //Update Quantity
+                                            //Get Purchase Order ID to update
+                                            cout << "Purchase Order ID to update (1-" << po_size << "):";
+                                            cin >> po_id_input;
+
+                                            while(cin.fail() || po_id_input > po_size) {
+                                                cout << "Error: Invalid ID or ID Format!" << endl;
+                                                cout << "Purchase Order ID to update (1-" << po_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> po_id_input;
+                                            }
+
+                                            //Get New Quantity
+                                            cout << "Input New Quantity:";
+                                            cin >> quantity_input;
+
+                                            while (cin.fail() || quantity_input > 1000) {
+                                                cout << "Input Quantity:";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> quantity_input;
+                                            }
+
+                                            //Get Item ID
+                                            item_id_input = poll.searchItemID(po_id_input);
+
+                                            //Re-Calculate Total (geeksforgeeks n.d., w3schools, n.d.)
+                                            f_total_input = ill.getItemPrice(item_id_input); //Get item unit price.
+
+                                            cout << f_total_input << endl;
+
+                                            RM_pos = f_total_input.find("RM"); //Find RM position
+                                            f_total_input = f_total_input.substr(RM_pos+2, f_total_input.length());
+
+                                            total_input = stof(f_total_input) * quantity_input; //Convert to Float and Total.
+                                            total_input = floor(total_input * 100) / 100; //Round off to 2 dp.
+
+                                            ss << total_input; //Convert Float to String.
+
+                                            f_total_input = validation.checkFormatPrice(ss.str());
+
+                                            poll.updatePOQty(po_id_input, quantity_input, f_total_input);
+                                            poll.showPODetails();
+
+                                            break;
+                                        case 3: //Update Delivery Status
+                                            //Get Purchase Order ID to update
+                                            cout << "Purchase Order ID to update (1-" << po_size << "):";
+                                            cin >> po_id_input;
+
+                                            while(cin.fail() || po_id_input > po_size) {
+                                                cout << "Error: Invalid ID or ID Format!" << endl;
+                                                cout << "Purchase Order ID to update (1-" << po_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> po_id_input;
+                                            }
+
+                                            //Delivery Status Input
+                                            cout << "Input Delivery Status (Processed/ Ongoing):";
+                                            cin >> delivery_input;
+
+                                            while (cin.fail() || (delivery_input != "Processed" &&
+                                                                  delivery_input != "Ongoing")) {
+                                                cout << "Input Delivery Status (Processed/ Ongoing):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> delivery_input;
+                                            }
+
+                                            poll.updatePODeliStatus(po_id_input, delivery_input);
+                                            poll.showPODetails();
+
+                                            break;
+                                    }
+                                }
+
                                 break;
                             case 4: //Delete Data
                                 break;

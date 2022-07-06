@@ -88,6 +88,15 @@ class Menu {
         cout << "3) Back" << endl;
     }
 
+    //Update Menus--------------------------------------------------------------
+    void updatePOMenu() {
+        cout << "What would you like to update?" << endl;
+        cout << "1) Date" << endl;
+        cout << "2) Quantity" << endl;
+        cout << "3) Delivery Status" << endl;
+        cout << "4) Back" << endl;
+    }
+
     //Search Menus--------------------------------------------------------------
     void SoESearchMenu() {
         cout <<"What would you like to search (based on ID)?" << endl;
