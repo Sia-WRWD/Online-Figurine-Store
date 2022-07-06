@@ -56,7 +56,7 @@ struct ItemLinkedList {
         int id[5] = {1, 2, 3, 4, 5};
         string name[5] = {"Dota Figurine", "LoL Figurine", "Robot Figurine", "Chibi Figurine",
                           "Anime Figurine"};
-        string unit_price[5] = {"RM5.00", "RM3.00", "RM10.00", "RM6.00", "RM20.00"};
+        string unit_price[5] = {"RM5.00", "RM3.00", "RM10.00", "RM6.00", "RM20.55"};
 
         for (int i = 0; i < 5; i++) {
             insertItemAtEnd(id[i], name[i], unit_price[i]);
@@ -78,6 +78,7 @@ struct ItemLinkedList {
             cout << curr->item_id << " " << curr->item_name << " " << curr->unit_price << endl;
             curr = curr->next;
         }
+        cout << endl;
     }
 
     void displayItemSearchResult(int item_id, string item_name, string unit_price) {
@@ -105,11 +106,31 @@ struct ItemLinkedList {
         }
     }
 
+    string getItemPrice(int id) {
+        string price;
+
+        if (item_size > 0) {
+            Item * curr = head;
+
+            while( curr != nullptr ) {
+                if (curr->item_id == id) {
+                    price = curr->unit_price;
+                    break;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        }
+
+        return price;
+    }
+
     //Update---------------------------------------------------------------------------
 
     //Delete---------------------------------------------------------------------------
 
     //Sort---------------------------------------------------------------------------
+
 };
 
 #endif //ONLINE_FIGURINE_STORE_STORE_ITEM_H

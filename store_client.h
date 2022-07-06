@@ -84,6 +84,7 @@ struct ClientLinkedList {
                  << " " << curr->contact_no << endl;
             curr = curr->next;
         }
+        cout << endl;
     }
 
     void displayClientSearchResult(int client_id, string client_name, string client_address,
@@ -117,6 +118,8 @@ struct ClientLinkedList {
     //Delete---------------------------------------------------------------------------
 
     //Sort---------------------------------------------------------------------------
+
+
 };
 
 

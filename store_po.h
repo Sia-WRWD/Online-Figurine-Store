@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include "store_controller.h"
 
 struct PurchaseOrder {
     int po_id;
@@ -70,12 +71,14 @@ class PurchaseOrderLinkedList {
 
     void InitPurchaseOrdersData() {
         int po_id[5] = {1, 2, 3, 4, 5};
-        string date[5] = {"10/06/2022", "11/06/2022", "12/06/2022", "13/06/2022", "14/06/2022"};
+        string date[5] = {"10/06/2022", "11/06/2022", "12/06/2022", "13/06/2022",
+                          "14/06/2022"};
         int client_id[5] = {5, 4, 2, 3, 1};
         int item_id[5] = {3, 2, 5, 4, 1};
         int quantity[5] = {2, 5, 2, 5, 2};
         string po_total[5] = {"RM10.00", "RM15.00", "RM20.00", "RM30.00", "RM40.00"};
-        string delivery_status[5] = {"Processed", "Not Processed", "Processed", "Processed", "Not Processed"};
+        string delivery_status[5] = {"Processed", "Not Processed", "Processed", "Processed",
+                                     "Not Processed"};
 
         for (int i = 0; i < 5; i++) {
             insertPOAtEnd(po_id[i], date[i], client_id[i], item_id[i],
@@ -100,6 +103,7 @@ class PurchaseOrderLinkedList {
                  " " << curr->quantity << " " << curr->po_total << " " << curr->delivery_status << endl;
             curr = curr->next;
         }
+        cout << endl;
     }
 
     void displayPOSearchResult(int id, string date, int client_id, int item_id, int quantity, string po_total,
@@ -136,6 +140,9 @@ class PurchaseOrderLinkedList {
     //Delete---------------------------------------------------------------------------
 
     //Sort---------------------------------------------------------------------------
+
+    //Validation---------------------------------------------------------------------------
+
 };
 
 #endif //ONLINE_FIGURINE_STORE_STORE_PO_H

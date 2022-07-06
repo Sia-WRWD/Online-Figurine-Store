@@ -84,6 +84,7 @@ struct UserLinkedList {
             cout << curr->id << " " << curr->username << " " << curr->password << " " << curr->role << endl;
             curr = curr->next;
         }
+        cout << endl;
     }
 
     void displayUserDetails(int id, string username, string password, string role) {
