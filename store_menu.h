@@ -97,6 +97,29 @@ class Menu {
         cout << "4) Back" << endl;
     }
 
+    void updateClientMenu() {
+        cout << "What would you like to update?" << endl;
+        cout << "1) Name" << endl;
+        cout << "2) Address" << endl;
+        cout << "3) Contact Number" << endl;
+        cout << "4) Back" << endl;
+    }
+
+    void updateItemMenu() {
+        cout << "What would you like to update?" << endl;
+        cout << "1) Name" << endl;
+        cout << "2) Unit Price" << endl;
+        cout << "3) Back" << endl;
+    }
+
+    void updateUserMenu() {
+        cout << "What would you like to update?" << endl;
+        cout << "1) Username" << endl;
+        cout << "2) Password" << endl;
+        cout << "3) Role" << endl;
+        cout << "4) Back" << endl;
+    }
+
     //Search Menus--------------------------------------------------------------
     void SoESearchMenu() {
         cout <<"What would you like to search (based on ID)?" << endl;

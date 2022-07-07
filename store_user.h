@@ -106,7 +106,7 @@ struct UserLinkedList {
     }
 
     void searchUser (int id) {
-        if (user_size > 0) {
+        if (id <= user_size || id > 0) {
             User * curr = head;
             int totalResults = 0;
 
@@ -124,7 +124,97 @@ struct UserLinkedList {
         }
     }
 
+    string getRoleBasedID(int id) {
+        if (id <= user_size || id > 0) {
+            User * curr = head;
+
+            while( curr != nullptr ) {
+                if (curr->id == id) {
+                    return curr->role;
+                } else {
+                    curr = curr->next;
+                }
+            }
+            return "User Don't Exist!";
+        }
+    }
+
+    bool checkUsernameExist(string username, string role) {
+        bool usernameExist = false;
+
+        if (user_size > 0) {
+            User * curr = head;
+
+            while( curr != nullptr ) {
+                if (curr->username == username && curr->role == role) {
+                    usernameExist = true;
+                    return usernameExist;
+                } else {
+                    curr = curr->next;
+                }
+            }
+            usernameExist = false;
+            return usernameExist;
+        }
+    }
+
     //Update---------------------------------------------------------------------------
+    void updateUserUsername(int id, string username) {
+        if (id <= user_size && id > 0) {
+            User * curr = head;
+            while(curr != nullptr) {
+                if (curr->id == id) {
+                    curr->username = username;
+
+                    cout << "Successfully Updated Username." << endl << endl;
+
+                    return;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        } else {
+            cout << "Error: ID is Out of Bounds!" << endl;
+        }
+    }
+
+    void updateUserPassword(int id, string password) {
+        if (id <= user_size && id > 0) {
+            User * curr = head;
+            while(curr != nullptr) {
+                if (curr->id == id) {
+                    curr->password = password;
+
+                    cout << "Successfully Updated Password." << endl << endl;
+
+                    return;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        } else {
+            cout << "Error: ID is Out of Bounds!" << endl;
+        }
+    }
+
+    void updateUserRole(int id, string role) {
+        if (id <= user_size && id > 0) {
+            User * curr = head;
+            while(curr != nullptr) {
+                if (curr->id == id) {
+                    curr->role = role;
+
+                    cout << "Successfully Updated Role." << endl << endl;
+
+                    return;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        } else {
+            cout << "Error: ID is Out of Bounds!" << endl;
+        }
+    }
 
     //Delete---------------------------------------------------------------------------
 

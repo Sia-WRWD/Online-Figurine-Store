@@ -62,6 +62,14 @@ void runSoe() {
             cin >> main_opt;
             cout << endl;
 
+            while(cin.fail()) {
+                cout << "Your Input:";
+                cout << endl;
+                cin.clear();
+                cin.ignore(256, '\n');
+                cin >> main_opt;
+            }
+
             if (main_opt == 7) {
                 cout << "Thank You for Using ABCD Purchase Order Management System (POMS)..." << endl << endl;
                 break;
@@ -78,6 +86,14 @@ void runSoe() {
                         cin >> actions_opt;
                         cout << endl;
 
+                        while(cin.fail()) {
+                            cout << "Your Input:";
+                            cout << endl;
+                            cin.clear();
+                            cin.ignore(256, '\n');
+                            cin >> actions_opt;
+                        }
+
                         if (actions_opt == 5) {
                             break;
                         }
@@ -91,6 +107,14 @@ void runSoe() {
                                     cin >> sort_opt;
                                     cout << endl;
 
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> sort_opt;
+                                    }
+
                                     if (sort_opt == 7) {
                                         break;
                                     }
@@ -103,6 +127,14 @@ void runSoe() {
                                                 cout << "Your Input:";
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
 
                                                 if (sort_dir_opt == 3) {
                                                     break;
@@ -125,6 +157,14 @@ void runSoe() {
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
 
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
+
                                                 if (sort_dir_opt == 3) {
                                                     break;
                                                 }
@@ -146,6 +186,14 @@ void runSoe() {
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
 
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
+
                                                 if (sort_dir_opt == 3) {
                                                     break;
                                                 }
@@ -166,6 +214,14 @@ void runSoe() {
                                                 cout << "Your Input:";
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
 
                                                 if (sort_dir_opt == 3) {
                                                     break;
@@ -192,6 +248,14 @@ void runSoe() {
                                                     break;
                                                 }
 
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
+
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
                                                         break;
@@ -208,6 +272,14 @@ void runSoe() {
                                                 cout << "Your Input:";
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
 
                                                 if (sort_dir_opt == 3) {
                                                     break;
@@ -342,12 +414,22 @@ void runSoe() {
                                     cout << "Your Input:";
                                     cin >> update_opt;
 
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> update_opt;
+                                    }
+
                                     if(update_opt == 4) {
                                         break;
                                     }
 
                                     switch (update_opt) {
                                         case 1: //Update Date
+                                            cout << "------Update PO's Date------" << endl;
+
                                             //Get Purchase Order ID to update
                                             cout << "Purchase Order ID to update (1-" << po_size << "):";
                                             cin >> po_id_input;
@@ -397,6 +479,8 @@ void runSoe() {
 
                                             break;
                                         case 2: //Update Quantity
+                                            cout << "------Update PO's Quantity------" << endl;
+
                                             //Get Purchase Order ID to update
                                             cout << "Purchase Order ID to update (1-" << po_size << "):";
                                             cin >> po_id_input;
@@ -443,6 +527,8 @@ void runSoe() {
 
                                             break;
                                         case 3: //Update Delivery Status
+                                            cout << "------Update PO's Delivery Status------" << endl;
+
                                             //Get Purchase Order ID to update
                                             cout << "Purchase Order ID to update (1-" << po_size << "):";
                                             cin >> po_id_input;
@@ -493,6 +579,14 @@ void runSoe() {
                         cin >> actions_opt;
                         cout << endl;
 
+                        while(cin.fail()) {
+                            cout << "Your Input:";
+                            cout << endl;
+                            cin.clear();
+                            cin.ignore(256, '\n');
+                            cin >> actions_opt;
+                        }
+
                         if (actions_opt == 5) {
                             break;
                         }
@@ -506,6 +600,14 @@ void runSoe() {
                                     cin >> sort_opt;
                                     cout << endl;
 
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> sort_opt;
+                                    }
+
                                     if (sort_opt == 3) {
                                         break;
                                     }
@@ -518,6 +620,14 @@ void runSoe() {
                                                 cout << "Your Input:";
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
 
                                                 if (sort_dir_opt == 3) {
                                                     break;
@@ -539,6 +649,14 @@ void runSoe() {
                                                 cout << "Your Input:";
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
 
                                                 if (sort_dir_opt == 3) {
                                                     break;
@@ -618,6 +736,133 @@ void runSoe() {
 
                                 break;
                             case 3: //Update Data
+                                while (true) {
+                                    //Initialize Variable
+                                    menu.updateClientMenu();
+                                    client_size = cll.getSize();
+
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> update_opt;
+                                    }
+
+                                    cout << "Your Input:";
+                                    cin >> update_opt;
+
+                                    if (update_opt == 4) {
+                                        break;
+                                    }
+
+                                    switch (update_opt) {
+                                        case 1: //Name
+                                            cout << "------Update Client's Name------" << endl;
+                                            //Get Client ID
+                                            cout << "Input Client's ID (1-" << client_size << "):";
+                                            cin >> client_id_input;
+
+                                            while(cin.fail() || client_id_input > client_size ||
+                                                  client_id_input <= 0) {
+                                                cout << "Invalid Client ID!";
+                                                cout << "Input Client's ID (1-" << client_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> client_id_input;
+                                            }
+
+                                            //Get New Client's Name
+                                            cout << "Input New Client's Name:";
+                                            getline(cin >> ws, client_name_input);
+
+                                            while(cin.fail()) {
+                                                cout << "Input New Client's Name:";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                getline(cin >> ws, client_name_input);
+                                            }
+
+                                            cll.updateClientName(client_id_input, client_name_input);
+                                            cll.showClientDetails();
+
+                                            break;
+                                        case 2: //Address
+                                            cout << "------Update Client's Address------" << endl;
+                                            //Get Client ID
+                                            cout << "Input Client's ID (1-" << client_size << "):";
+                                            cin >> client_id_input;
+
+                                            while(cin.fail() || client_id_input > client_size ||
+                                                  client_id_input <= 0) {
+                                                cout << "Invalid Client ID!";
+                                                cout << "Input Client's ID (1-" << client_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> client_id_input;
+                                            }
+
+                                            //Get New Client's Address
+                                            cout << "Input New Client's Address:";
+                                            getline(cin >> ws, client_address_input);
+
+                                            while(cin.fail()) {
+                                                cout << "Input New Client's Address:";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                getline(cin >> ws, client_address_input);
+                                            }
+
+                                            cll.updateClientAddress(client_id_input, client_address_input);
+                                            cll.showClientDetails();
+
+                                            break;
+                                        case 3: //Contacts
+                                            cout << "------Update Client's Contacts------" << endl;
+                                            //Get Client ID
+                                            cout << "Input Client's ID (1-" << client_size << "):";
+                                            cin >> client_id_input;
+
+                                            while(cin.fail() || client_id_input > client_size ||
+                                                  client_id_input <= 0) {
+                                                cout << "Invalid Client ID!";
+                                                cout << "Input Client's ID (1-" << client_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> client_id_input;
+                                            }
+
+                                            //Get New Client's Contact
+                                            cout << "Input New Client Contact No (i.e. 011-12345678):";
+                                            cin >> client_contact_input;
+
+                                            while(cin.fail()) {
+                                                cout << "Wrong Input or Input cannot be Empty!" << endl;
+                                                cout << "Input New Client Contact No (i.e. 011-12345678):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> client_contact_input;
+                                            }
+
+                                            valiResp = validation.checkContactFormat(client_contact_input);
+
+                                            while (valiResp == false) {
+                                                cout << "Wrong Input Format or Input cannot be Empty!" << endl;
+                                                cout << "Input New Client Contact No (i.e. 011-12345678):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> client_contact_input;
+
+                                                valiResp = validation.checkContactFormat(client_contact_input);
+                                            }
+
+                                            cll.updateClientContacts(client_id_input, client_contact_input);
+                                            cll.showClientDetails();
+
+                                            break;
+                                    }
+                                }
+
                                 break;
                             case 4: //Delete Data
                                 break;
@@ -637,6 +882,14 @@ void runSoe() {
                         cin >> actions_opt;
                         cout << endl;
 
+                        while(cin.fail()) {
+                            cout << "Your Input:";
+                            cout << endl;
+                            cin.clear();
+                            cin.ignore(256, '\n');
+                            cin >> actions_opt;
+                        }
+
                         if (actions_opt == 5) {
                             break;
                         }
@@ -650,6 +903,14 @@ void runSoe() {
                                     cin >> sort_opt;
                                     cout << endl;
 
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> sort_opt;
+                                    }
+
                                     if (sort_opt == 4) {
                                         break;
                                     }
@@ -662,6 +923,14 @@ void runSoe() {
                                                 cout << "Your Input:";
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
 
                                                 if (sort_dir_opt == 3) {
                                                     break;
@@ -684,6 +953,14 @@ void runSoe() {
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
 
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
+
                                                 if (sort_dir_opt == 3) {
                                                     break;
                                                 }
@@ -704,6 +981,14 @@ void runSoe() {
                                                 cout << "Your Input:";
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
 
                                                 if (sort_dir_opt == 3) {
                                                     break;
@@ -747,7 +1032,7 @@ void runSoe() {
                                 cin >> unit_price_input;
 
                                 while(cin.fail()) {
-                                    cout << "Input Item Unit Price (i.e. 10.00): RM";
+                                    cout << "Input Item Unit Price (i.e. 10.00 / 10.5): RM";
                                     cin.clear();
                                     cin.ignore(256, '\n');
                                     cin >> unit_price_input;
@@ -762,6 +1047,93 @@ void runSoe() {
 
                                 break;
                             case 3: //Update Data
+                                while(true) {
+                                    //Initialize Variable
+                                    menu.updateItemMenu();
+                                    item_size = ill.getSize();
+                                    ss.str("");
+
+                                    cout << "Your Input:";
+                                    cin >> update_opt;
+
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> update_opt;
+                                    }
+
+                                    if (update_opt == 3) {
+                                        break;
+                                    }
+
+                                    switch(update_opt) {
+                                        case 1: //Name
+                                            cout << "------Update Item Name------" << endl;
+                                            //Get Item ID
+                                            cout << "Input Item ID (1-" << item_size << "):";
+                                            cin >> item_id_input;
+
+                                            while(cin.fail() || item_id_input > item_size ||
+                                                  item_id_input <= 0) {
+                                                cout << "Input Item ID (1-" << item_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> item_id_input;
+                                            }
+
+                                            //Get Item's New Name
+                                            cout << "Input New Item Name";
+                                            getline(cin >> ws, item_name_input);
+
+                                            while(cin.fail()) {
+                                                cout << "Input New Item Name";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> item_name_input;
+                                            }
+
+                                            ill.updateItemName(item_id_input, item_name_input);
+                                            ill.showItemDetails();
+
+                                            break;
+                                        case 2: //Unit Price
+                                            cout << "------Update Item Price------" << endl;
+                                            //Get Item ID
+                                            cout << "Input Item ID (1-" << item_size << "):";
+                                            cin >> item_id_input;
+
+                                            while(cin.fail() || item_id_input > item_size ||
+                                                  item_id_input <= 0) {
+                                                cout << "Input Item ID (1-" << item_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> item_id_input;
+                                            }
+
+                                            //Get Item's New Unit Price
+                                            cout << "Input Item New Unit Price (i.e. 10.00 / 10.5): RM";
+                                            cin >> unit_price_input;
+
+                                            while(cin.fail()) {
+                                                cout << "Input Item New Unit Price (i.e. 10.00 / 10.5): RM";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> unit_price_input;
+                                            }
+
+                                            ss << unit_price_input;
+
+                                            f_unit_price_input = validation.checkFormatPrice(ss.str());
+
+                                            ill.updateItemPrice(item_id_input, f_unit_price_input);
+                                            ill.showItemDetails();
+
+                                            break;
+                                    }
+                                }
+
                                 break;
                             case 4: //Delete Data
                                 break;
@@ -779,6 +1151,14 @@ void runSoe() {
                         cin >> search_opt;
                         cout << endl;
 
+                        while(cin.fail()) {
+                            cout << "Your Input:";
+                            cout << endl;
+                            cin.clear();
+                            cin.ignore(256, '\n');
+                            cin >> search_opt;
+                        }
+
                         if (search_opt == 4) {
                             break;
                         }
@@ -789,6 +1169,14 @@ void runSoe() {
                                 cin >> search_input;
                                 cout << endl;
 
+                                while(cin.fail()) {
+                                    cout << "Purchase Order ID:";
+                                    cout << endl;
+                                    cin.clear();
+                                    cin.ignore(256, '\n');
+                                    cin >> search_input;
+                                }
+
                                 poll.searchPurchaseOrder(search_input);
 
                                 while(true) {
@@ -797,6 +1185,14 @@ void runSoe() {
                                     cout << "Your Input:";
                                     cin >> actions_input;
                                     cout << endl;
+
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> actions_input;
+                                    }
 
                                     if (actions_input == 3) {
                                         break;
@@ -818,6 +1214,14 @@ void runSoe() {
                                 cin >> search_input;
                                 cout << endl;
 
+                                while(cin.fail()) {
+                                    cout << "Client ID:";
+                                    cout << endl;
+                                    cin.clear();
+                                    cin.ignore(256, '\n');
+                                    cin >> search_input;
+                                }
+
                                 cll.searchClient(search_input);
 
                                 while(true) {
@@ -826,6 +1230,14 @@ void runSoe() {
                                     cout << "Your Input:";
                                     cin >> actions_input;
                                     cout << endl;
+
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> actions_input;
+                                    }
 
                                     if (actions_input == 3) {
                                         break;
@@ -847,6 +1259,14 @@ void runSoe() {
                                 cin >> search_input;
                                 cout << endl;
 
+                                while(cin.fail()) {
+                                    cout << "Item ID:";
+                                    cout << endl;
+                                    cin.clear();
+                                    cin.ignore(256, '\n');
+                                    cin >> search_input;
+                                }
+
                                 ill.searchItem(search_input);
 
                                 while(true) {
@@ -855,6 +1275,14 @@ void runSoe() {
                                     cout << "Your Input:";
                                     cin >> actions_input;
                                     cout << endl;
+
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> actions_input;
+                                    }
 
                                     if (actions_input == 3) {
                                         break;
@@ -884,6 +1312,14 @@ void runSoe() {
                         cout << "Your Input:";
                         cin >> settings_opt;
                         cout << endl;
+
+                        while(cin.fail()) {
+                            cout << "Your Input:";
+                            cout << endl;
+                            cin.clear();
+                            cin.ignore(256, '\n');
+                            cin >> settings_opt;
+                        }
 
                         if (settings_opt == 4) {
                             break;
@@ -916,7 +1352,7 @@ void runAdmin() {
     //Menu Variables
     string adminUsername, adminPassword, adminRole = "Admin";
     int main_opt, actions_opt, actions_input, sort_opt, sort_dir_opt, search_opt, search_input;
-    int settings_opt;
+    int update_opt, settings_opt;
 
     //CRUD Variables
     int po_size, client_size, item_size, user_size;
@@ -924,7 +1360,7 @@ void runAdmin() {
     string date_input, f_day, f_month, f_year, f_total_input, f_unit_price_input;
     string client_name_input, item_name_input, delivery_input;
     string client_address_input, client_contact_input, username_input, password_input, role_input;
-    int po_id_input, client_id_input, item_id_input, quantity_input, RM_pos;
+    int po_id_input, client_id_input, item_id_input, user_id_input, quantity_input, RM_pos;
     float total_input, unit_price_input;
     bool valiResp;
 
@@ -948,6 +1384,15 @@ void runAdmin() {
 
             cout << "Your Input:";
             cin >> main_opt;
+            cout << endl;
+
+            while(cin.fail()) {
+                cout << "Your Input:";
+                cout << endl;
+                cin.clear();
+                cin.ignore(256, '\n');
+                cin >> main_opt;
+            }
 
             if (main_opt == 8) {
                 break;
@@ -964,6 +1409,14 @@ void runAdmin() {
                         cin >> actions_opt;
                         cout << endl;
 
+                        while(cin.fail()) {
+                            cout << "Your Input:";
+                            cout << endl;
+                            cin.clear();
+                            cin.ignore(256, '\n');
+                            cin >> actions_opt;
+                        }
+
                         if (actions_opt == 5) {
                             break;
                         }
@@ -977,6 +1430,14 @@ void runAdmin() {
                                     cin >> sort_opt;
                                     cout << endl;
 
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> sort_opt;
+                                    }
+
                                     if (sort_opt == 7) {
                                         break;
                                     }
@@ -989,6 +1450,14 @@ void runAdmin() {
                                                 cout << "Your Input:";
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
 
                                                 if (sort_dir_opt == 3) {
                                                     break;
@@ -1011,6 +1480,14 @@ void runAdmin() {
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
 
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
+
                                                 if (sort_dir_opt == 3) {
                                                     break;
                                                 }
@@ -1031,6 +1508,14 @@ void runAdmin() {
                                                 cout << "Your Input:";
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
 
                                                 if (sort_dir_opt == 3) {
                                                     break;
@@ -1053,6 +1538,14 @@ void runAdmin() {
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
 
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
+
                                                 if (sort_dir_opt == 3) {
                                                     break;
                                                 }
@@ -1074,6 +1567,14 @@ void runAdmin() {
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
 
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
+
                                                 if (sort_dir_opt == 3) {
                                                     break;
                                                 }
@@ -1094,6 +1595,14 @@ void runAdmin() {
                                                 cout << "Your Input:";
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
 
                                                 if (sort_dir_opt == 3) {
                                                     break;
@@ -1224,9 +1733,19 @@ void runAdmin() {
                                 while (true) {
                                     menu.updatePOMenu();
                                     po_size = poll.getSize();
+                                    ss.str("");
 
                                     cout << "Your Input:";
                                     cin >> update_opt;
+                                    cout << endl;
+
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> update_opt;
+                                    }
 
                                     if(update_opt == 4) {
                                         break;
@@ -1234,6 +1753,8 @@ void runAdmin() {
 
                                     switch (update_opt) {
                                         case 1: //Update Date
+                                            cout << "------Update PO's Date------" << endl;
+
                                             //Get Purchase Order ID to update
                                             cout << "Purchase Order ID to update (1-" << po_size << "):";
                                             cin >> po_id_input;
@@ -1283,6 +1804,8 @@ void runAdmin() {
 
                                             break;
                                         case 2: //Update Quantity
+                                            cout << "------Update PO's Quantity------" << endl;
+
                                             //Get Purchase Order ID to update
                                             cout << "Purchase Order ID to update (1-" << po_size << "):";
                                             cin >> po_id_input;
@@ -1329,6 +1852,8 @@ void runAdmin() {
 
                                             break;
                                         case 3: //Update Delivery Status
+                                            cout << "------Update PO's Delivery Status------" << endl;
+
                                             //Get Purchase Order ID to update
                                             cout << "Purchase Order ID to update (1-" << po_size << "):";
                                             cin >> po_id_input;
@@ -1379,6 +1904,14 @@ void runAdmin() {
                         cin >> actions_opt;
                         cout << endl;
 
+                        while(cin.fail()) {
+                            cout << "Your Input:";
+                            cout << endl;
+                            cin.clear();
+                            cin.ignore(256, '\n');
+                            cin >> actions_opt;
+                        }
+
                         if (actions_opt == 5) {
                             break;
                         }
@@ -1405,6 +1938,14 @@ void runAdmin() {
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
 
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
+
                                                 if (sort_dir_opt == 3) {
                                                     break;
                                                 }
@@ -1425,6 +1966,14 @@ void runAdmin() {
                                                 cout << "Your Input:";
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
 
                                                 if (sort_dir_opt == 3) {
                                                     break;
@@ -1505,6 +2054,134 @@ void runAdmin() {
 
                                 break;
                             case 3: //Update Data
+                                while (true) {
+                                    //Initialize Variable
+                                    menu.updateClientMenu();
+                                    client_size = cll.getSize();
+
+                                    cout << "Your Input:";
+                                    cin >> update_opt;
+                                    cout << endl;
+
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> update_opt;
+                                    }
+
+                                    if (update_opt == 4) {
+                                        break;
+                                    }
+
+                                    switch (update_opt) {
+                                        case 1: //Name
+                                            cout << "------Update Client's Name------" << endl;
+                                            //Get Client ID
+                                            cout << "Input Client's ID (1-" << client_size << "):";
+                                            cin >> client_id_input;
+
+                                            while(cin.fail() || client_id_input > client_size ||
+                                                  client_id_input <= 0) {
+                                                cout << "Invalid Client ID!";
+                                                cout << "Input Client's ID (1-" << client_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> client_id_input;
+                                            }
+
+                                            //Get New Client's Name
+                                            cout << "Input New Client's Name:";
+                                            getline(cin >> ws, client_name_input);
+
+                                            while(cin.fail()) {
+                                                cout << "Input New Client's Name:";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                getline(cin >> ws, client_name_input);
+                                            }
+
+                                            cll.updateClientName(client_id_input, client_name_input);
+                                            cll.showClientDetails();
+
+                                            break;
+                                        case 2: //Address
+                                            cout << "------Update Client's Address------" << endl;
+                                            //Get Client ID
+                                            cout << "Input Client's ID (1-" << client_size << "):";
+                                            cin >> client_id_input;
+
+                                            while(cin.fail() || client_id_input > client_size ||
+                                                  client_id_input <= 0) {
+                                                cout << "Invalid Client ID!";
+                                                cout << "Input Client's ID (1-" << client_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> client_id_input;
+                                            }
+
+                                            //Get New Client's Address
+                                            cout << "Input New Client's Address:";
+                                            getline(cin >> ws, client_address_input);
+
+                                            while(cin.fail()) {
+                                                cout << "Input New Client's Address:";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                getline(cin >> ws, client_address_input);
+                                            }
+
+                                            cll.updateClientAddress(client_id_input, client_address_input);
+                                            cll.showClientDetails();
+
+                                            break;
+                                        case 3: //Contacts
+                                            cout << "------Update Client's Contacts------" << endl;
+                                            //Get Client ID
+                                            cout << "Input Client's ID (1-" << client_size << "):";
+                                            cin >> client_id_input;
+
+                                            while(cin.fail() || client_id_input > client_size ||
+                                                  client_id_input <= 0) {
+                                                cout << "Invalid Client ID!";
+                                                cout << "Input Client's ID (1-" << client_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> client_id_input;
+                                            }
+
+                                            //Get New Client's Contact
+                                            cout << "Input New Client Contact No (i.e. 011-12345678):";
+                                            cin >> client_contact_input;
+
+                                            while(cin.fail()) {
+                                                cout << "Wrong Input or Input cannot be Empty!" << endl;
+                                                cout << "Input New Client Contact No (i.e. 011-12345678):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> client_contact_input;
+                                            }
+
+                                            valiResp = validation.checkContactFormat(client_contact_input);
+
+                                            while (valiResp == false) {
+                                                cout << "Wrong Input Format or Input cannot be Empty!" << endl;
+                                                cout << "Input New Client Contact No (i.e. 011-12345678):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> client_contact_input;
+
+                                                valiResp = validation.checkContactFormat(client_contact_input);
+                                            }
+
+                                            cll.updateClientContacts(client_id_input, client_contact_input);
+                                            cll.showClientDetails();
+
+                                            break;
+                                    }
+                                }
+
                                 break;
                             case 4: //Delete Data
                                 break;
@@ -1524,6 +2201,14 @@ void runAdmin() {
                         cin >> actions_opt;
                         cout << endl;
 
+                        while(cin.fail()) {
+                            cout << "Your Input:";
+                            cout << endl;
+                            cin.clear();
+                            cin.ignore(256, '\n');
+                            cin >> actions_opt;
+                        }
+
                         if (actions_opt == 5) {
                             break;
                         }
@@ -1537,6 +2222,14 @@ void runAdmin() {
                                     cin >> sort_opt;
                                     cout << endl;
 
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> sort_opt;
+                                    }
+
                                     if (sort_opt == 4) {
                                         break;
                                     }
@@ -1549,6 +2242,14 @@ void runAdmin() {
                                                 cout << "Your Input:";
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
 
                                                 if (sort_dir_opt == 3) {
                                                     break;
@@ -1571,6 +2272,14 @@ void runAdmin() {
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
 
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
+
                                                 if (sort_dir_opt == 3) {
                                                     break;
                                                 }
@@ -1591,6 +2300,14 @@ void runAdmin() {
                                                 cout << "Your Input:";
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
 
                                                 if (sort_dir_opt == 3) {
                                                     break;
@@ -1650,6 +2367,94 @@ void runAdmin() {
 
                                 break;
                             case 3: //Update Data
+                                while(true) {
+                                    //Initialize Variable
+                                    menu.updateItemMenu();
+                                    item_size = ill.getSize();
+                                    ss.str("");
+
+                                    cout << "Your Input:";
+                                    cin >> update_opt;
+                                    cout << endl;
+
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> update_opt;
+                                    }
+
+                                    if (update_opt == 3) {
+                                        break;
+                                    }
+
+                                    switch(update_opt) {
+                                        case 1: //Name
+                                            cout << "------Update Item Name------" << endl;
+                                            //Get Item ID
+                                            cout << "Input Item ID (1-" << item_size << "):";
+                                            cin >> item_id_input;
+
+                                            while(cin.fail() || item_id_input > item_size ||
+                                                  item_id_input <= 0) {
+                                                cout << "Input Item ID (1-" << item_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> item_id_input;
+                                            }
+
+                                            //Get Item's New Name
+                                            cout << "Input New Item Name";
+                                            getline(cin >> ws, item_name_input);
+
+                                            while(cin.fail()) {
+                                                cout << "Input New Item Name";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> item_name_input;
+                                            }
+
+                                            ill.updateItemName(item_id_input, item_name_input);
+                                            ill.showItemDetails();
+
+                                            break;
+                                        case 2: //Unit Price
+                                            cout << "------Update Item Price------" << endl;
+                                            //Get Item ID
+                                            cout << "Input Item ID (1-" << item_size << "):";
+                                            cin >> item_id_input;
+
+                                            while(cin.fail() || item_id_input > item_size
+                                                  || item_id_input <= 0) {
+                                                cout << "Input Item ID (1-" << item_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> item_id_input;
+                                            }
+
+                                            //Get Item's New Unit Price
+                                            cout << "Input Item New Unit Price (i.e. 10.00 / 10.5): RM";
+                                            cin >> unit_price_input;
+
+                                            while(cin.fail()) {
+                                                cout << "Input Item New Unit Price (i.e. 10.00 / 10.5): RM";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> unit_price_input;
+                                            }
+
+                                            ss << unit_price_input;
+
+                                            f_unit_price_input = validation.checkFormatPrice(ss.str());
+
+                                            ill.updateItemPrice(item_id_input, f_unit_price_input);
+                                            ill.showItemDetails();
+
+                                            break;
+                                    }
+                                }
+
                                 break;
                             case 4: //Delete Data
                                 break;
@@ -1669,6 +2474,14 @@ void runAdmin() {
                         cin >> actions_opt;
                         cout << endl;
 
+                        while(cin.fail()) {
+                            cout << "Your Input:";
+                            cout << endl;
+                            cin.clear();
+                            cin.ignore(256, '\n');
+                            cin >> actions_opt;
+                        }
+
                         if (actions_opt == 5) {
                             break;
                         }
@@ -1682,6 +2495,14 @@ void runAdmin() {
                                     cin >> sort_opt;
                                     cout << endl;
 
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> sort_opt;
+                                    }
+
                                     if (sort_opt == 3) {
                                         break;
                                     }
@@ -1694,6 +2515,14 @@ void runAdmin() {
                                                 cout << "Your Input:";
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
 
                                                 if (sort_dir_opt == 3) {
                                                     break;
@@ -1716,6 +2545,14 @@ void runAdmin() {
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
 
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
+
                                                 if (sort_dir_opt == 3) {
                                                     break;
                                                 }
@@ -1736,6 +2573,14 @@ void runAdmin() {
                                                 cout << "Your Input:";
                                                 cin >> sort_dir_opt;
                                                 cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
 
                                                 if (sort_dir_opt == 3) {
                                                     break;
@@ -1801,6 +2646,134 @@ void runAdmin() {
 
                                 break;
                             case 3: //Update Data
+                                while(true) {
+                                    menu.updateUserMenu();
+                                    user_size = ull.getSize();
+
+                                    cout << "Your Input:";
+                                    cin >> update_opt;
+                                    cout << endl;
+
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> update_opt;
+                                    }
+
+                                    if(update_opt == 4) {
+                                        break;
+                                    }
+
+                                    switch(update_opt) {
+                                        case 1: //Username
+                                            cout << "------Update User's Username------" << endl;
+
+                                            //Get User ID
+                                            cout << "Input User ID:";
+                                            cin >> user_id_input;
+
+                                            while(cin.fail() || user_id_input > user_size ||
+                                                  user_id_input <= 0) {
+                                                cout << "Input User ID:";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> user_id_input;
+                                            }
+
+                                            role_input = ull.getRoleBasedID(user_id_input);
+
+                                            //Get User's New Username
+                                            cout << "Input New Username:";
+                                            getline(cin >> ws, username_input);
+
+                                            while(cin.fail()) {
+                                                cout << "Input New Username:";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                getline(cin >> ws, username_input);
+                                            }
+
+                                            valiResp = ull.checkUsernameExist(username_input, role_input);
+
+                                            while(valiResp == true) {
+                                                cout << "Error: User with the same username and role exist!";
+                                                cout << "Input New Username:";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                getline(cin >> ws, username_input);
+
+                                                valiResp = ull.checkUsernameExist(username_input, role_input);
+                                            }
+
+                                            ull.updateUserUsername(user_id_input, username_input);
+                                            ull.showUserDetails();
+
+                                            break;
+                                        case 2: //Password
+                                            cout << "------Update User's Password------" << endl;
+
+                                            //Get User ID
+                                            cout << "Input User ID:";
+                                            cin >> user_id_input;
+
+                                            while(cin.fail() || user_id_input > user_size ||
+                                                  user_id_input <= 0) {
+                                                cout << "Input User ID:";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> user_id_input;
+                                            }
+
+                                            //Get User's New Password
+                                            cout << "Input New Password:";
+                                            getline(cin >> ws, password_input);
+
+                                            while(cin.fail()) {
+                                                cout << "Input New Password:";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                getline(cin >> ws, password_input);
+                                            }
+
+                                            ull.updateUserPassword(user_id_input, password_input);
+                                            ull.showUserDetails();
+
+                                            break;
+                                        case 3: //Role
+                                            cout << "------Update User's Role------" << endl;
+
+                                            //Get User ID
+                                            cout << "Input User ID:";
+                                            cin >> user_id_input;
+
+                                            while(cin.fail() || user_id_input > user_size ||
+                                                  user_id_input <= 0) {
+                                                cout << "Input User ID:";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> user_id_input;
+                                            }
+
+                                            //Get User's New Role
+                                            cout << "Input New Role (Admin/ SoE):";
+                                            getline(cin >> ws, role_input);
+
+                                            while(cin.fail() || (role_input != "Admin" && role_input != "SoE")) {
+                                                cout << "Input New Role (Admin/ SoE):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                getline(cin >> ws, role_input);
+                                            }
+
+                                            ull.updateUserRole(user_id_input, role_input);
+                                            ull.showUserDetails();
+
+                                            break;
+                                    }
+                                }
+
                                 break;
                             case 4: //Delete Data
                                 break;
@@ -1818,6 +2791,14 @@ void runAdmin() {
                         cin >> search_opt;
                         cout << endl;
 
+                        while(cin.fail()) {
+                            cout << "Your Input:";
+                            cout << endl;
+                            cin.clear();
+                            cin.ignore(256, '\n');
+                            cin >> search_opt;
+                        }
+
                         if (search_opt == 5) {
                             break;
                         }
@@ -1828,6 +2809,14 @@ void runAdmin() {
                                 cin >> search_input;
                                 cout << endl;
 
+                                while(cin.fail()) {
+                                    cout << "Purchase Order ID:";
+                                    cout << endl;
+                                    cin.clear();
+                                    cin.ignore(256, '\n');
+                                    cin >> search_input;
+                                }
+
                                 poll.searchPurchaseOrder(search_input);
 
                                 while(true) {
@@ -1836,6 +2825,14 @@ void runAdmin() {
                                     cout << "Your Input:";
                                     cin >> actions_input;
                                     cout << endl;
+
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> actions_input;
+                                    }
 
                                     if (actions_input == 3) {
                                         break;
@@ -1857,6 +2854,14 @@ void runAdmin() {
                                 cin >> search_input;
                                 cout << endl;
 
+                                while(cin.fail()) {
+                                    cout << "Client ID:";
+                                    cout << endl;
+                                    cin.clear();
+                                    cin.ignore(256, '\n');
+                                    cin >> search_input;
+                                }
+
                                 cll.searchClient(search_input);
 
                                 while(true) {
@@ -1865,6 +2870,14 @@ void runAdmin() {
                                     cout << "Your Input:";
                                     cin >> actions_input;
                                     cout << endl;
+
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> actions_input;
+                                    }
 
                                     if (actions_input == 3) {
                                         break;
@@ -1886,6 +2899,14 @@ void runAdmin() {
                                 cin >> search_input;
                                 cout << endl;
 
+                                while(cin.fail()) {
+                                    cout << "Item ID:";
+                                    cout << endl;
+                                    cin.clear();
+                                    cin.ignore(256, '\n');
+                                    cin >> search_input;
+                                }
+
                                 ill.searchItem(search_input);
 
                                 while(true) {
@@ -1894,6 +2915,14 @@ void runAdmin() {
                                     cout << "Your Input:";
                                     cin >> actions_input;
                                     cout << endl;
+
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> actions_input;
+                                    }
 
                                     if (actions_input == 3) {
                                         break;
@@ -1915,6 +2944,14 @@ void runAdmin() {
                                 cin >> search_input;
                                 cout << endl;
 
+                                while(cin.fail()) {
+                                    cout << "User ID:";
+                                    cout << endl;
+                                    cin.clear();
+                                    cin.ignore(256, '\n');
+                                    cin >> search_input;
+                                }
+
                                 ull.searchUser(search_input);
 
                                 while(true) {
@@ -1923,6 +2960,14 @@ void runAdmin() {
                                     cout << "Your Input:";
                                     cin >> actions_input;
                                     cout << endl;
+
+                                    while(cin.fail()) {
+                                        cout << "Your Input:";
+                                        cout << endl;
+                                        cin.clear();
+                                        cin.ignore(256, '\n');
+                                        cin >> actions_input;
+                                    }
 
                                     if (actions_input == 3) {
                                         break;
@@ -1952,6 +2997,14 @@ void runAdmin() {
                         cout << "Your Input:";
                         cin >> settings_opt;
                         cout << endl;
+
+                        while(cin.fail()) {
+                            cout << "Your Input:";
+                            cout << endl;
+                            cin.clear();
+                            cin.ignore(256, '\n');
+                            cin >> settings_opt;
+                        }
 
                         if (settings_opt == 4) {
                             break;

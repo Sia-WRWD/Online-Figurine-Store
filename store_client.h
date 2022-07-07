@@ -60,8 +60,8 @@ struct ClientLinkedList {
         string name[5] = {"Fuad Hall", "Jack Paul", "KeK Saul", "Jesus", "Christ"};
         string address[5] = {"22 Seri Ampang, KL", "23 Seri Bahagia, KL", "24 Seri Cerah, KL",
                              "25 Seri Dekat, KL", "26 Seri Jauh, KL"};
-        string contact_no[5] = {"011-1234-1234", "012-2345-2345", "017-3456-3456",
-                                "019-5678-5678", "011-6789-6789"};
+        string contact_no[5] = {"011-12341234", "012-23452345", "017-34563456",
+                                "019-56785678", "011-67896789"};
 
         for (int i = 0; i < 5; i++) {
             insertClientAtEnd(id[i], name[i], address[i], contact_no[i]);
@@ -93,7 +93,7 @@ struct ClientLinkedList {
         cout << client_id << " " << client_name << " " << client_address << " " << contact_no << endl;
     }
     void searchClient(int id) {
-        if (client_size > 0) {
+        if (id <= client_size && id > 0) {
             Client * curr = head;
             int totalResults = 0;
 
@@ -114,6 +114,63 @@ struct ClientLinkedList {
 
 
     //Update---------------------------------------------------------------------------
+    void updateClientName(int id, string name) {
+        if (id <= client_size && id > 0) {
+            Client * curr = head;
+            while(curr != nullptr) {
+                if (curr->client_id == id) {
+                    curr->client_name = name;
+
+                    cout << "Successfully Updated Name." << endl << endl;
+
+                    return;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        } else {
+            cout << "Error: ID is Out of Bounds!" << endl;
+        }
+    }
+
+    void updateClientAddress(int id, string address) {
+        if (id <= client_size && id > 0) {
+            Client * curr = head;
+            while(curr != nullptr) {
+                if (curr->client_id == id) {
+                    curr->client_address = address;
+
+                    cout << "Successfully Updated Address." << endl << endl;
+
+                    return;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        } else {
+            cout << "Error: ID is Out of Bounds!" << endl;
+        }
+    }
+
+    void updateClientContacts(int id, string contact) {
+        if (id <= client_size && id > 0) {
+            Client * curr = head;
+            while(curr != nullptr) {
+                if (curr->client_id == id) {
+                    curr->contact_no = contact;
+
+                    cout << "Successfully Updated Contact Number." << endl << endl;
+
+                    return;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        } else {
+            cout << "Error: ID is Out of Bounds!" << endl;
+        }
+    }
+
 
     //Delete---------------------------------------------------------------------------
 

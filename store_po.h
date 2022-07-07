@@ -116,7 +116,7 @@ class PurchaseOrderLinkedList {
 
     //Search---------------------------------------------------------------------------
     void searchPurchaseOrder(int id) {
-        if (po_size > 0) {
+        if (id <= po_size && id > 0) {
             PurchaseOrder * curr = head;
             int totalResults = 0;
 
@@ -136,8 +136,7 @@ class PurchaseOrderLinkedList {
     }
 
     int searchItemID(int id) {
-
-        if(po_size > 0) {
+        if(id <= po_size && id > 0) {
             PurchaseOrder * curr = head;
 
             while(curr != nullptr) {
@@ -152,7 +151,7 @@ class PurchaseOrderLinkedList {
 
     //Update---------------------------------------------------------------------------
     void updatePODate(int id, string Date) {
-        if (id < po_size && id != 0) {
+        if (id <= po_size && id > 0) {
             PurchaseOrder * curr = head;
             while(curr != nullptr) {
                 if (curr->po_id == id) {
@@ -171,7 +170,7 @@ class PurchaseOrderLinkedList {
     }
 
     void updatePOQty(int id, int quantity, string total) {
-        if (id < po_size && id != 0) {
+        if (id <= po_size && id > 0) {
             PurchaseOrder * curr = head;
             while(curr != nullptr) {
                 if (curr->po_id == id) {
@@ -191,7 +190,7 @@ class PurchaseOrderLinkedList {
     }
 
     void updatePODeliStatus(int id, string delivery_status) {
-        if (id < po_size && id != 0) {
+        if (id <= po_size && id > 0) {
             PurchaseOrder * curr = head;
             while(curr != nullptr) {
                 if (curr->po_id == id) {

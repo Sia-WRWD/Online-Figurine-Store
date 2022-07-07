@@ -88,7 +88,7 @@ struct ItemLinkedList {
 
     //Search---------------------------------------------------------------------------
     void searchItem(int id) {
-        if (item_size > 0) {
+        if (id <= item_size && id > 0) {
             Item * curr = head;
             int totalResults = 0;
 
@@ -109,7 +109,7 @@ struct ItemLinkedList {
     string getItemPrice(int id) {
         string price;
 
-        if (item_size > 0) {
+        if (id <= item_size && id > 0) {
             Item * curr = head;
 
             while( curr != nullptr ) {
@@ -126,6 +126,43 @@ struct ItemLinkedList {
     }
 
     //Update---------------------------------------------------------------------------
+    void updateItemName(int id, string name) {
+        if (id <= item_size && id > 0) {
+            Item * curr = head;
+            while(curr != nullptr) {
+                if (curr->item_id == id) {
+                    curr->item_name = name;
+
+                    cout << "Successfully Updated Item Name." << endl << endl;
+
+                    return;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        } else {
+            cout << "Error: ID is Out of Bounds!" << endl;
+        }
+    }
+
+    void updateItemPrice(int id, string price) {
+        if (id <= item_size && id > 0) {
+            Item * curr = head;
+            while(curr != nullptr) {
+                if (curr->item_id == id) {
+                    curr->unit_price = price;
+
+                    cout << "Successfully Updated Item Price." << endl << endl;
+
+                    return;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        } else {
+            cout << "Error: ID is Out of Bounds!" << endl;
+        }
+    }
 
     //Delete---------------------------------------------------------------------------
 

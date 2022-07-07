@@ -45,6 +45,14 @@ int main() {
         cin >> init_input;
         cout << endl;
 
+        while(cin.fail()) {
+            cout << "Your Input:";
+            cout << endl;
+            cin.clear();
+            cin.ignore(256, '\n');
+            cin >> init_input;
+        }
+
         handleAction(init_input);
 
         if (init_input == 3) {
