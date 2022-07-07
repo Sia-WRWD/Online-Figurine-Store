@@ -111,7 +111,7 @@ class PurchaseOrderLinkedList {
         cout << "POID" << " " << "Date" << " " << "Client ID" << " " << "Item ID" << " " << "Qty"
              << " " << "Total" << " "  << "Delivery Status" << endl;
         cout << id << " " << date << " " << client_id << " " << item_id << " " << quantity << " "
-             << po_total << " " << delivery_status << endl;
+             << po_total << " " << delivery_status << endl << endl;
     }
 
     //Search---------------------------------------------------------------------------
@@ -131,7 +131,30 @@ class PurchaseOrderLinkedList {
                     curr = curr->next;
                 }
             }
-            cout << "(Total Results Found: " << totalResults << ")" << endl << endl;
+
+            if (totalResults == 0) {
+                cout << "No Data with the PO_ID: #" << id << "is found!" << endl << endl;
+            } else {
+                cout << "(Total Results Found: " << totalResults << ")" << endl << endl;
+            }
+        }
+    }
+
+    void searchUpdatedPO(int id) {
+        if (id <= po_size && id > 0) {
+            PurchaseOrder * curr = head;
+
+            while( curr != nullptr ) {
+                if (curr->po_id == id) {
+                    cout << "------Updated Purchase Order #" << id << "------" << endl;
+                    displayPOSearchResult(curr->po_id, curr->date, curr->client_id,
+                                        curr->item_id, curr->quantity,curr->po_total,
+                                        curr->delivery_status);
+                    break;
+                } else {
+                    curr = curr->next;
+                }
+            }
         }
     }
 

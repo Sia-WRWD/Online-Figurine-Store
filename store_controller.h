@@ -34,11 +34,11 @@ void runSoe() {
 
     //CRUD Variables
     int po_size, client_size, item_size, user_size;
-    int day_input, month_input, year_input;
+    int day_input, month_input, year_input, cache_id;
     string date_input, f_day, f_month, f_year, f_total_input, f_unit_price_input;
     string client_name_input, item_name_input, delivery_input;
-    string client_address_input, client_contact_input;
-    int po_id_input, client_id_input, item_id_input, RM_pos, quantity_input;
+    string client_address_input, client_contact_input, password_input;
+    int po_id_input, client_id_input, item_id_input, RM_pos, quantity_input, user_id_input;
     float total_input, unit_price_input;
     bool valiResp;
 
@@ -48,6 +48,8 @@ void runSoe() {
     cin >> SoeUsername;
     cout << "Password:";
     cin >> SoePassword;
+
+    cache_id = ull.getID(SoeUsername);
 
     bool verificationStatus = ull.verifyLogin(SoeUsername, SoePassword, SoeRole);
 
@@ -413,6 +415,7 @@ void runSoe() {
 
                                     cout << "Your Input:";
                                     cin >> update_opt;
+                                    cout << endl;
 
                                     while(cin.fail()) {
                                         cout << "Your Input:";
@@ -741,6 +744,10 @@ void runSoe() {
                                     menu.updateClientMenu();
                                     client_size = cll.getSize();
 
+                                    cout << "Your Input:";
+                                    cin >> update_opt;
+                                    cout << endl;
+
                                     while(cin.fail()) {
                                         cout << "Your Input:";
                                         cout << endl;
@@ -748,9 +755,6 @@ void runSoe() {
                                         cin.ignore(256, '\n');
                                         cin >> update_opt;
                                     }
-
-                                    cout << "Your Input:";
-                                    cin >> update_opt;
 
                                     if (update_opt == 4) {
                                         break;
@@ -1055,6 +1059,7 @@ void runSoe() {
 
                                     cout << "Your Input:";
                                     cin >> update_opt;
+                                    cout << endl;
 
                                     while(cin.fail()) {
                                         cout << "Your Input:";
@@ -1084,11 +1089,11 @@ void runSoe() {
                                             }
 
                                             //Get Item's New Name
-                                            cout << "Input New Item Name";
+                                            cout << "Input New Item Name:";
                                             getline(cin >> ws, item_name_input);
 
                                             while(cin.fail()) {
-                                                cout << "Input New Item Name";
+                                                cout << "Input New Item Name:";
                                                 cin.clear();
                                                 cin.ignore(256, '\n');
                                                 cin >> item_name_input;
@@ -1200,6 +1205,133 @@ void runSoe() {
 
                                     switch(actions_input) {
                                         case 1: //Update Data
+                                            while(true) {
+                                                menu.updatePOMenu();
+                                                po_size = poll.getSize();
+
+                                                cout << "Your Input:";
+                                                cin >> update_opt;
+                                                cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> update_opt;
+                                                }
+
+                                                if(update_opt == 4) {
+                                                    break;
+                                                }
+
+                                                switch (update_opt) {
+                                                    case 1: //Update Date
+                                                        cout << "------Update PO's Date------" << endl;
+
+                                                        //Get Purchase Order ID to update
+                                                        po_id_input = search_input;
+
+                                                        //Get New Date
+                                                        cout << "Input New Date (i.e. 11 02 2024):";
+                                                        cin >> day_input >> month_input >> year_input;
+
+                                                        while(cin.fail()) {
+                                                            cout << "Input New Date (i.e. 11 02 2024):";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            cin >> day_input >> month_input >> year_input;
+                                                        }
+
+                                                        valiResp = validation.checkDate(day_input, month_input, year_input); //First-Check
+
+                                                        while (valiResp == false) {
+                                                            cout << "Either Your Date Format is Wrong or Date is False!" << endl;
+                                                            cout << "Input Date (i.e. 11 02 2024):";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            cin >> setw(2) >> day_input >> setw(2) >> month_input >>
+                                                                setw (4) >> year_input;
+
+                                                            valiResp = validation.checkDate(day_input, month_input, year_input); //Re-Check
+                                                        }
+
+                                                        //Processing Date Format
+                                                        date_input = validation.formatDate(day_input, month_input, year_input);
+                                                        f_day = date_input.substr(0, 2); //Get Day
+                                                        f_month = date_input.substr(2, 2); //Get Month
+                                                        f_year = date_input.substr(4, 7); //Get Year
+
+                                                        date_input = f_day + "/" + f_month + "/" + f_year; //Formatting (dd/mm/yyyy)
+
+                                                        poll.updatePODate(po_id_input, date_input);
+                                                        poll.searchUpdatedPO(po_id_input);
+
+                                                        break;
+                                                    case 2: //Update Quantity
+                                                        cout << "------Update PO's Quantity------" << endl;
+
+                                                        //Get Purchase Order ID to update
+                                                        po_id_input = search_input;
+
+                                                        //Get New Quantity
+                                                        cout << "Input New Quantity:";
+                                                        cin >> quantity_input;
+
+                                                        while (cin.fail() || quantity_input > 1000) {
+                                                            cout << "Input Quantity:";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            cin >> quantity_input;
+                                                        }
+
+                                                        //Get Item ID
+                                                        item_id_input = poll.searchItemID(po_id_input);
+
+                                                        //Re-Calculate Total (geeksforgeeks n.d., w3schools, n.d.)
+                                                        f_total_input = ill.getItemPrice(item_id_input); //Get item unit price.
+
+                                                        cout << f_total_input << endl;
+
+                                                        RM_pos = f_total_input.find("RM"); //Find RM position
+                                                        f_total_input = f_total_input.substr(RM_pos+2, f_total_input.length());
+
+                                                        total_input = stof(f_total_input) * quantity_input; //Convert to Float and Total.
+                                                        total_input = floor(total_input * 100) / 100; //Round off to 2 dp.
+
+                                                        ss << total_input; //Convert Float to String.
+
+                                                        f_total_input = validation.checkFormatPrice(ss.str());
+
+                                                        poll.updatePOQty(po_id_input, quantity_input, f_total_input);
+                                                        poll.searchUpdatedPO(po_id_input);
+
+                                                        break;
+                                                    case 3: //Update Delivery Status
+                                                        cout << "------Update PO's Delivery Status------" << endl;
+
+                                                        //Get Purchase Order ID to update
+                                                        po_id_input = search_input;
+
+                                                        //Delivery Status Input
+                                                        cout << "Input Delivery Status (Processed/ Ongoing):";
+                                                        cin >> delivery_input;
+
+                                                        while (cin.fail() || (delivery_input != "Processed" &&
+                                                                              delivery_input != "Ongoing")) {
+                                                            cout << "Input Delivery Status (Processed/ Ongoing):";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            cin >> delivery_input;
+                                                        }
+
+                                                        poll.updatePODeliStatus(po_id_input, delivery_input);
+                                                        poll.searchUpdatedPO(po_id_input);
+
+                                                        break;
+                                                }
+                                            }
+
                                             break;
                                         case 2: //Delete Data
                                             break;
@@ -1245,6 +1377,104 @@ void runSoe() {
 
                                     switch(actions_input) {
                                         case 1: //Update Data
+                                            while (true) {
+                                                //Initialize Variable
+                                                menu.updateClientMenu();
+                                                client_size = cll.getSize();
+
+                                                cout << "Your Input:";
+                                                cin >> update_opt;
+                                                cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> update_opt;
+                                                }
+
+                                                if (update_opt == 4) {
+                                                    break;
+                                                }
+
+                                                switch (update_opt) {
+                                                    case 1: //Name
+                                                        cout << "------Update Client's Name------" << endl;
+                                                        //Get Client ID
+                                                        client_id_input = search_input;
+
+                                                        //Get New Client's Name
+                                                        cout << "Input New Client's Name:";
+                                                        getline(cin >> ws, client_name_input);
+
+                                                        while(cin.fail()) {
+                                                            cout << "Input New Client's Name:";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            getline(cin >> ws, client_name_input);
+                                                        }
+
+                                                        cll.updateClientName(client_id_input, client_name_input);
+                                                        cll.showUpdatedClient(client_id_input);
+
+                                                        break;
+                                                    case 2: //Address
+                                                        cout << "------Update Client's Address------" << endl;
+                                                        //Get Client ID
+                                                        client_id_input = search_input;
+
+                                                        //Get New Client's Address
+                                                        cout << "Input New Client's Address:";
+                                                        getline(cin >> ws, client_address_input);
+
+                                                        while(cin.fail()) {
+                                                            cout << "Input New Client's Address:";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            getline(cin >> ws, client_address_input);
+                                                        }
+
+                                                        cll.updateClientAddress(client_id_input, client_address_input);
+                                                        cll.showUpdatedClient(client_id_input);
+
+                                                        break;
+                                                    case 3: //Contacts
+                                                        cout << "------Update Client's Contacts------" << endl;
+                                                        //Get Client ID
+                                                        client_id_input = search_input;
+
+                                                        //Get New Client's Contact
+                                                        cout << "Input New Client Contact No (i.e. 011-12345678):";
+                                                        cin >> client_contact_input;
+
+                                                        while(cin.fail()) {
+                                                            cout << "Wrong Input or Input cannot be Empty!" << endl;
+                                                            cout << "Input New Client Contact No (i.e. 011-12345678):";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            cin >> client_contact_input;
+                                                        }
+
+                                                        valiResp = validation.checkContactFormat(client_contact_input);
+
+                                                        while (valiResp == false) {
+                                                            cout << "Wrong Input Format or Input cannot be Empty!" << endl;
+                                                            cout << "Input New Client Contact No (i.e. 011-12345678):";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            cin >> client_contact_input;
+
+                                                            valiResp = validation.checkContactFormat(client_contact_input);
+                                                        }
+
+                                                        cll.updateClientContacts(client_id_input, client_contact_input);
+                                                        cll.showUpdatedClient(client_id_input);
+
+                                                        break;
+                                                }
+                                            }
+
                                             break;
                                         case 2: //Delete Data
                                             break;
@@ -1290,6 +1520,76 @@ void runSoe() {
 
                                     switch(actions_input) {
                                         case 1: //Update Data
+                                            while(true) {
+                                                //Initialize Variable
+                                                menu.updateItemMenu();
+                                                item_size = ill.getSize();
+                                                ss.str("");
+
+                                                cout << "Your Input:";
+                                                cin >> update_opt;
+                                                cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> update_opt;
+                                                }
+
+                                                if (update_opt == 3) {
+                                                    break;
+                                                }
+
+                                                switch(update_opt) {
+                                                    case 1: //Name
+                                                        cout << "------Update Item Name------" << endl;
+                                                        //Get Item ID
+                                                        item_id_input = search_input;
+
+                                                        //Get Item's New Name
+                                                        cout << "Input New Item Name:";
+                                                        getline(cin >> ws, item_name_input);
+
+                                                        while(cin.fail()) {
+                                                            cout << "Input New Item Name:";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            cin >> item_name_input;
+                                                        }
+
+                                                        ill.updateItemName(item_id_input, item_name_input);
+                                                        ill.showUpdatedItem(item_id_input);
+
+                                                        break;
+                                                    case 2: //Unit Price
+                                                        cout << "------Update Item Price------" << endl;
+                                                        //Get Item ID
+                                                        item_id_input = search_input;
+
+                                                        //Get Item's New Unit Price
+                                                        cout << "Input Item New Unit Price (i.e. 10.00 / 10.5): RM";
+                                                        cin >> unit_price_input;
+
+                                                        while(cin.fail()) {
+                                                            cout << "Input Item New Unit Price (i.e. 10.00 / 10.5): RM";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            cin >> unit_price_input;
+                                                        }
+
+                                                        ss << unit_price_input;
+
+                                                        f_unit_price_input = validation.checkFormatPrice(ss.str());
+
+                                                        ill.updateItemPrice(item_id_input, f_unit_price_input);
+                                                        ill.showUpdatedItem(item_id_input);
+
+                                                        break;
+                                                }
+                                            }
+
                                             break;
                                         case 2: //Delete Data
                                             break;
@@ -1327,8 +1627,29 @@ void runSoe() {
 
                         switch(settings_opt) {
                             case 1: //My Information
+                                ull.showSelfInfo(cache_id);
+
                                 break;
                             case 2: //Change My Password
+                                cout << "------Change My Password------" << endl;
+
+                                //Get User ID
+                                user_id_input = cache_id;
+
+                                //Get User's New Password
+                                cout << "Input New Password:";
+                                getline(cin >> ws, password_input);
+
+                                while(cin.fail()) {
+                                    cout << "Input New Password:";
+                                    cin.clear();
+                                    cin.ignore(256, '\n');
+                                    getline(cin >> ws, password_input);
+                                }
+
+                                ull.updateUserPassword(user_id_input, password_input);
+                                ull.showSelfInfo(user_id_input);
+
                                 break;
                             case 3: //Delete My Account
                                 break;
@@ -1356,7 +1677,7 @@ void runAdmin() {
 
     //CRUD Variables
     int po_size, client_size, item_size, user_size;
-    int day_input, month_input, year_input;
+    int day_input, month_input, year_input, cache_id;
     string date_input, f_day, f_month, f_year, f_total_input, f_unit_price_input;
     string client_name_input, item_name_input, delivery_input;
     string client_address_input, client_contact_input, username_input, password_input, role_input;
@@ -1371,7 +1692,7 @@ void runAdmin() {
     cout << "Password:";
     cin >> adminPassword;
 
-    ull.showUserDetails();
+    cache_id = ull.getID(adminUsername);
 
     bool verificationStatus = ull.verifyLogin(adminUsername, adminPassword, adminRole);
 
@@ -2405,11 +2726,11 @@ void runAdmin() {
                                             }
 
                                             //Get Item's New Name
-                                            cout << "Input New Item Name";
+                                            cout << "Input New Item Name:";
                                             getline(cin >> ws, item_name_input);
 
                                             while(cin.fail()) {
-                                                cout << "Input New Item Name";
+                                                cout << "Input New Item Name:";
                                                 cin.clear();
                                                 cin.ignore(256, '\n');
                                                 cin >> item_name_input;
@@ -2673,6 +2994,7 @@ void runAdmin() {
                                             //Get User ID
                                             cout << "Input User ID:";
                                             cin >> user_id_input;
+                                            cout << endl;
 
                                             while(cin.fail() || user_id_input > user_size ||
                                                   user_id_input <= 0) {
@@ -2695,7 +3017,8 @@ void runAdmin() {
                                                 getline(cin >> ws, username_input);
                                             }
 
-                                            valiResp = ull.checkUsernameExist(username_input, role_input);
+                                            valiResp = ull.checkUsernameExist(user_id_input, username_input,
+                                                                              role_input);
 
                                             while(valiResp == true) {
                                                 cout << "Error: User with the same username and role exist!";
@@ -2704,7 +3027,8 @@ void runAdmin() {
                                                 cin.ignore(256, '\n');
                                                 getline(cin >> ws, username_input);
 
-                                                valiResp = ull.checkUsernameExist(username_input, role_input);
+                                                valiResp = ull.checkUsernameExist(user_id_input, username_input,
+                                                                                  role_input);
                                             }
 
                                             ull.updateUserUsername(user_id_input, username_input);
@@ -2756,6 +3080,9 @@ void runAdmin() {
                                                 cin >> user_id_input;
                                             }
 
+                                            //Get User's Username
+                                            username_input = ull.getUsername(user_id_input);
+
                                             //Get User's New Role
                                             cout << "Input New Role (Admin/ SoE):";
                                             getline(cin >> ws, role_input);
@@ -2765,6 +3092,21 @@ void runAdmin() {
                                                 cin.clear();
                                                 cin.ignore(256, '\n');
                                                 getline(cin >> ws, role_input);
+                                            }
+
+                                            valiResp = ull.checkUsernameExist(user_id_input, username_input,
+                                                                              role_input);
+
+                                            while(valiResp == true) {
+                                                cout << "Error: User with the same username and role exist!"
+                                                     << endl;
+                                                cout << "Input New Role (Admin/ SoE):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                getline(cin >> ws, role_input);
+
+                                                valiResp = ull.checkUsernameExist(user_id_input, username_input,
+                                                                                  role_input);
                                             }
 
                                             ull.updateUserRole(user_id_input, role_input);
@@ -2840,6 +3182,132 @@ void runAdmin() {
 
                                     switch(actions_input) {
                                         case 1: //Update Data
+                                            while(true) {
+                                                menu.updatePOMenu();
+                                                po_size = poll.getSize();
+
+                                                cout << "Your Input:";
+                                                cin >> update_opt;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> update_opt;
+                                                }
+
+                                                if(update_opt == 4) {
+                                                    break;
+                                                }
+
+                                                switch (update_opt) {
+                                                    case 1: //Update Date
+                                                        cout << "------Update PO's Date------" << endl;
+
+                                                        //Get Purchase Order ID to update
+                                                        po_id_input = search_input;
+
+                                                        //Get New Date
+                                                        cout << "Input New Date (i.e. 11 02 2024):";
+                                                        cin >> day_input >> month_input >> year_input;
+
+                                                        while(cin.fail()) {
+                                                            cout << "Input New Date (i.e. 11 02 2024):";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            cin >> day_input >> month_input >> year_input;
+                                                        }
+
+                                                        valiResp = validation.checkDate(day_input, month_input, year_input); //First-Check
+
+                                                        while (valiResp == false) {
+                                                            cout << "Either Your Date Format is Wrong or Date is False!" << endl;
+                                                            cout << "Input Date (i.e. 11 02 2024):";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            cin >> setw(2) >> day_input >> setw(2) >> month_input >>
+                                                                setw (4) >> year_input;
+
+                                                            valiResp = validation.checkDate(day_input, month_input, year_input); //Re-Check
+                                                        }
+
+                                                        //Processing Date Format
+                                                        date_input = validation.formatDate(day_input, month_input, year_input);
+                                                        f_day = date_input.substr(0, 2); //Get Day
+                                                        f_month = date_input.substr(2, 2); //Get Month
+                                                        f_year = date_input.substr(4, 7); //Get Year
+
+                                                        date_input = f_day + "/" + f_month + "/" + f_year; //Formatting (dd/mm/yyyy)
+
+                                                        poll.updatePODate(po_id_input, date_input);
+                                                        poll.searchUpdatedPO(po_id_input);
+
+                                                        break;
+                                                    case 2: //Update Quantity
+                                                        cout << "------Update PO's Quantity------" << endl;
+
+                                                        //Get Purchase Order ID to update
+                                                        po_id_input = search_input;
+
+                                                        //Get New Quantity
+                                                        cout << "Input New Quantity:";
+                                                        cin >> quantity_input;
+
+                                                        while (cin.fail() || quantity_input > 1000) {
+                                                            cout << "Input Quantity:";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            cin >> quantity_input;
+                                                        }
+
+                                                        //Get Item ID
+                                                        item_id_input = poll.searchItemID(po_id_input);
+
+                                                        //Re-Calculate Total (geeksforgeeks n.d., w3schools, n.d.)
+                                                        f_total_input = ill.getItemPrice(item_id_input); //Get item unit price.
+
+                                                        cout << f_total_input << endl;
+
+                                                        RM_pos = f_total_input.find("RM"); //Find RM position
+                                                        f_total_input = f_total_input.substr(RM_pos+2, f_total_input.length());
+
+                                                        total_input = stof(f_total_input) * quantity_input; //Convert to Float and Total.
+                                                        total_input = floor(total_input * 100) / 100; //Round off to 2 dp.
+
+                                                        ss << total_input; //Convert Float to String.
+
+                                                        f_total_input = validation.checkFormatPrice(ss.str());
+
+                                                        poll.updatePOQty(po_id_input, quantity_input, f_total_input);
+                                                        poll.searchUpdatedPO(po_id_input);
+
+                                                        break;
+                                                    case 3: //Update Delivery Status
+                                                        cout << "------Update PO's Delivery Status------" << endl;
+
+                                                        //Get Purchase Order ID to update
+                                                        po_id_input = search_input;
+
+                                                        //Delivery Status Input
+                                                        cout << "Input Delivery Status (Processed/ Ongoing):";
+                                                        cin >> delivery_input;
+
+                                                        while (cin.fail() || (delivery_input != "Processed" &&
+                                                                              delivery_input != "Ongoing")) {
+                                                            cout << "Input Delivery Status (Processed/ Ongoing):";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            cin >> delivery_input;
+                                                        }
+
+                                                        poll.updatePODeliStatus(po_id_input, delivery_input);
+                                                        poll.searchUpdatedPO(po_id_input);
+
+                                                        break;
+                                                }
+                                            }
+
                                             break;
                                         case 2: //Delete Data
                                             break;
@@ -2885,6 +3353,104 @@ void runAdmin() {
 
                                     switch(actions_input) {
                                         case 1: //Update Data
+                                            while (true) {
+                                                //Initialize Variable
+                                                menu.updateClientMenu();
+                                                client_size = cll.getSize();
+
+                                                cout << "Your Input:";
+                                                cin >> update_opt;
+                                                cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> update_opt;
+                                                }
+
+                                                if (update_opt == 4) {
+                                                    break;
+                                                }
+
+                                                switch (update_opt) {
+                                                    case 1: //Name
+                                                        cout << "------Update Client's Name------" << endl;
+                                                        //Get Client ID
+                                                        client_id_input = search_input;
+
+                                                        //Get New Client's Name
+                                                        cout << "Input New Client's Name:";
+                                                        getline(cin >> ws, client_name_input);
+
+                                                        while(cin.fail()) {
+                                                            cout << "Input New Client's Name:";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            getline(cin >> ws, client_name_input);
+                                                        }
+
+                                                        cll.updateClientName(client_id_input, client_name_input);
+                                                        cll.showUpdatedClient(client_id_input);
+
+                                                        break;
+                                                    case 2: //Address
+                                                        cout << "------Update Client's Address------" << endl;
+                                                        //Get Client ID
+                                                        client_id_input = search_input;
+
+                                                        //Get New Client's Address
+                                                        cout << "Input New Client's Address:";
+                                                        getline(cin >> ws, client_address_input);
+
+                                                        while(cin.fail()) {
+                                                            cout << "Input New Client's Address:";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            getline(cin >> ws, client_address_input);
+                                                        }
+
+                                                        cll.updateClientAddress(client_id_input, client_address_input);
+                                                        cll.showUpdatedClient(client_id_input);
+
+                                                        break;
+                                                    case 3: //Contacts
+                                                        cout << "------Update Client's Contacts------" << endl;
+                                                        //Get Client ID
+                                                        client_id_input = search_input;
+
+                                                        //Get New Client's Contact
+                                                        cout << "Input New Client Contact No (i.e. 011-12345678):";
+                                                        cin >> client_contact_input;
+
+                                                        while(cin.fail()) {
+                                                            cout << "Wrong Input or Input cannot be Empty!" << endl;
+                                                            cout << "Input New Client Contact No (i.e. 011-12345678):";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            cin >> client_contact_input;
+                                                        }
+
+                                                        valiResp = validation.checkContactFormat(client_contact_input);
+
+                                                        while (valiResp == false) {
+                                                            cout << "Wrong Input Format or Input cannot be Empty!" << endl;
+                                                            cout << "Input New Client Contact No (i.e. 011-12345678):";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            cin >> client_contact_input;
+
+                                                            valiResp = validation.checkContactFormat(client_contact_input);
+                                                        }
+
+                                                        cll.updateClientContacts(client_id_input, client_contact_input);
+                                                        cll.showUpdatedClient(client_id_input);
+
+                                                        break;
+                                                }
+                                            }
+
                                             break;
                                         case 2: //Delete Data
                                             break;
@@ -2930,6 +3496,76 @@ void runAdmin() {
 
                                     switch(actions_input) {
                                         case 1: //Update Data
+                                            while(true) {
+                                                //Initialize Variable
+                                                menu.updateItemMenu();
+                                                item_size = ill.getSize();
+                                                ss.str("");
+
+                                                cout << "Your Input:";
+                                                cin >> update_opt;
+                                                cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> update_opt;
+                                                }
+
+                                                if (update_opt == 3) {
+                                                    break;
+                                                }
+
+                                                switch(update_opt) {
+                                                    case 1: //Name
+                                                        cout << "------Update Item Name------" << endl;
+                                                        //Get Item ID
+                                                        item_id_input = search_input;
+
+                                                        //Get Item's New Name
+                                                        cout << "Input New Item Name:";
+                                                        getline(cin >> ws, item_name_input);
+
+                                                        while(cin.fail()) {
+                                                            cout << "Input New Item Name:";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            cin >> item_name_input;
+                                                        }
+
+                                                        ill.updateItemName(item_id_input, item_name_input);
+                                                        ill.showUpdatedItem(item_id_input);
+
+                                                        break;
+                                                    case 2: //Unit Price
+                                                        cout << "------Update Item Price------" << endl;
+                                                        //Get Item ID
+                                                        item_id_input = search_input;
+
+                                                        //Get Item's New Unit Price
+                                                        cout << "Input Item New Unit Price (i.e. 10.00 / 10.5): RM";
+                                                        cin >> unit_price_input;
+
+                                                        while(cin.fail()) {
+                                                            cout << "Input Item New Unit Price (i.e. 10.00 / 10.5): RM";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            cin >> unit_price_input;
+                                                        }
+
+                                                        ss << unit_price_input;
+
+                                                        f_unit_price_input = validation.checkFormatPrice(ss.str());
+
+                                                        ill.updateItemPrice(item_id_input, f_unit_price_input);
+                                                        ill.showUpdatedItem(item_id_input);
+
+                                                        break;
+                                                }
+                                            }
+
                                             break;
                                         case 2: //Delete Data
                                             break;
@@ -2975,6 +3611,126 @@ void runAdmin() {
 
                                     switch(actions_input) {
                                         case 1: //Update Data
+                                            while(true) {
+                                                menu.updateUserMenu();
+                                                user_size = ull.getSize();
+
+                                                cout << "Your Input:";
+                                                cin >> update_opt;
+                                                cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> update_opt;
+                                                }
+
+                                                if(update_opt == 4) {
+                                                    break;
+                                                }
+
+                                                switch(update_opt) {
+                                                    case 1: //Username
+                                                        cout << "------Update User's Username------" << endl;
+
+                                                        //Get User ID
+                                                        user_id_input = search_input;
+
+                                                        role_input = ull.getRoleBasedID(user_id_input);
+
+                                                        //Get User's New Username
+                                                        cout << "Input New Username:";
+                                                        getline(cin >> ws, username_input);
+
+                                                        while(cin.fail()) {
+                                                            cout << "Input New Username:";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            getline(cin >> ws, username_input);
+                                                        }
+
+                                                        valiResp = ull.checkUsernameExist(user_id_input, username_input,
+                                                                                          role_input);
+
+                                                        while(valiResp == true) {
+                                                            cout << "Error: User with the same username and role exist!";
+                                                            cout << "Input New Username:";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            getline(cin >> ws, username_input);
+
+                                                            valiResp = ull.checkUsernameExist(user_id_input, username_input,
+                                                                                              role_input);
+                                                        }
+
+                                                        ull.updateUserUsername(user_id_input, username_input);
+                                                        ull.showUpdatedUser(user_id_input);
+
+                                                        break;
+                                                    case 2: //Password
+                                                        cout << "------Update User's Password------" << endl;
+
+                                                        //Get User ID
+                                                        user_id_input = search_input;
+
+                                                        //Get User's New Password
+                                                        cout << "Input New Password:";
+                                                        getline(cin >> ws, password_input);
+
+                                                        while(cin.fail()) {
+                                                            cout << "Input New Password:";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            getline(cin >> ws, password_input);
+                                                        }
+
+                                                        ull.updateUserPassword(user_id_input, password_input);
+                                                        ull.showUpdatedUser(user_id_input);
+
+                                                        break;
+                                                    case 3: //Role
+                                                        cout << "------Update User's Role------" << endl;
+
+                                                        //Get User ID
+                                                        user_id_input = search_input;
+
+                                                        //Get User's Username
+                                                        username_input = ull.getUsername(user_id_input);
+
+                                                        //Get User's New Role
+                                                        cout << "Input New Role (Admin/ SoE):";
+                                                        getline(cin >> ws, role_input);
+
+                                                        while(cin.fail() || (role_input != "Admin" && role_input != "SoE")) {
+                                                            cout << "Input New Role (Admin/ SoE):";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            getline(cin >> ws, role_input);
+                                                        }
+
+                                                        valiResp = ull.checkUsernameExist(user_id_input, username_input, role_input);
+
+                                                        while(valiResp == true) {
+                                                            cout << "Error: User with the same username and role exist!"
+                                                                    << endl;
+                                                            cout << "Input New Role (Admin/ SoE):";
+                                                            cin.clear();
+                                                            cin.ignore(256, '\n');
+                                                            getline(cin >> ws, role_input);
+
+                                                            valiResp = ull.checkUsernameExist(user_id_input, username_input,
+                                                                                              role_input);
+                                                        }
+
+                                                        ull.updateUserRole(user_id_input, role_input);
+                                                        ull.showUpdatedUser(user_id_input);
+
+                                                        break;
+                                                }
+                                            }
+
                                             break;
                                         case 2: //Delete Data
                                             break;
@@ -3012,8 +3768,29 @@ void runAdmin() {
 
                         switch(settings_opt) {
                             case 1: //My Information
+                                ull.showSelfInfo(cache_id);
+
                                 break;
                             case 2: //Change My Password
+                                cout << "------Change My Password------" << endl;
+
+                                //Get User ID
+                                user_id_input = cache_id;
+
+                                //Get User's New Password
+                                cout << "Input New Password:";
+                                getline(cin >> ws, password_input);
+
+                                while(cin.fail()) {
+                                    cout << "Input New Password:";
+                                    cin.clear();
+                                    cin.ignore(256, '\n');
+                                    getline(cin >> ws, password_input);
+                                }
+
+                                ull.updateUserPassword(user_id_input, password_input);
+                                ull.showSelfInfo(user_id_input);
+
                                 break;
                             case 3: //Delete My Account
                                 break;

@@ -89,7 +89,41 @@ struct UserLinkedList {
 
     void displayUserDetails(int id, string username, string password, string role) {
         cout << "ID" << "Username" << "Password" << "Role" << endl;
-        cout << id << " " << username << " " << password << " " << role << endl;
+        cout << id << " " << username << " " << password << " " << role << endl << endl;
+    }
+
+    void showUpdatedUser(int id) {
+        if (id <= user_size && id > 0) {
+            User * curr = head;
+
+            while( curr != nullptr ) {
+                if (curr->id == id) {
+                    cout << "------Updated User #" << id << "------" << endl;
+                    displayUserDetails(curr->id, curr->username, curr->password,
+                                       curr->role);
+                    break;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        }
+    }
+
+    void showSelfInfo(int id) {
+        if (id <= user_size && id > 0) {
+            User * curr = head;
+
+            while( curr != nullptr ) {
+                if (curr->id == id) {
+                    cout << "------My Information------" << endl;
+                    displayUserDetails(curr->id, curr->username, curr->password,
+                                       curr->role);
+                    break;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        }
     }
 
     //Search---------------------------------------------------------------------------
@@ -120,7 +154,12 @@ struct UserLinkedList {
                     curr = curr->next;
                 }
             }
-            cout << "(Total Results Found: " << totalResults << ")" << endl << endl;
+
+            if (totalResults == 0) {
+                cout << "No Data with the User ID: #" << id << "is found!" << endl << endl;
+            } else {
+                cout << "(Total Results Found: " << totalResults << ")" << endl << endl;
+            }
         }
     }
 
@@ -139,14 +178,14 @@ struct UserLinkedList {
         }
     }
 
-    bool checkUsernameExist(string username, string role) {
+    bool checkUsernameExist(int id, string username, string role) {
         bool usernameExist = false;
 
         if (user_size > 0) {
             User * curr = head;
 
             while( curr != nullptr ) {
-                if (curr->username == username && curr->role == role) {
+                if (curr->username == username && curr->role == role && curr->id != id) {
                     usernameExist = true;
                     return usernameExist;
                 } else {
@@ -155,6 +194,36 @@ struct UserLinkedList {
             }
             usernameExist = false;
             return usernameExist;
+        }
+    }
+
+    string getUsername(int id) {
+        if (id <= user_size || id > 0) {
+            User * curr = head;
+
+            while( curr != nullptr ) {
+                if (curr->id == id) {
+                    return curr->username;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        } else {
+            return "User Don't Exist!";
+        }
+    }
+
+    int getID(string username) {
+        if (user_size > 0) {
+            User * curr = head;
+
+            while( curr != nullptr ) {
+                if (curr->username == username) {
+                    return curr->id;
+                } else {
+                    curr = curr->next;
+                }
+            }
         }
     }
 

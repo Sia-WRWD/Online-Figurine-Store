@@ -90,8 +90,27 @@ struct ClientLinkedList {
     void displayClientSearchResult(int client_id, string client_name, string client_address,
                                    string contact_no) {
         cout << "ID" << "Name" << "Address" << "Contact No" << endl;
-        cout << client_id << " " << client_name << " " << client_address << " " << contact_no << endl;
+        cout << client_id << " " << client_name << " " << client_address << " " << contact_no << endl << endl;
     }
+
+    void showUpdatedClient(int id) {
+        if (id <= client_size && id > 0) {
+            Client * curr = head;
+
+            while( curr != nullptr ) {
+                if (curr->client_id == id) {
+                    cout << "------Updated Client #" << id << "------" << endl;
+                    displayClientSearchResult(curr->client_id, curr->client_name,
+                                              curr->client_address, curr->contact_no);
+                    break;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        }
+    }
+
+    //Search---------------------------------------------------------------------------
     void searchClient(int id) {
         if (id <= client_size && id > 0) {
             Client * curr = head;
@@ -107,11 +126,13 @@ struct ClientLinkedList {
                     curr = curr->next;
                 }
             }
-            cout << "(Total Results Found: " << totalResults << ")" << endl << endl;
+            if (totalResults == 0) {
+                cout << "No Data with the Client ID: #" << id << "is found!" << endl << endl;
+            } else {
+                cout << "(Total Results Found: " << totalResults << ")" << endl << endl;
+            }
         }
     }
-    //Search---------------------------------------------------------------------------
-
 
     //Update---------------------------------------------------------------------------
     void updateClientName(int id, string name) {
@@ -170,7 +191,6 @@ struct ClientLinkedList {
             cout << "Error: ID is Out of Bounds!" << endl;
         }
     }
-
 
     //Delete---------------------------------------------------------------------------
 

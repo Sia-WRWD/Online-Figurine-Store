@@ -83,7 +83,24 @@ struct ItemLinkedList {
 
     void displayItemSearchResult(int item_id, string item_name, string unit_price) {
         cout << "ID" << "Name" << "Address" << "Contact No" << endl;
-        cout << item_id << " " << item_name << " " << unit_price << endl;
+        cout << item_id << " " << item_name << " " << unit_price << endl << endl;
+    }
+
+    void showUpdatedItem(int id) {
+        if (id <= item_size && id > 0) {
+            Item * curr = head;
+
+            while( curr != nullptr ) {
+                if (curr->item_id == id) {
+                    cout << "------Updated Item #" << id << "------" << endl;
+                    displayItemSearchResult(curr->item_id, curr->item_name,
+                                            curr->unit_price);
+                    break;
+                } else {
+                    curr = curr->next;
+                }
+            }
+        }
     }
 
     //Search---------------------------------------------------------------------------
@@ -102,7 +119,12 @@ struct ItemLinkedList {
                     curr = curr->next;
                 }
             }
-            cout << "(Total Results Found: " << totalResults << ")" << endl << endl;
+
+            if (totalResults == 0) {
+                cout << "No Data with the Item ID: #" << id << "is found!" << endl << endl;
+            } else {
+                cout << "(Total Results Found: " << totalResults << ")" << endl << endl;
+            }
         }
     }
 
