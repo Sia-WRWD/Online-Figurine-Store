@@ -565,6 +565,26 @@ void runSoe() {
 
                                 break;
                             case 4: //Delete Data
+                                po_size = poll.getSize();
+
+                                cout << "------Delete Purchase Order------" << endl;
+
+                                //Get Purchase Order ID to delete
+                                cout << "Purchase Order ID to delete (1-" << po_size << "):";
+                                cin >> po_id_input;
+
+                                while(cin.fail() || po_id_input > po_size) {
+                                    cout << "Error: Invalid ID or ID Format!" << endl;
+                                    cout << "Purchase Order ID to delete (1-" << po_size << "):";
+                                    cin.clear();
+                                    cin.ignore(256, '\n');
+                                    cin >> po_id_input;
+                                }
+
+                                poll.deletePurchaseOrder(po_id_input);
+                                poll.rearrangePOID();
+                                poll.showPODetails();
+
                                 break;
                             default:
                                 break;
@@ -869,6 +889,26 @@ void runSoe() {
 
                                 break;
                             case 4: //Delete Data
+                                client_size = cll.getSize();
+
+                                cout << "------Delete Client------" << endl;
+
+                                //Get Purchase Order ID to update
+                                cout << "Client ID to delete (1-" << client_size << "):";
+                                cin >> client_id_input;
+
+                                while(cin.fail() || client_id_input > client_size) {
+                                    cout << "Error: Invalid ID or ID Format!" << endl;
+                                    cout << "Client ID to delete (1-" << client_size << "):";
+                                    cin.clear();
+                                    cin.ignore(256, '\n');
+                                    cin >> client_id_input;
+                                }
+
+                                cll.deleteClient(client_id_input);
+                                cll.rearrangeClientID();
+                                cll.showClientDetails();
+
                                 break;
                             default:
                                 break;
@@ -1141,6 +1181,26 @@ void runSoe() {
 
                                 break;
                             case 4: //Delete Data
+                                item_size = ill.getSize();
+
+                                cout << "------Delete Item------" << endl;
+
+                                //Get Item ID to update
+                                cout << "Item ID to delete (1-" << item_size << "):";
+                                cin >> item_id_input;
+
+                                while(cin.fail() || item_id_input > item_size) {
+                                    cout << "Error: Invalid ID or ID Format!" << endl;
+                                    cout << "Item ID to delete (1-" << item_size << "):";
+                                    cin.clear();
+                                    cin.ignore(256, '\n');
+                                    cin >> item_id_input;
+                                }
+
+                                ill.deleteItem(item_id_input);
+                                ill.rearrangeItemID();
+                                ill.showItemDetails();
+
                                 break;
                             default:
                                 break;
@@ -1330,14 +1390,27 @@ void runSoe() {
 
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
                                         case 2: //Delete Data
+                                            po_size = poll.getSize();
+
+                                            cout << "------Delete Purchase Order------" << endl;
+
+                                            //Get Purchase Order ID to delete
+                                            po_id_input = search_input;
+
+                                            poll.deletePurchaseOrder(po_id_input);
+                                            poll.rearrangePOID();
+                                            poll.showPODetails();
+
                                             break;
                                         default:
                                             break;
                                     }
+                                    break;
                                 }
 
                                 break;
@@ -1473,14 +1546,36 @@ void runSoe() {
 
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
                                         case 2: //Delete Data
+                                            client_size = cll.getSize();
+
+                                            cout << "------Delete Client------" << endl;
+
+                                            //Get Client ID to delete
+                                            cout << "Client ID to delete (1-" << client_size << "):";
+                                            cin >> client_id_input;
+
+                                            while(cin.fail() || client_id_input > client_size) {
+                                                cout << "Error: Invalid ID or ID Format!" << endl;
+                                                cout << "Client ID to delete (1-" << client_size << "):";
+                                                cin.clear();
+                                                cin.ignore(256, '\n');
+                                                cin >> client_id_input;
+                                            }
+
+                                            cll.deleteClient(client_id_input);
+                                            cll.rearrangeClientID();
+                                            cll.showClientDetails();
+
                                             break;
                                         default:
                                             break;
                                     }
+                                    break;
                                 }
 
                                 break;
@@ -1588,14 +1683,27 @@ void runSoe() {
 
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
                                         case 2: //Delete Data
+                                            item_size = ill.getSize();
+
+                                            cout << "------Delete Item------" << endl;
+
+                                            //Get Item ID to update
+                                            item_id_input = search_input;
+
+                                            ill.deleteItem(item_id_input);
+                                            ill.rearrangeItemID();
+                                            ill.showItemDetails();
+
                                             break;
                                         default:
                                             break;
                                     }
+                                    break;
                                 }
 
                                 break;
@@ -1652,16 +1760,27 @@ void runSoe() {
 
                                 break;
                             case 3: //Delete My Account
+                                user_id_input = cache_id;
+
+                                ull.deleteUser(user_id_input);
+                                ull.rearrangeUserID();
+
                                 break;
                             default:
                                 break;
                         }
+                        break;
                     }
 
                     break;
                 default:
                     break;
             }
+
+            if (settings_opt == 3) {
+                break;
+            }
+
         }
     } else {
         cout << endl;
@@ -2208,6 +2327,25 @@ void runAdmin() {
 
                                 break;
                             case 4: //Delete Data
+                                po_size = poll.getSize();
+
+                                cout << "------Delete Purchase Order------" << endl;
+                                //Get Purchase Order ID to delete
+                                cout << "Purchase Order ID to delete (1-" << po_size << "):";
+                                cin >> po_id_input;
+
+                                while(cin.fail() || po_id_input > po_size) {
+                                    cout << "Error: Invalid ID or ID Format!" << endl;
+                                    cout << "Purchase Order ID to delete (1-" << po_size << "):";
+                                    cin.clear();
+                                    cin.ignore(256, '\n');
+                                    cin >> po_id_input;
+                                }
+
+                                poll.deletePurchaseOrder(po_id_input);
+                                poll.rearrangePOID();
+                                poll.showPODetails();
+
                                 break;
                             default:
                                 break;
@@ -2505,6 +2643,26 @@ void runAdmin() {
 
                                 break;
                             case 4: //Delete Data
+                                client_size = cll.getSize();
+
+                                cout << "------Delete Client------" << endl;
+
+                                //Get Client ID to update
+                                cout << "Client ID to delete (1-" << client_size << "):";
+                                cin >> client_id_input;
+
+                                while(cin.fail() || client_id_input > client_size) {
+                                    cout << "Error: Invalid ID or ID Format!" << endl;
+                                    cout << "Client ID to delete (1-" << client_size << "):";
+                                    cin.clear();
+                                    cin.ignore(256, '\n');
+                                    cin >> client_id_input;
+                                }
+
+                                cll.deleteClient(client_id_input);
+                                cll.rearrangeClientID();
+                                cll.showClientDetails();
+
                                 break;
                             default:
                                 break;
@@ -2778,6 +2936,26 @@ void runAdmin() {
 
                                 break;
                             case 4: //Delete Data
+                                item_size = ill.getSize();
+
+                                cout << "------Delete Item------" << endl;
+
+                                //Get Item ID to update
+                                cout << "Item ID to delete (1-" << item_size << "):";
+                                cin >> item_id_input;
+
+                                while(cin.fail() || item_id_input > item_size) {
+                                    cout << "Error: Invalid ID or ID Format!" << endl;
+                                    cout << "Item ID to delete (1-" << item_size << "):";
+                                    cin.clear();
+                                    cin.ignore(256, '\n');
+                                    cin >> item_id_input;
+                                }
+
+                                ill.deleteItem(item_id_input);
+                                ill.rearrangeItemID();
+                                ill.showItemDetails();
+
                                 break;
                             default:
                                 break;
@@ -3118,6 +3296,26 @@ void runAdmin() {
 
                                 break;
                             case 4: //Delete Data
+                                user_size = ill.getSize();
+
+                                cout << "------Delete User------" << endl;
+
+                                //Get User ID to update
+                                cout << "User ID to delete (1-" << user_size << "):";
+                                cin >> user_id_input;
+
+                                while(cin.fail() || user_id_input > user_size) {
+                                    cout << "Error: Invalid ID or ID Format!" << endl;
+                                    cout << "User ID to delete (1-" << user_size << "):";
+                                    cin.clear();
+                                    cin.ignore(256, '\n');
+                                    cin >> user_id_input;
+                                }
+
+                                ull.deleteUser(user_id_input);
+                                ull.rearrangeUserID();
+                                ull.showUserDetails();
+
                                 break;
                             default:
                                 break;
@@ -3306,14 +3504,26 @@ void runAdmin() {
 
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
                                         case 2: //Delete Data
+                                            po_size = poll.getSize();
+
+                                            cout << "------Delete Purchase Order------" << endl;
+                                            //Get Purchase Order ID to delete
+                                            po_id_input = search_input;
+
+                                            poll.deletePurchaseOrder(po_id_input);
+                                            poll.rearrangePOID();
+                                            poll.showPODetails();
+
                                             break;
                                         default:
                                             break;
                                     }
+                                    break;
                                 }
 
                                 break;
@@ -3449,14 +3659,27 @@ void runAdmin() {
 
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
                                         case 2: //Delete Data
+                                            client_size = cll.getSize();
+
+                                            cout << "------Delete Client------" << endl;
+
+                                            //Get Client ID to update
+                                            client_id_input == client_size;
+
+                                            cll.deleteClient(client_id_input);
+                                            cll.rearrangeClientID();
+                                            cll.showClientDetails();
+
                                             break;
                                         default:
                                             break;
                                     }
+                                    break;
                                 }
 
                                 break;
@@ -3564,14 +3787,27 @@ void runAdmin() {
 
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
                                         case 2: //Delete Data
+                                            item_size = ill.getSize();
+
+                                            cout << "------Delete Item------" << endl;
+
+                                            //Get Purchase Order ID to update
+                                            item_id_input = search_input;
+
+                                            ill.deleteItem(item_id_input);
+                                            ill.rearrangeItemID();
+                                            ill.showItemDetails();
+
                                             break;
                                         default:
                                             break;
                                     }
+                                    break;
                                 }
 
                                 break;
@@ -3729,14 +3965,27 @@ void runAdmin() {
 
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
                                         case 2: //Delete Data
+                                            user_size = ill.getSize();
+
+                                            cout << "------Delete User------" << endl;
+
+                                            //Get User ID to update
+                                            user_id_input == search_input;
+
+                                            ull.deleteUser(user_id_input);
+                                            ull.rearrangeUserID();
+                                            ull.showUserDetails();
+
                                             break;
                                         default:
                                             break;
                                     }
+                                    break;
                                 }
 
                                 break;
@@ -3793,16 +4042,27 @@ void runAdmin() {
 
                                 break;
                             case 3: //Delete My Account
+                                user_id_input = cache_id;
+
+                                ull.deleteUser(user_id_input);
+                                ull.rearrangeUserID();
+
                                 break;
                             default:
                                 break;
                         }
+                        break;
                     }
 
                     break;
                 default:
                     break;
             }
+
+            if (settings_opt == 3) {
+                break;
+            }
+
         }
 
     } else {

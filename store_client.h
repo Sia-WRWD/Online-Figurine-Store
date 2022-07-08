@@ -193,6 +193,55 @@ struct ClientLinkedList {
     }
 
     //Delete---------------------------------------------------------------------------
+    void deleteClientAtBeginning() {
+        if(client_size > 0) {
+            Client * toBeDeleted = head;
+            head = head->next;
+            delete toBeDeleted;
+            client_size--;
+        }
+    }
+
+    void deleteClient(int id) {
+        if(id <= client_size && id > 0) {
+            Client * prev = head, * toDelete = head;
+            while( toDelete != nullptr ) {
+                if (toDelete->client_id == id) {
+                    if (toDelete == head) {
+                        deleteClientAtBeginning();
+
+                        cout << "Successfully Deleted Client #" << id << "!" << endl << endl;
+                    } else {
+                        prev->next = toDelete->next;
+                        delete toDelete;
+                        client_size--;
+
+                        cout << "Successfully Deleted Client #" << id << "!" << endl << endl;
+
+                        break;
+                    }
+                } else {
+                    prev = toDelete;
+                    toDelete = toDelete->next;
+                }
+            }
+        } else {
+            cout << "Item with the ID: #" << id << " cannot be found!" << endl << endl;
+        }
+    }
+
+    void rearrangeClientID() {
+        Client * curr = head;
+        int new_id = 0;
+
+        while(curr != nullptr) {
+            curr->client_id = new_id + 1;
+            curr = curr->next;
+
+            new_id++;
+        }
+    }
+
 
     //Sort---------------------------------------------------------------------------
 

@@ -286,6 +286,54 @@ struct UserLinkedList {
     }
 
     //Delete---------------------------------------------------------------------------
+    void deleteUserAtBeginning() {
+        if(user_size > 0) {
+            User * toBeDeleted = head;
+            head = head->next;
+            delete toBeDeleted;
+            user_size--;
+        }
+    }
+
+    void deleteUser(int id) {
+        if(id <= user_size && id > 0) {
+            User * prev = head, * toDelete = head;
+            while( toDelete != nullptr ) {
+                if (toDelete->id == id) {
+                    if (toDelete == head) {
+                        deleteUserAtBeginning();
+
+                        cout << "Successfully Deleted Purchase Order #" << id << "!" << endl << endl;
+                    } else {
+                        prev->next = toDelete->next;
+                        delete toDelete;
+                        user_size--;
+
+                        cout << "Successfully Deleted Purchase Order #" << id << "!" << endl << endl;
+
+                        break;
+                    }
+                } else {
+                    prev = toDelete;
+                    toDelete = toDelete->next;
+                }
+            }
+        } else {
+            cout << "Purchase Order with the ID: #" << id << " cannot be found!" << endl << endl;
+        }
+    }
+
+    void rearrangeUserID() {
+        User * curr = head;
+        int new_id = 0;
+
+        while(curr != nullptr) {
+            curr->id = new_id + 1;
+            curr = curr->next;
+
+            new_id++;
+        }
+    }
 
     //Sort---------------------------------------------------------------------------
     void sortBasedUserID() {

@@ -187,6 +187,54 @@ struct ItemLinkedList {
     }
 
     //Delete---------------------------------------------------------------------------
+    void deleteItemAtBeginning() {
+        if(item_size > 0) {
+            Item * toBeDeleted = head;
+            head = head->next;
+            delete toBeDeleted;
+            item_size--;
+        }
+    }
+
+    void deleteItem(int id) {
+        if(id <= item_size && id > 0) {
+            Item * prev = head, * toDelete = head;
+            while( toDelete != nullptr ) {
+                if (toDelete->item_id == id) {
+                    if (toDelete == head) {
+                        deleteItemAtBeginning();
+
+                        cout << "Successfully Deleted Item #" << id << "!" << endl << endl;
+                    } else {
+                        prev->next = toDelete->next;
+                        delete toDelete;
+                        item_size--;
+
+                        cout << "Successfully Deleted Item #" << id << "!" << endl << endl;
+
+                        break;
+                    }
+                } else {
+                    prev = toDelete;
+                    toDelete = toDelete->next;
+                }
+            }
+        } else {
+            cout << "Item with the ID: #" << id << " cannot be found!" << endl << endl;
+        }
+    }
+
+    void rearrangeItemID() {
+        Item * curr = head;
+        int new_id = 0;
+
+        while(curr != nullptr) {
+            curr->item_id = new_id + 1;
+            curr = curr->next;
+
+            new_id++;
+        }
+    }
 
     //Sort---------------------------------------------------------------------------
 

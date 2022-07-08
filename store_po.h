@@ -232,10 +232,56 @@ class PurchaseOrderLinkedList {
     }
 
     //Delete---------------------------------------------------------------------------
+    void deletePOAtBeginning() {
+        if(po_size > 0) {
+            PurchaseOrder * toBeDeleted = head;
+            head = head->next;
+            delete toBeDeleted;
+            po_size--;
+        }
+    }
+
+    void deletePurchaseOrder(int id) {
+        if(id <= po_size && id > 0) {
+            PurchaseOrder * prev = head, * toDelete = head;
+            while( toDelete != nullptr ) {
+                if (toDelete->po_id == id) {
+                    if (toDelete == head) {
+                        deletePOAtBeginning();
+
+                        cout << "Successfully Deleted Purchase Order #" << id << "!" << endl << endl;
+                    } else {
+                        prev->next = toDelete->next;
+                        delete toDelete;
+                        po_size--;
+
+                        cout << "Successfully Deleted Purchase Order #" << id << "!" << endl << endl;
+
+                        break;
+                    }
+                } else {
+                    prev = toDelete;
+                    toDelete = toDelete->next;
+                }
+            }
+        } else {
+            cout << "Purchase Order with the ID: #" << id << " cannot be found!" << endl << endl;
+        }
+    }
+
+    void rearrangePOID() {
+        PurchaseOrder * curr = head;
+        int new_id = 0;
+
+        while(curr != nullptr) {
+            curr->po_id = new_id + 1;
+            curr = curr->next;
+
+            new_id++;
+        }
+    }
 
     //Sort---------------------------------------------------------------------------
-
-    //Validation---------------------------------------------------------------------------
 
 };
 
