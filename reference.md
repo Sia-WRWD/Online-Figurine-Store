@@ -12,4 +12,6 @@
    (BartoszKP & Wilka, 2015)
 8. https://www.tutorialspoint.com/learn_c_by_examples/linked_list_update_program_in_c.htm
    (tutorialspoint, n.d.)
-9. 
+9. https://www.geeksforgeeks.org/print-reverse-of-a-linked-list-without-actually-reversing/
+   (geeksforgeeks, 2022)
+10. 

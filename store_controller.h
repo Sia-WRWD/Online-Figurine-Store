@@ -117,7 +117,7 @@ void runSoe() {
                                         cin >> sort_opt;
                                     }
 
-                                    if (sort_opt == 7) {
+                                    if (sort_opt == 8) {
                                         break;
                                     }
 
@@ -144,10 +144,25 @@ void runSoe() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        poll.sortPOID();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on PO ID"
+                                                             << " (Ascending)------" << endl;
+                                                        poll.showPOListAsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        poll.sortPOID();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on PO ID"
+                                                             << " (Ascending)------" << endl;
+                                                        poll.showPOListDsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
@@ -173,10 +188,25 @@ void runSoe() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        poll.sortPOClientID();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Client ID"
+                                                             << " (Ascending)------" << endl;
+                                                        poll.showPOListAsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        poll.sortPOClientID();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Client ID"
+                                                             << " (Descending)------" << endl;
+                                                        poll.showPOListDsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
@@ -202,10 +232,25 @@ void runSoe() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        poll.sortPOItemID();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Item ID"
+                                                             << " (Ascending)------" << endl;
+                                                        poll.showPOListAsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        poll.sortPOItemID();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Item ID"
+                                                             << " (Descending)------" << endl;
+                                                        poll.showPOListDsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
@@ -231,10 +276,27 @@ void runSoe() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        poll.sortPODate();
+                                                        poll.sortPODate();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Date"
+                                                             << " (Ascending)------" << endl;
+                                                        poll.showPOListDsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        poll.sortPODate();
+                                                        poll.sortPODate();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Date"
+                                                             << " (Descending)------" << endl;
+                                                        poll.showPOListAsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
@@ -260,14 +322,29 @@ void runSoe() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        poll.sortPOQty();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Quantity"
+                                                             << " (Ascending)------" << endl;
+                                                        poll.showPOListAsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        poll.sortPOQty();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Quantity"
+                                                             << " (Descending)------" << endl;
+                                                        poll.showPOListDsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
-                                        case 6: //Delivery Status
+                                        case 6: //Total
                                             while(true) {
                                                 menu.sortDirection();
 
@@ -289,13 +366,70 @@ void runSoe() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        poll.sortPOTotal();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Total"
+                                                             << " (Ascending)------" << endl;
+                                                        poll.showPOListAsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        poll.sortPOTotal();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Total"
+                                                             << " (Descending)------" << endl;
+                                                        poll.showPOListAsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
+                                        case 7: //Delivery Status
+                                            while(true) {
+                                                menu.sortDirection();
+
+                                                cout << "Your Input:";
+                                                cin >> sort_dir_opt;
+                                                cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
+
+                                                if (sort_dir_opt == 3) {
+                                                    break;
+                                                }
+
+                                                switch (sort_dir_opt) {
+                                                    case 1: //Ascending
+                                                        poll.sortPODeliveryStatus();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Delivery Status"
+                                                             << " (Ascending)------" << endl;
+                                                        poll.showPOListAsc(poll.head);
+                                                        cout << endl;
+
+                                                        break;
+                                                    case 2: //Descending
+                                                        poll.sortPODeliveryStatus();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Delivery Status"
+                                                             << " (Descending)------" << endl;
+                                                        poll.showPOListAsc(poll.head);
+                                                        cout << endl;
+
+                                                        break;
+                                                }
+                                                break;
+                                            }
                                     }
                                 }
 
@@ -586,8 +720,6 @@ void runSoe() {
                                 poll.showPODetails();
 
                                 break;
-                            default:
-                                break;
                         }
                     }
 
@@ -631,7 +763,7 @@ void runSoe() {
                                         cin >> sort_opt;
                                     }
 
-                                    if (sort_opt == 3) {
+                                    if (sort_opt == 2) {
                                         break;
                                     }
 
@@ -658,39 +790,25 @@ void runSoe() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        cll.sortClientID();
+
+                                                        cout << "------Sorted Client List Based on Client ID" <<
+                                                             " (Ascending)------" << endl;
+                                                        cll.showClientListAsc(cll.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        cll.sortClientID();
+
+                                                        cout << "------Sorted Client List Based on Client ID" <<
+                                                             " (Descending)------" << endl;
+                                                        cll.showClientListDsc(cll.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
-                                            }
-
-                                            break;
-                                        case 2: //Client Name
-                                            while(true) {
-                                                menu.sortDirection();
-
-                                                cout << "Your Input:";
-                                                cin >> sort_dir_opt;
-                                                cout << endl;
-
-                                                while(cin.fail()) {
-                                                    cout << "Your Input:";
-                                                    cout << endl;
-                                                    cin.clear();
-                                                    cin.ignore(256, '\n');
-                                                    cin >> sort_dir_opt;
-                                                }
-
-                                                if (sort_dir_opt == 3) {
-                                                    break;
-                                                }
-
-                                                switch (sort_dir_opt) {
-                                                    case 1: //Ascending
-                                                        break;
-                                                    case 2: //Descending
-                                                        break;
-                                                }
+                                                break;
                                             }
 
                                             break;
@@ -955,7 +1073,7 @@ void runSoe() {
                                         cin >> sort_opt;
                                     }
 
-                                    if (sort_opt == 4) {
+                                    if (sort_opt == 3) {
                                         break;
                                     }
 
@@ -982,14 +1100,29 @@ void runSoe() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        ill.sortItemID();
+
+                                                        cout << "------Sorted Item List Based on Item ID" <<
+                                                             " (Ascending)------" << endl;
+                                                        ill.showItemListAsc(ill.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        ill.sortItemID();
+
+                                                        cout << "------Sorted Item List Based on Item ID" <<
+                                                             " (Descending)------" << endl;
+                                                        ill.showItemListDsc(ill.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
-                                        case 2: //Item Name
+                                        case 2: //Unit Price
                                             while(true) {
                                                 menu.sortDirection();
 
@@ -1011,39 +1144,25 @@ void runSoe() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        ill.sortUnitPrice();
+
+                                                        cout << "------Sorted User List Based on Unit Price" <<
+                                                                " (Ascending)------" << endl;
+                                                        ill.showItemListAsc(ill.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        ill.sortUnitPrice();
+
+                                                        cout << "------Sorted User List Based on Unit Price" <<
+                                                                " (Descending)------" << endl;
+                                                        ill.showItemListDsc(ill.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
-                                            }
-
-                                            break;
-                                        case 3: //Unit Price
-                                            while(true) {
-                                                menu.sortDirection();
-
-                                                cout << "Your Input:";
-                                                cin >> sort_dir_opt;
-                                                cout << endl;
-
-                                                while(cin.fail()) {
-                                                    cout << "Your Input:";
-                                                    cout << endl;
-                                                    cin.clear();
-                                                    cin.ignore(256, '\n');
-                                                    cin >> sort_dir_opt;
-                                                }
-
-                                                if (sort_dir_opt == 3) {
-                                                    break;
-                                                }
-
-                                                switch (sort_dir_opt) {
-                                                    case 1: //Ascending
-                                                        break;
-                                                    case 2: //Descending
-                                                        break;
-                                                }
+                                                break;
                                             }
 
                                             break;
@@ -1756,7 +1875,6 @@ void runSoe() {
                                 }
 
                                 ull.updateUserPassword(user_id_input, password_input);
-                                ull.showSelfInfo(user_id_input);
 
                                 break;
                             case 3: //Delete My Account
@@ -1878,7 +1996,7 @@ void runAdmin() {
                                         cin >> sort_opt;
                                     }
 
-                                    if (sort_opt == 7) {
+                                    if (sort_opt == 8) {
                                         break;
                                     }
 
@@ -1905,10 +2023,25 @@ void runAdmin() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        poll.sortPOID();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on PO ID"
+                                                             << " (Ascending)------" << endl;
+                                                        poll.showPOListAsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        poll.sortPOID();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on PO ID"
+                                                             << " (Descending)------" << endl;
+                                                        poll.showPOListDsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
@@ -1934,10 +2067,25 @@ void runAdmin() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        poll.sortPOClientID();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Client ID"
+                                                             << " (Ascending)------" << endl;
+                                                        poll.showPOListAsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        poll.sortPOClientID();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Client ID"
+                                                             << " (Descending)------" << endl;
+                                                        poll.showPOListDsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
@@ -1963,10 +2111,25 @@ void runAdmin() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        poll.sortPOItemID();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Item ID"
+                                                             << " (Descending)------" << endl;
+                                                        poll.showPOListAsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        poll.sortPOItemID();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Item ID"
+                                                             << " (Descending)------" << endl;
+                                                        poll.showPOListDsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
@@ -1992,10 +2155,27 @@ void runAdmin() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        poll.sortPODate();
+                                                        poll.sortPODate();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Date"
+                                                             << " (Ascending)------" << endl;
+                                                        poll.showPOListDsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        poll.sortPODate();
+                                                        poll.sortPODate();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Date"
+                                                             << " (Descending)------" << endl;
+                                                        poll.showPOListAsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
@@ -2021,14 +2201,29 @@ void runAdmin() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        poll.sortPOQty();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Quantity"
+                                                             << " (Ascending)------" << endl;
+                                                        poll.showPOListAsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        poll.sortPOQty();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Quantity"
+                                                             << " (Descending)------" << endl;
+                                                        poll.showPOListDsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
-                                        case 6: //Delivery Status
+                                        case 6: //Total
                                             while(true) {
                                                 menu.sortDirection();
 
@@ -2050,10 +2245,69 @@ void runAdmin() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        poll.sortPOTotal();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Total"
+                                                             << " (Ascending)------" << endl;
+                                                        poll.showPOListAsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        poll.sortPOTotal();
+
+                                                        cout << "------Sorted Purchase Order (PO) List Based on Total"
+                                                             << " (Descending)------" << endl;
+                                                        poll.showPOListDsc(poll.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
+                                                break;
+                                            }
+
+                                            break;
+                                        case 7: //Delivery Status
+                                            while(true) {
+                                                menu.sortDirection();
+
+                                                cout << "Your Input:";
+                                                cin >> sort_dir_opt;
+                                                cout << endl;
+
+                                                while(cin.fail()) {
+                                                    cout << "Your Input:";
+                                                    cout << endl;
+                                                    cin.clear();
+                                                    cin.ignore(256, '\n');
+                                                    cin >> sort_dir_opt;
+                                                }
+
+                                                if (sort_dir_opt == 3) {
+                                                    break;
+                                                }
+
+                                                switch (sort_dir_opt) {
+                                                    case 1: //Ascending
+                                                        poll.sortPODeliveryStatus();
+
+                                                        cout << "------Sorted User List Based on Delivery Status" <<
+                                                             " (Ascending)------" << endl;
+                                                        poll.showPOListAsc(poll.head);
+                                                        cout << endl;
+
+                                                        break;
+                                                    case 2: //Descending
+                                                        poll.sortPODeliveryStatus();
+
+                                                        cout << "------Sorted User List Based on Delivery Status" <<
+                                                             " (Descending)------" << endl;
+                                                        poll.showPOListDsc(poll.head);
+                                                        cout << endl;
+
+                                                        break;
+                                                }
+                                                break;
                                             }
 
                                             break;
@@ -2384,7 +2638,7 @@ void runAdmin() {
                                     cin >> sort_opt;
                                     cout << endl;
 
-                                    if (sort_opt == 3) {
+                                    if (sort_opt == 2) {
                                         break;
                                     }
 
@@ -2411,39 +2665,25 @@ void runAdmin() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        cll.sortClientID();
+
+                                                        cout << "------Sorted Client List Based on Client ID" <<
+                                                             " (Ascending)------" << endl;
+                                                        cll.showClientListAsc(cll.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        cll.sortClientID();
+
+                                                        cout << "------Sorted Client List Based on Client ID" <<
+                                                             " (Descending)------" << endl;
+                                                        cll.showClientListDsc(cll.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
-                                            }
-
-                                            break;
-                                        case 2: //Client Name
-                                            while(true) {
-                                                menu.sortDirection();
-
-                                                cout << "Your Input:";
-                                                cin >> sort_dir_opt;
-                                                cout << endl;
-
-                                                while(cin.fail()) {
-                                                    cout << "Your Input:";
-                                                    cout << endl;
-                                                    cin.clear();
-                                                    cin.ignore(256, '\n');
-                                                    cin >> sort_dir_opt;
-                                                }
-
-                                                if (sort_dir_opt == 3) {
-                                                    break;
-                                                }
-
-                                                switch (sort_dir_opt) {
-                                                    case 1: //Ascending
-                                                        break;
-                                                    case 2: //Descending
-                                                        break;
-                                                }
+                                                break;
                                             }
 
                                             break;
@@ -2709,7 +2949,7 @@ void runAdmin() {
                                         cin >> sort_opt;
                                     }
 
-                                    if (sort_opt == 4) {
+                                    if (sort_opt == 3) {
                                         break;
                                     }
 
@@ -2736,14 +2976,29 @@ void runAdmin() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        ill.sortItemID();
+
+                                                        cout << "------Sorted Item List Based on Item ID" <<
+                                                             " (Ascending)------" << endl;
+                                                        ill.showItemListAsc(ill.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        ill.sortItemID();
+
+                                                        cout << "------Sorted Item List Based on Item ID" <<
+                                                             " (Descending)------" << endl;
+                                                        ill.showItemListDsc(ill.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
-                                        case 2: //Item Name
+                                        case 2: //Unit Price
                                             while(true) {
                                                 menu.sortDirection();
 
@@ -2765,39 +3020,25 @@ void runAdmin() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        ill.sortUnitPrice();
+
+                                                        cout << "------Sorted Item List Based on Unit Price" <<
+                                                                " (Ascending)------" << endl;
+                                                        ill.showItemListAsc(ill.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        ill.sortUnitPrice();
+
+                                                        cout << "------Sorted Item List Based on Unit Price" <<
+                                                                " (Descending)------" << endl;
+                                                        ill.showItemListDsc(ill.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
-                                            }
-
-                                            break;
-                                        case 3: //Unit Price
-                                            while(true) {
-                                                menu.sortDirection();
-
-                                                cout << "Your Input:";
-                                                cin >> sort_dir_opt;
-                                                cout << endl;
-
-                                                while(cin.fail()) {
-                                                    cout << "Your Input:";
-                                                    cout << endl;
-                                                    cin.clear();
-                                                    cin.ignore(256, '\n');
-                                                    cin >> sort_dir_opt;
-                                                }
-
-                                                if (sort_dir_opt == 3) {
-                                                    break;
-                                                }
-
-                                                switch (sort_dir_opt) {
-                                                    case 1: //Ascending
-                                                        break;
-                                                    case 2: //Descending
-                                                        break;
-                                                }
+                                                break;
                                             }
 
                                             break;
@@ -3029,14 +3270,29 @@ void runAdmin() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        ull.sortUserID();
+
+                                                        cout << "------Sorted User List Based on User ID" <<
+                                                             " (Ascending)------" << endl;
+                                                        ull.showUserListAsc(ull.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        ull.sortUserID();
+
+                                                        cout << "------Sorted User List Based on User ID" <<
+                                                             " (Descending)------" << endl;
+                                                        ull.showUserListDsc(ull.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
+                                                break;
                                             }
 
                                             break;
-                                        case 2: //User Name
+                                        case 2: //Roles
                                             while(true) {
                                                 menu.sortDirection();
 
@@ -3058,39 +3314,23 @@ void runAdmin() {
 
                                                 switch (sort_dir_opt) {
                                                     case 1: //Ascending
+                                                        ull.sortRole();
+
+                                                        cout << "------Sorted User List Based on Role" << " (Descending)------" << endl;
+                                                        ull.showUserListAsc(ull.head);
+                                                        cout << endl;
+
                                                         break;
                                                     case 2: //Descending
+                                                        ull.sortRole();
+
+                                                        cout << "------Sorted User List Based on Role" << " (Descending)------" << endl;
+                                                        ull.showUserListDsc(ull.head);
+                                                        cout << endl;
+
                                                         break;
                                                 }
-                                            }
-
-                                            break;
-                                        case 3: //Roles
-                                            while(true) {
-                                                menu.sortDirection();
-
-                                                cout << "Your Input:";
-                                                cin >> sort_dir_opt;
-                                                cout << endl;
-
-                                                while(cin.fail()) {
-                                                    cout << "Your Input:";
-                                                    cout << endl;
-                                                    cin.clear();
-                                                    cin.ignore(256, '\n');
-                                                    cin >> sort_dir_opt;
-                                                }
-
-                                                if (sort_dir_opt == 3) {
-                                                    break;
-                                                }
-
-                                                switch (sort_dir_opt) {
-                                                    case 1: //Ascending
-                                                        break;
-                                                    case 2: //Descending
-                                                        break;
-                                                }
+                                                break;
                                             }
 
                                             break;
@@ -3669,7 +3909,7 @@ void runAdmin() {
                                             cout << "------Delete Client------" << endl;
 
                                             //Get Client ID to update
-                                            client_id_input == client_size;
+                                            client_id_input = client_size;
 
                                             cll.deleteClient(client_id_input);
                                             cll.rearrangeClientID();
@@ -3970,12 +4210,12 @@ void runAdmin() {
 
                                             break;
                                         case 2: //Delete Data
-                                            user_size = ill.getSize();
+                                            user_size = ull.getSize();
 
                                             cout << "------Delete User------" << endl;
 
                                             //Get User ID to update
-                                            user_id_input == search_input;
+                                            user_id_input = search_input;
 
                                             ull.deleteUser(user_id_input);
                                             ull.rearrangeUserID();
@@ -4038,7 +4278,6 @@ void runAdmin() {
                                 }
 
                                 ull.updateUserPassword(user_id_input, password_input);
-                                ull.showSelfInfo(user_id_input);
 
                                 break;
                             case 3: //Delete My Account

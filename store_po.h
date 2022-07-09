@@ -20,12 +20,10 @@ struct PurchaseOrder {
     PurchaseOrder * next;
 };
 
-class PurchaseOrderLinkedList {
-    private:
+struct PurchaseOrderLinkedList {
     PurchaseOrder * head;
     int po_size;
 
-    public:
     PurchaseOrderLinkedList() {
         this->po_size = 0;
         this->head = nullptr;
@@ -71,8 +69,8 @@ class PurchaseOrderLinkedList {
 
     void InitPurchaseOrdersData() {
         int po_id[5] = {1, 2, 3, 4, 5};
-        string date[5] = {"10/06/2022", "11/06/2022", "12/06/2022", "13/06/2022",
-                          "14/06/2022"};
+        string date[5] = {"10/12/2023", "11/07/2025", "12/08/2022", "13/10/2022",
+                          "14/11/2024"};
         int client_id[5] = {5, 4, 2, 3, 1};
         int item_id[5] = {3, 2, 5, 4, 1};
         int quantity[5] = {2, 5, 2, 5, 2};
@@ -112,6 +110,26 @@ class PurchaseOrderLinkedList {
              << " " << "Total" << " "  << "Delivery Status" << endl;
         cout << id << " " << date << " " << client_id << " " << item_id << " " << quantity << " "
              << po_total << " " << delivery_status << endl << endl;
+    }
+
+    void showPOListAsc(PurchaseOrder * n)
+    {
+        while (n != nullptr) {
+            cout << n->po_id << " " << n->date << " " << n->client_id << " " << n->item_id <<
+                 " " << n->quantity << " " << n->po_total << " " << n->delivery_status << endl;
+            n = n->next;
+        }
+    }
+
+    void showPOListDsc(PurchaseOrder * n) { //geeksforgeeks, 2022
+        if(n == nullptr) {
+            return;
+        }
+
+        showPOListDsc(n->next);
+
+        cout << n->po_id << " " << n->date << " " << n->client_id << " " << n->item_id <<
+             " " << n->quantity << " " << n->po_total << " " << n->delivery_status << endl;
     }
 
     //Search---------------------------------------------------------------------------
@@ -250,6 +268,8 @@ class PurchaseOrderLinkedList {
                         deletePOAtBeginning();
 
                         cout << "Successfully Deleted Purchase Order #" << id << "!" << endl << endl;
+
+                        break;
                     } else {
                         prev->next = toDelete->next;
                         delete toDelete;
@@ -282,6 +302,402 @@ class PurchaseOrderLinkedList {
     }
 
     //Sort---------------------------------------------------------------------------
+    void sortPOID() { //Sort Based on PO ID.
+        PurchaseOrder * curr = head, * index = nullptr;
+
+        int temp_po_id;
+        string temp_date;
+        int temp_client_id;
+        int temp_item_id;
+        int temp_quantity;
+        string temp_po_total;
+        string temp_delivery_status;
+
+        if ( head == nullptr ) {
+            return;
+        } else {
+            while( curr != nullptr )
+            {
+                index = curr->next;
+                while( index != nullptr )
+                {
+                    if( curr->po_id > index->po_id ) //Sort Ascending Order
+                    {
+                        temp_po_id = curr->po_id;
+                        temp_date = curr->date;
+                        temp_client_id = curr->client_id;
+                        temp_item_id = curr->item_id;
+                        temp_quantity = curr->quantity;
+                        temp_po_total = curr->po_total;
+                        temp_delivery_status = curr->delivery_status;
+
+                        curr->po_id = index->po_id;
+                        curr->date = index->date;
+                        curr->client_id = index->client_id;
+                        curr->item_id = index->item_id;
+                        curr->quantity = index->quantity;
+                        curr->po_total = index->po_total;
+                        curr->delivery_status = index->delivery_status;
+
+                        index->po_id = temp_po_id;
+                        index->date = temp_date;
+                        index->client_id = temp_client_id;
+                        index->item_id = temp_item_id;
+                        index->quantity = temp_quantity;
+                        index->po_total = temp_po_total;
+                        index->delivery_status = temp_delivery_status;
+                    }
+                    index = index->next;
+                }
+                curr = curr->next;
+            }
+        }
+    }
+
+    void sortPOClientID() { //Sort Based on Client ID.
+        PurchaseOrder * curr = head, * index = nullptr;
+
+        int temp_po_id;
+        string temp_date;
+        int temp_client_id;
+        int temp_item_id;
+        int temp_quantity;
+        string temp_po_total;
+        string temp_delivery_status;
+
+        if ( head == nullptr ) {
+            return;
+        } else {
+            while( curr != nullptr )
+            {
+                index = curr->next;
+                while( index != nullptr )
+                {
+                    if( curr->client_id > index->client_id ) //Sort Ascending Order
+                    {
+                        temp_po_id = curr->po_id;
+                        temp_date = curr->date;
+                        temp_client_id = curr->client_id;
+                        temp_item_id = curr->item_id;
+                        temp_quantity = curr->quantity;
+                        temp_po_total = curr->po_total;
+                        temp_delivery_status = curr->delivery_status;
+
+                        curr->po_id = index->po_id;
+                        curr->date = index->date;
+                        curr->client_id = index->client_id;
+                        curr->item_id = index->item_id;
+                        curr->quantity = index->quantity;
+                        curr->po_total = index->po_total;
+                        curr->delivery_status = index->delivery_status;
+
+                        index->po_id = temp_po_id;
+                        index->date = temp_date;
+                        index->client_id = temp_client_id;
+                        index->item_id = temp_item_id;
+                        index->quantity = temp_quantity;
+                        index->po_total = temp_po_total;
+                        index->delivery_status = temp_delivery_status;
+                    }
+                    index = index->next;
+                }
+                curr = curr->next;
+            }
+        }
+    }
+
+    void sortPOItemID() { //Sort Based on Item ID.
+        PurchaseOrder * curr = head, * index = nullptr;
+
+        int temp_po_id;
+        string temp_date;
+        int temp_client_id;
+        int temp_item_id;
+        int temp_quantity;
+        string temp_po_total;
+        string temp_delivery_status;
+
+        if ( head == nullptr ) {
+            return;
+        } else {
+            while( curr != nullptr )
+            {
+                index = curr->next;
+                while( index != nullptr )
+                {
+                    if( curr->item_id > index->item_id ) //Sort Ascending Order
+                    {
+                        temp_po_id = curr->po_id;
+                        temp_date = curr->date;
+                        temp_client_id = curr->client_id;
+                        temp_item_id = curr->item_id;
+                        temp_quantity = curr->quantity;
+                        temp_po_total = curr->po_total;
+                        temp_delivery_status = curr->delivery_status;
+
+                        curr->po_id = index->po_id;
+                        curr->date = index->date;
+                        curr->client_id = index->client_id;
+                        curr->item_id = index->item_id;
+                        curr->quantity = index->quantity;
+                        curr->po_total = index->po_total;
+                        curr->delivery_status = index->delivery_status;
+
+                        index->po_id = temp_po_id;
+                        index->date = temp_date;
+                        index->client_id = temp_client_id;
+                        index->item_id = temp_item_id;
+                        index->quantity = temp_quantity;
+                        index->po_total = temp_po_total;
+                        index->delivery_status = temp_delivery_status;
+                    }
+                    index = index->next;
+                }
+                curr = curr->next;
+            }
+        }
+    }
+
+    void sortPODate() {
+        PurchaseOrder * curr = head, * index = nullptr;
+
+        int temp_po_id;
+        string temp_date;
+        int temp_client_id;
+        int temp_item_id;
+        int temp_quantity;
+        string temp_po_total;
+        string temp_delivery_status;
+
+        int separator_pos;
+        string s_day1, s_month1, s_year1, s_day2, s_month2, s_year2;
+        int f_day1, f_month1, f_year1, f_day2, f_month2, f_year2;
+
+        if ( head == nullptr ) {
+            return;
+        } else {
+            while( curr != nullptr )
+            {
+                s_day1 = curr->date.substr(0, 2);
+                s_month1 = curr->date.substr(3, 2);
+                s_year1 = curr->date.substr(6, curr->date.length());
+
+                f_day1 = stoi(s_day1);
+                f_month1 = stoi(s_month1);
+                f_year1 = stoi(s_year1);
+
+                index = curr->next;
+                while( index != nullptr )
+                {
+                    s_day2 = index->date.substr(0, 2);
+                    s_month2 = index->date.substr(3, 2);
+                    s_year2 = index->date.substr(6, index->date.length());
+
+                    f_day2 = stoi(s_day2);
+                    f_month2 = stoi(s_month2);
+                    f_year2 = stoi(s_year2);
+
+                    if (f_year1 < f_year2 || (f_year1 == f_year2 && f_month1 < f_month2)
+                        || (f_year1 == f_year2 && f_month1 == f_month2 && f_day1 < f_day2)) //Sort Ascending Order
+                    {
+                        temp_po_id = curr->po_id;
+                        temp_date = curr->date;
+                        temp_client_id = curr->client_id;
+                        temp_item_id = curr->item_id;
+                        temp_quantity = curr->quantity;
+                        temp_po_total = curr->po_total;
+                        temp_delivery_status = curr->delivery_status;
+
+                        curr->po_id = index->po_id;
+                        curr->date = index->date;
+                        curr->client_id = index->client_id;
+                        curr->item_id = index->item_id;
+                        curr->quantity = index->quantity;
+                        curr->po_total = index->po_total;
+                        curr->delivery_status = index->delivery_status;
+
+                        index->po_id = temp_po_id;
+                        index->date = temp_date;
+                        index->client_id = temp_client_id;
+                        index->item_id = temp_item_id;
+                        index->quantity = temp_quantity;
+                        index->po_total = temp_po_total;
+                        index->delivery_status = temp_delivery_status;
+                    }
+                    index = index->next;
+                }
+                curr = curr->next;
+            }
+        }
+    }
+
+    void sortPOQty() { //Sort PO based on their Quantity.
+        PurchaseOrder * curr = head, * index = nullptr;
+
+        int temp_po_id;
+        string temp_date;
+        int temp_client_id;
+        int temp_item_id;
+        int temp_quantity;
+        string temp_po_total;
+        string temp_delivery_status;
+
+        if ( head == nullptr ) {
+            return;
+        } else {
+            while( curr != nullptr )
+            {
+                index = curr->next;
+                while( index != nullptr )
+                {
+                    if( curr->quantity > index->quantity ) //Sort Ascending Order
+                    {
+                        temp_po_id = curr->po_id;
+                        temp_date = curr->date;
+                        temp_client_id = curr->client_id;
+                        temp_item_id = curr->item_id;
+                        temp_quantity = curr->quantity;
+                        temp_po_total = curr->po_total;
+                        temp_delivery_status = curr->delivery_status;
+
+                        curr->po_id = index->po_id;
+                        curr->date = index->date;
+                        curr->client_id = index->client_id;
+                        curr->item_id = index->item_id;
+                        curr->quantity = index->quantity;
+                        curr->po_total = index->po_total;
+                        curr->delivery_status = index->delivery_status;
+
+                        index->po_id = temp_po_id;
+                        index->date = temp_date;
+                        index->client_id = temp_client_id;
+                        index->item_id = temp_item_id;
+                        index->quantity = temp_quantity;
+                        index->po_total = temp_po_total;
+                        index->delivery_status = temp_delivery_status;
+                    }
+                    index = index->next;
+                }
+                curr = curr->next;
+            }
+        }
+    }
+
+    void sortPOTotal() { //Sort PO based on their Total.
+        PurchaseOrder * curr = head, * index = nullptr;
+
+        int temp_po_id;
+        string temp_date;
+        int temp_client_id;
+        int temp_item_id;
+        int temp_quantity;
+        string temp_po_total;
+        string temp_delivery_status;
+
+        int RM_pos;
+        string s_total_price1, s_total_price2;
+        float f_total_price1, f_total_price2;
+
+        if ( head == nullptr ) {
+            return;
+        } else {
+            while( curr != nullptr )
+            {
+                RM_pos = curr->po_total.find("RM");
+                s_total_price1 = curr->po_total.substr(RM_pos+2, curr->po_total.length());
+                f_total_price1 = stof(s_total_price1);
+
+                index = curr->next;
+                while( index != nullptr )
+                {
+                    RM_pos = index->po_total.find("RM");
+                    s_total_price2 = index->po_total.substr(RM_pos+2, index->po_total.length());
+                    f_total_price2 = stof(s_total_price2);
+
+                    if( f_total_price1 > f_total_price2 ) //Sort Ascending Order
+                    {
+                        temp_po_id = curr->po_id;
+                        temp_date = curr->date;
+                        temp_client_id = curr->client_id;
+                        temp_item_id = curr->item_id;
+                        temp_quantity = curr->quantity;
+                        temp_po_total = curr->po_total;
+                        temp_delivery_status = curr->delivery_status;
+
+                        curr->po_id = index->po_id;
+                        curr->date = index->date;
+                        curr->client_id = index->client_id;
+                        curr->item_id = index->item_id;
+                        curr->quantity = index->quantity;
+                        curr->po_total = index->po_total;
+                        curr->delivery_status = index->delivery_status;
+
+                        index->po_id = temp_po_id;
+                        index->date = temp_date;
+                        index->client_id = temp_client_id;
+                        index->item_id = temp_item_id;
+                        index->quantity = temp_quantity;
+                        index->po_total = temp_po_total;
+                        index->delivery_status = temp_delivery_status;
+                    }
+                    index = index->next;
+                }
+                curr = curr->next;
+            }
+        }
+    }
+
+    void sortPODeliveryStatus() { //Sort PO based on their Delivery Status.
+        PurchaseOrder * curr = head, * index = nullptr;
+
+        int temp_po_id;
+        string temp_date;
+        int temp_client_id;
+        int temp_item_id;
+        int temp_quantity;
+        string temp_po_total;
+        string temp_delivery_status;
+
+        if ( head == nullptr ) {
+            return;
+        } else {
+            while( curr != nullptr )
+            {
+                index = curr->next;
+                while( index != nullptr )
+                {
+                    if( curr->delivery_status > index->delivery_status ) //Sort Ascending Order
+                    {
+                        temp_po_id = curr->po_id;
+                        temp_date = curr->date;
+                        temp_client_id = curr->client_id;
+                        temp_item_id = curr->item_id;
+                        temp_quantity = curr->quantity;
+                        temp_po_total = curr->po_total;
+                        temp_delivery_status = curr->delivery_status;
+
+                        curr->po_id = index->po_id;
+                        curr->date = index->date;
+                        curr->client_id = index->client_id;
+                        curr->item_id = index->item_id;
+                        curr->quantity = index->quantity;
+                        curr->po_total = index->po_total;
+                        curr->delivery_status = index->delivery_status;
+
+                        index->po_id = temp_po_id;
+                        index->date = temp_date;
+                        index->client_id = temp_client_id;
+                        index->item_id = temp_item_id;
+                        index->quantity = temp_quantity;
+                        index->po_total = temp_po_total;
+                        index->delivery_status = temp_delivery_status;
+                    }
+                    index = index->next;
+                }
+                curr = curr->next;
+            }
+        }
+    }
 
 };
 

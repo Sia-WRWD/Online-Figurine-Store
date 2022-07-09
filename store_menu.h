@@ -54,31 +54,29 @@ class Menu {
         cout << "3) Item ID" << endl;
         cout << "4) Date" << endl;
         cout << "5) Quantity" << endl;
-        cout << "6) Delivery Status" << endl;
-        cout << "7) Back" << endl;
+        cout << "6) Total" << endl;
+        cout << "7) Delivery Status" << endl;
+        cout << "8) Back" << endl;
     }
 
     void sortClientMenu() {
         cout << "How would you like the data to be sorted?" << endl;
         cout << "1) Client ID" << endl;
-        cout << "2) Client Name" << endl;
-        cout << "3) Back" << endl;
+        cout << "2) Back" << endl;
     }
 
     void sortItemMenu() {
         cout << "How would you like the data to be sorted?" << endl;
         cout << "1) Item ID" << endl;
-        cout << "2) Item Name" << endl;
-        cout << "3) Unit Price" << endl;
-        cout << "4) Back" << endl;
+        cout << "2) Unit Price" << endl;
+        cout << "3) Back" << endl;
     }
 
     void sortUserMenu() {
         cout << "How would you like the data to be sorted?" << endl;
         cout << "1) User ID" << endl;
-        cout << "2) Username" << endl;
-        cout << "3) Roles" << endl;
-        cout << "4) Back" << endl;
+        cout << "2) Roles" << endl;
+        cout << "3) Back" << endl;
     }
 
     void sortDirection() {

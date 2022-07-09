@@ -73,7 +73,7 @@ struct ItemLinkedList {
     void showItemDetails() {
         Item * curr = head;
         cout << "List of Items (Total Number of Items: " << item_size << "):" << endl;
-        cout << "ID" << "Name" << "Unit Price"  << endl;
+        cout << "ID" << " " << "Name" << " " << "Unit Price"  << endl;
         while (curr != nullptr) {
             cout << curr->item_id << " " << curr->item_name << " " << curr->unit_price << endl;
             curr = curr->next;
@@ -82,7 +82,7 @@ struct ItemLinkedList {
     }
 
     void displayItemSearchResult(int item_id, string item_name, string unit_price) {
-        cout << "ID" << "Name" << "Address" << "Contact No" << endl;
+        cout << "ID" << " " << "Name" << " " << "Unit Price" << endl;
         cout << item_id << " " << item_name << " " << unit_price << endl << endl;
     }
 
@@ -101,6 +101,24 @@ struct ItemLinkedList {
                 }
             }
         }
+    }
+
+    void showItemListAsc(Item * n)
+    {
+        while (n != nullptr) {
+            cout << n->item_id << " " << n->item_name << " " << n->unit_price << endl;
+            n = n->next;
+        }
+    }
+
+    void showItemListDsc(Item * n) { //geeksforgeeks, 2022
+        if(n == nullptr) {
+            return;
+        }
+
+        showItemListDsc(n->next);
+
+        cout << n->item_id << " " << n->item_name << " " << n->unit_price << endl;
     }
 
     //Search---------------------------------------------------------------------------
@@ -205,6 +223,8 @@ struct ItemLinkedList {
                         deleteItemAtBeginning();
 
                         cout << "Successfully Deleted Item #" << id << "!" << endl << endl;
+
+                        break;
                     } else {
                         prev->next = toDelete->next;
                         delete toDelete;
@@ -237,6 +257,87 @@ struct ItemLinkedList {
     }
 
     //Sort---------------------------------------------------------------------------
+    void sortItemID() {
+        Item * curr = head, * index = nullptr;
+
+        int tempID;
+        string tempName, tempPrice;
+
+        if ( head == nullptr ) {
+            return;
+        } else {
+            while( curr != nullptr )
+            {
+                index = curr->next;
+                while( index != nullptr )
+                {
+                    if( curr->item_id > index->item_id ) //Sort Ascending Order
+                    {
+                        tempID = curr->item_id;
+                        tempName = curr->item_name;
+                        tempPrice = curr->unit_price;
+
+                        curr->item_id = index->item_id;
+                        curr->item_name = index->item_name;
+                        curr->unit_price = index->unit_price;
+
+                        index->item_id = tempID;
+                        index->item_name = tempName;
+                        index->unit_price = tempPrice;
+                    }
+                    index = index->next;
+                }
+                curr = curr->next;
+            }
+        }
+    }
+
+    void sortUnitPrice()
+    {
+        Item * curr = head, * index = nullptr;
+
+        int tempID;
+        string tempName, tempPrice;
+        int RM_pos;
+        string s_unit_price1, s_unit_price2;
+        float f_unit_price1, f_unit_price2;
+
+        if ( head == nullptr ) {
+            return;
+        } else {
+            while( curr != nullptr )
+            {
+                RM_pos = curr->unit_price.find("RM");
+                s_unit_price1 = curr->unit_price.substr(RM_pos+2, curr->unit_price.length());
+                f_unit_price1 = stof(s_unit_price1);
+
+                index = curr->next;
+                while( index != nullptr )
+                {
+                    RM_pos = index->unit_price.find("RM");
+                    s_unit_price2 = index->unit_price.substr(RM_pos+2, index->unit_price.length());
+                    f_unit_price2 = stof(s_unit_price2);
+
+                    if( f_unit_price1 > f_unit_price2 ) //Sort Ascending Order
+                    {
+                        tempID = curr->item_id;
+                        tempName = curr->item_name;
+                        tempPrice = curr->unit_price;
+
+                        curr->item_id = index->item_id;
+                        curr->item_name = index->item_name;
+                        curr->unit_price = index->unit_price;
+
+                        index->item_id = tempID;
+                        index->item_name = tempName;
+                        index->unit_price = tempPrice;
+                    }
+                    index = index->next;
+                }
+                curr = curr->next;
+            }
+        }
+    }
 
 };
 

@@ -79,7 +79,7 @@ struct UserLinkedList {
     void showUserDetails() {
         User * curr = head;
         cout << "List of Users (Total Number of Users: " << user_size << "):" << endl;
-        cout << "ID" << "Username" << "Password" << "Role" << endl;
+        cout << "ID" << " " << "Username" << " "  << "Password" << " " << "Role" << endl;
         while (curr != nullptr) {
             cout << curr->id << " " << curr->username << " " << curr->password << " " << curr->role << endl;
             curr = curr->next;
@@ -88,6 +88,7 @@ struct UserLinkedList {
     }
 
     void displayUserDetails(int id, string username, string password, string role) {
+        cout << "List of Users (Total Number of Users: " << user_size << "):" << endl;
         cout << "ID" << "Username" << "Password" << "Role" << endl;
         cout << id << " " << username << " " << password << " " << role << endl << endl;
     }
@@ -116,14 +117,34 @@ struct UserLinkedList {
             while( curr != nullptr ) {
                 if (curr->id == id) {
                     cout << "------My Information------" << endl;
-                    displayUserDetails(curr->id, curr->username, curr->password,
-                                       curr->role);
+                    cout << "My ID: " << curr->id  << endl;
+                    cout << "My Username: " << curr->username << endl;
+                    cout << "My Role: " << curr->role << endl;
+
                     break;
                 } else {
                     curr = curr->next;
                 }
             }
         }
+    }
+
+    void showUserListAsc(User * n)
+    {
+        while (n != nullptr) {
+            cout << n->id << " " << n->username << " " << n->password << " " << n->role << endl;
+            n = n->next;
+        }
+    }
+
+    void showUserListDsc(User * n) { //geeksforgeeks, 2022
+        if(n == nullptr) {
+            return;
+        }
+
+        showUserListDsc(n->next);
+
+        cout << n->id << " " << n->username << " " << n->password << " " << n->role << endl;
     }
 
     //Search---------------------------------------------------------------------------
@@ -303,13 +324,15 @@ struct UserLinkedList {
                     if (toDelete == head) {
                         deleteUserAtBeginning();
 
-                        cout << "Successfully Deleted Purchase Order #" << id << "!" << endl << endl;
+                        cout << "Successfully Deleted User #" << id << "!" << endl << endl;
+
+                        break;
                     } else {
                         prev->next = toDelete->next;
                         delete toDelete;
                         user_size--;
 
-                        cout << "Successfully Deleted Purchase Order #" << id << "!" << endl << endl;
+                        cout << "Successfully Deleted User #" << id << "!" << endl << endl;
 
                         break;
                     }
@@ -319,7 +342,7 @@ struct UserLinkedList {
                 }
             }
         } else {
-            cout << "Purchase Order with the ID: #" << id << " cannot be found!" << endl << endl;
+            cout << "User with the ID: #" << id << " cannot be found!" << endl << endl;
         }
     }
 
@@ -336,9 +359,83 @@ struct UserLinkedList {
     }
 
     //Sort---------------------------------------------------------------------------
-    void sortBasedUserID() {
-        //Sort Based on User's ID.
+    void sortUserID() {
+        User * curr = head, * index = nullptr;
+
+        int tempID;
+        string tempUsername, tempPassword, tempRole;
+
+        if ( head == nullptr ) {
+            return;
+        } else {
+            while( curr != nullptr )
+            {
+                index = curr->next;
+                while( index != nullptr )
+                {
+                    if( curr->id > index->id ) //Sort Ascending Order
+                    {
+                        tempID = curr->id;
+                        tempUsername = curr->username;
+                        tempPassword = curr->password;
+                        tempRole = curr->role;
+
+                        curr->id = index->id;
+                        curr->username = index->username;
+                        curr->password = index->password;
+                        curr->role = index->role;
+
+                        index->id = tempID;
+                        index->username = tempUsername;
+                        index->password = tempPassword;
+                        index->role = tempRole;
+                    }
+                    index = index->next;
+                }
+                curr = curr->next;
+            }
+        }
     }
+
+    void sortRole() //Sort User based on their Roles.
+    {
+        User * curr = head, * index = nullptr;
+
+        int tempID;
+        string tempUsername, tempPassword, tempRole;
+
+        if ( head == nullptr ) {
+            return;
+        } else {
+            while( curr != nullptr )
+            {
+                index = curr->next;
+                while( index != nullptr )
+                {
+                    if( curr->role > index->role ) //Sort Ascending Order
+                    {
+                        tempID = curr->id;
+                        tempUsername = curr->username;
+                        tempPassword = curr->password;
+                        tempRole = curr->role;
+
+                        curr->id = index->id;
+                        curr->username = index->username;
+                        curr->password = index->password;
+                        curr->role = index->role;
+
+                        index->id = tempID;
+                        index->username = tempUsername;
+                        index->password = tempPassword;
+                        index->role = tempRole;
+                    }
+                    index = index->next;
+                }
+                curr = curr->next;
+            }
+        }
+    }
+
 };
 
 #endif //ONLINE_FIGURINE_STORE_STORE_USER_H

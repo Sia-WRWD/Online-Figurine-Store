@@ -78,7 +78,7 @@ struct ClientLinkedList {
     void showClientDetails() {
         Client * curr = head;
         cout << "List of Users (Total Number of Client: " << client_size << "):" << endl;
-        cout << "ID" << "Name" << "Address" << "Contact No" << endl;
+        cout << "ID" << " " << "Name" << " " << "Address" << " " << "Contact No" << endl;
         while (curr != nullptr) {
             cout << curr->client_id << " " << curr->client_name << " " << curr->client_address
                  << " " << curr->contact_no << endl;
@@ -89,7 +89,7 @@ struct ClientLinkedList {
 
     void displayClientSearchResult(int client_id, string client_name, string client_address,
                                    string contact_no) {
-        cout << "ID" << "Name" << "Address" << "Contact No" << endl;
+        cout << "ID" << " " << "Name" << " " << "Address" << " " << "Contact No" << endl;
         cout << client_id << " " << client_name << " " << client_address << " " << contact_no << endl << endl;
     }
 
@@ -108,6 +108,26 @@ struct ClientLinkedList {
                 }
             }
         }
+    }
+
+    void showClientListAsc(Client * n)
+    {
+        while (n != nullptr) {
+            cout << n->client_id << " " << n->client_name << " " << n->client_address << " "
+                 << n->contact_no << endl;
+            n = n->next;
+        }
+    }
+
+    void showClientListDsc(Client * n) { //geeksforgeeks, 2022
+        if(n == nullptr) {
+            return;
+        }
+
+        showClientListDsc(n->next);
+
+        cout << n->client_id << " " << n->client_name << " " << n->client_address << " "
+             << n->contact_no << endl;
     }
 
     //Search---------------------------------------------------------------------------
@@ -211,6 +231,8 @@ struct ClientLinkedList {
                         deleteClientAtBeginning();
 
                         cout << "Successfully Deleted Client #" << id << "!" << endl << endl;
+
+                        break;
                     } else {
                         prev->next = toDelete->next;
                         delete toDelete;
@@ -242,8 +264,48 @@ struct ClientLinkedList {
         }
     }
 
-
     //Sort---------------------------------------------------------------------------
+    void sortClientID() //Sort User based on their Roles.
+    {
+        Client * curr = head, * index = nullptr;
+
+        int temp_client_id;
+        string temp_client_name;
+        string temp_client_address;
+        string temp_contact_no;
+
+        if ( head == nullptr ) {
+            return;
+        } else {
+            while( curr != nullptr )
+            {
+                index = curr->next;
+                while( index != nullptr )
+                {
+                    if( curr->client_id > index->client_id ) //Sort Ascending Order
+                    {
+                        temp_client_id = curr->client_id;
+                        temp_client_name = curr->client_name;
+                        temp_client_address = curr->client_address;
+                        temp_contact_no = curr->contact_no;
+
+                        curr->client_id = index->client_id;
+                        curr->client_name = index->client_name;
+                        curr->client_address = index->client_address;
+                        curr->contact_no = index->contact_no;
+
+                        index->client_id = temp_client_id;
+                        index->client_name = temp_client_name;
+                        index->client_address = temp_client_address;
+                        index->contact_no = temp_contact_no;
+                    }
+                    index = index->next;
+                }
+                curr = curr->next;
+            }
+        }
+    }
+
 
 
 };
