@@ -14,4 +14,9 @@
    (tutorialspoint, n.d.)
 9. https://www.geeksforgeeks.org/print-reverse-of-a-linked-list-without-actually-reversing/
    (geeksforgeeks, 2022)
-10. 
+10. https://www.geeksforgeeks.org/how-to-sort-an-array-of-dates-in-cc/
+    (geeksforgeeks, 2019)
+11. https://www.tutorialspoint.com/cplusplus/cpp_date_time.htm
+    (tutorialspoint, n.d.)
+12. https://www.ascii-art-generator.org/ (tool used to reproduce ascii art)
+13. https://stackoverflow.com/questions/37765925/ascii-art-in-c (wally, 2016)

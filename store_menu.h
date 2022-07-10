@@ -143,6 +143,22 @@ class Menu {
         cout << "3) Back" << endl;
     }
 
+    //Report Menu--------------------------------------------------------------
+    void soeReportMenu() {
+        cout << "What would you like to do?" << endl;
+        cout << "1) Summary Report" << endl;
+        cout << "2) Purchase Order List Report" << endl;
+        cout << "3) Back" << endl;
+    }
+
+    void adminReportMenu() {
+        cout << "What would you like to do?" << endl;
+        cout << "1) Summary Report" << endl;
+        cout << "2) Purchase Order List Report" << endl;
+        cout << "3) User List Report" << endl;
+        cout << "4) Back" << endl;
+    }
+
     //Settings Menu--------------------------------------------------------------
     void settingsMenu() {
         cout << "What would you like to do?" << endl;

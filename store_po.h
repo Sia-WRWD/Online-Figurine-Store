@@ -7,6 +7,8 @@
 
 #include <iostream>
 #include <iomanip>
+#include <cmath>
+
 #include "store_controller.h"
 
 struct PurchaseOrder {
@@ -188,6 +190,57 @@ struct PurchaseOrderLinkedList {
                 }
             }
         }
+    }
+
+    float getTotalRevenue() {
+        string total_input;
+        float f_total_input = 0, temp_total_input = 0;
+
+        PurchaseOrder * curr = head;
+        while(curr != nullptr) { //Get All PO_Total and Add them up.
+            total_input = curr->po_total.substr(2, curr->po_total.length());
+            temp_total_input = stof(total_input);
+            f_total_input += temp_total_input;
+            curr = curr->next;
+        }
+
+        //Convert Revenue back to RM format.
+        f_total_input = floor(f_total_input * 100) / 100;
+
+        return f_total_input;
+    }
+
+    int getTotalQty() {
+        int total_qty = 0, temp_total_qty = 0;
+
+        PurchaseOrder * curr = head;
+        while(curr != nullptr) { //Get All PO_Total and Add them up.
+            temp_total_qty = curr->quantity;
+            total_qty += temp_total_qty;
+            curr = curr->next;
+        }
+
+        return total_qty;
+    }
+
+    string getDeliveryStatus () {
+        int processed = 0, ongoing = 0;
+        string ratio;
+
+        PurchaseOrder * curr = head;
+        while(curr != nullptr) { //Get All PO_Total and Add them up.
+            if (curr->delivery_status == "Processed") {
+                processed++;
+                curr = curr->next;
+            } else {
+                ongoing ++;
+                curr = curr->next;
+            }
+        }
+
+        ratio = to_string(processed) + ":" + to_string(ongoing);
+
+        return ratio;
     }
 
     //Update---------------------------------------------------------------------------

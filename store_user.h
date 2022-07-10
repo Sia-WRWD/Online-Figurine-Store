@@ -248,6 +248,26 @@ struct UserLinkedList {
         }
     }
 
+    string getUserType() {
+        int admin = 0, soe = 0;
+        string ratio;
+
+        User * curr = head;
+        while(curr != nullptr) { //Get All PO_Total and Add them up.
+            if (curr->role == "Admin") {
+                admin++;
+                curr = curr->next;
+            } else {
+                soe ++;
+                curr = curr->next;
+            }
+        }
+
+        ratio = to_string(admin) + ":" + to_string(soe);
+
+        return ratio;
+    }
+
     //Update---------------------------------------------------------------------------
     void updateUserUsername(int id, string username) {
         if (id <= user_size && id > 0) {
