@@ -10,6 +10,7 @@
 #include <cmath>
 
 #include "store_controller.h"
+#include "store_namespacer.h"
 
 struct PurchaseOrder {
     int po_id;
@@ -96,11 +97,23 @@ struct PurchaseOrderLinkedList {
     void showPODetails() {
         PurchaseOrder * curr = head;
         cout << "List of Purchase Orders (Total Number of POs: " << po_size << "):" << endl;
-        cout << "POID" << " " << "Date" << " " << "Client ID" << " " << "Item ID" << " " << "Qty"
-             << " " << "Total" << " "  << "Delivery Status" << endl;
+        cout << "POID" << sn.spacePrinter(6,4)
+            << "Date" << sn.spacePrinter(20, 4)
+            << "Client ID" << sn.spacePrinter(15, 9)
+            << "Item ID" << sn.spacePrinter(15, 7)
+            << "Qty" << sn.spacePrinter(10, 3)
+            << "Total" << sn.spacePrinter(15, 5)
+            << "Delivery Status" << endl;
+        cout << sn.headerUnderline(6 + 20 + 15 + 15 + 10 + 15 + 15) << endl; // number of dashes
+
         while (curr != nullptr) {
-            cout << curr->po_id << " " << curr->date << " " << curr->client_id << " " << curr->item_id <<
-                 " " << curr->quantity << " " << curr->po_total << " " << curr->delivery_status << endl;
+            cout << curr->po_id << sn.spacePrinter(6, to_string(curr->po_id).size())
+                << curr->date << sn.spacePrinter(20, curr->date.size())
+                << curr->client_id << sn.spacePrinter(15, to_string(curr->client_id).size())
+                << curr->item_id << sn.spacePrinter(15, to_string(curr->item_id).size())
+                << curr->quantity << sn.spacePrinter(10, to_string(curr->quantity).size())
+                << curr->po_total << sn.spacePrinter(15, curr->po_total.size())
+                << curr->delivery_status << endl;
             curr = curr->next;
         }
         cout << endl;
@@ -108,17 +121,43 @@ struct PurchaseOrderLinkedList {
 
     void displayPOSearchResult(int id, string date, int client_id, int item_id, int quantity, string po_total,
                              string delivery_status) {
-        cout << "POID" << " " << "Date" << " " << "Client ID" << " " << "Item ID" << " " << "Qty"
-             << " " << "Total" << " "  << "Delivery Status" << endl;
-        cout << id << " " << date << " " << client_id << " " << item_id << " " << quantity << " "
-             << po_total << " " << delivery_status << endl << endl;
+        cout << "POID" << sn.spacePrinter(6,4)
+             << "Date" << sn.spacePrinter(20, 4)
+             << "Client ID" << sn.spacePrinter(15, 9)
+             << "Item ID" << sn.spacePrinter(15, 7)
+             << "Qty" << sn.spacePrinter(10, 3)
+             << "Total" << sn.spacePrinter(15, 5)
+             << "Delivery Status" << endl;
+        cout << sn.headerUnderline(6 + 20 + 15 + 15 + 10 + 15 + 15) << endl; // number of dashes
+
+        cout << id << sn.spacePrinter(6, to_string(id).size())
+             << date << sn.spacePrinter(20, date.size())
+             << client_id << sn.spacePrinter(15, to_string(client_id).size())
+             << item_id << sn.spacePrinter(15, to_string(item_id).size())
+             << quantity << sn.spacePrinter(10, to_string(quantity).size())
+             << po_total << sn.spacePrinter(15, po_total.size())
+             << delivery_status << endl << endl;
     }
 
     void showPOListAsc(PurchaseOrder * n)
     {
+        cout << "POID" << sn.spacePrinter(6,4)
+             << "Date" << sn.spacePrinter(20, 4)
+             << "Client ID" << sn.spacePrinter(15, 9)
+             << "Item ID" << sn.spacePrinter(15, 7)
+             << "Qty" << sn.spacePrinter(10, 3)
+             << "Total" << sn.spacePrinter(15, 5)
+             << "Delivery Status" << endl;
+        cout << sn.headerUnderline(6 + 20 + 15 + 15 + 10 + 15 + 15) << endl; // number of dashes
+
         while (n != nullptr) {
-            cout << n->po_id << " " << n->date << " " << n->client_id << " " << n->item_id <<
-                 " " << n->quantity << " " << n->po_total << " " << n->delivery_status << endl;
+            cout << n->po_id << sn.spacePrinter(6, to_string(n->po_id).size())
+                 << n->date << sn.spacePrinter(20, n->date.size())
+                 << n->client_id << sn.spacePrinter(15, to_string(n->client_id).size())
+                 << n->item_id << sn.spacePrinter(15, to_string(n->item_id).size())
+                 << n->quantity << sn.spacePrinter(10, to_string(n->quantity).size())
+                 << n->po_total << sn.spacePrinter(15, n->po_total.size())
+                 << n->delivery_status << endl;
             n = n->next;
         }
     }
@@ -130,8 +169,13 @@ struct PurchaseOrderLinkedList {
 
         showPOListDsc(n->next);
 
-        cout << n->po_id << " " << n->date << " " << n->client_id << " " << n->item_id <<
-             " " << n->quantity << " " << n->po_total << " " << n->delivery_status << endl;
+        cout << n->po_id << sn.spacePrinter(6, to_string(n->po_id).size())
+             << n->date << sn.spacePrinter(20, n->date.size())
+             << n->client_id << sn.spacePrinter(15, to_string(n->client_id).size())
+             << n->item_id << sn.spacePrinter(15, to_string(n->item_id).size())
+             << n->quantity << sn.spacePrinter(10, to_string(n->quantity).size())
+             << n->po_total << sn.spacePrinter(15, n->po_total.size())
+             << n->delivery_status << endl;
     }
 
     //Search---------------------------------------------------------------------------

@@ -9,6 +9,9 @@
 #include <iomanip>
 #include <ctime>
 
+#include "store_namespacer.h"
+store_namespacer sn;
+
 #include "store_user.h"
 #include "store_po.h"
 #include "store_client.h"
@@ -163,7 +166,16 @@ void runSoe() {
                                                         poll.sortPOID();
 
                                                         cout << "------Sorted Purchase Order (PO) List Based on PO ID"
-                                                             << " (Ascending)------" << endl;
+                                                             << " (Descending)------" << endl;
+                                                        cout << "POID" << sn.spacePrinter(6,4)
+                                                             << "Date" << sn.spacePrinter(20, 4)
+                                                             << "Client ID" << sn.spacePrinter(15, 9)
+                                                             << "Item ID" << sn.spacePrinter(15, 7)
+                                                             << "Qty" << sn.spacePrinter(10, 3)
+                                                             << "Total" << sn.spacePrinter(15, 5)
+                                                             << "Delivery Status" << endl;
+                                                        cout << sn.headerUnderline(6 + 20 + 15 + 15 + 10 + 15 + 15) << endl; // number of dashes
+
                                                         poll.showPOListDsc(poll.head);
                                                         cout << endl;
 
@@ -208,6 +220,15 @@ void runSoe() {
 
                                                         cout << "------Sorted Purchase Order (PO) List Based on Client ID"
                                                              << " (Descending)------" << endl;
+                                                        cout << "POID" << sn.spacePrinter(6,4)
+                                                             << "Date" << sn.spacePrinter(20, 4)
+                                                             << "Client ID" << sn.spacePrinter(15, 9)
+                                                             << "Item ID" << sn.spacePrinter(15, 7)
+                                                             << "Qty" << sn.spacePrinter(10, 3)
+                                                             << "Total" << sn.spacePrinter(15, 5)
+                                                             << "Delivery Status" << endl;
+                                                        cout << sn.headerUnderline(6 + 20 + 15 + 15 + 10 + 15 + 15) << endl; // number of dashes
+
                                                         poll.showPOListDsc(poll.head);
                                                         cout << endl;
 
@@ -252,6 +273,15 @@ void runSoe() {
 
                                                         cout << "------Sorted Purchase Order (PO) List Based on Item ID"
                                                              << " (Descending)------" << endl;
+                                                        cout << "POID" << sn.spacePrinter(6,4)
+                                                             << "Date" << sn.spacePrinter(20, 4)
+                                                             << "Client ID" << sn.spacePrinter(15, 9)
+                                                             << "Item ID" << sn.spacePrinter(15, 7)
+                                                             << "Qty" << sn.spacePrinter(10, 3)
+                                                             << "Total" << sn.spacePrinter(15, 5)
+                                                             << "Delivery Status" << endl;
+                                                        cout << sn.headerUnderline(6 + 20 + 15 + 15 + 10 + 15 + 15) << endl; // number of dashes
+
                                                         poll.showPOListDsc(poll.head);
                                                         cout << endl;
 
@@ -288,6 +318,15 @@ void runSoe() {
 
                                                         cout << "------Sorted Purchase Order (PO) List Based on Date"
                                                              << " (Ascending)------" << endl;
+                                                        cout << "POID" << sn.spacePrinter(6,4)
+                                                             << "Date" << sn.spacePrinter(20, 4)
+                                                             << "Client ID" << sn.spacePrinter(15, 9)
+                                                             << "Item ID" << sn.spacePrinter(15, 7)
+                                                             << "Qty" << sn.spacePrinter(10, 3)
+                                                             << "Total" << sn.spacePrinter(15, 5)
+                                                             << "Delivery Status" << endl;
+                                                        cout << sn.headerUnderline(6 + 20 + 15 + 15 + 10 + 15 + 15) << endl; // number of dashes
+
                                                         poll.showPOListDsc(poll.head);
                                                         cout << endl;
 
@@ -298,6 +337,7 @@ void runSoe() {
 
                                                         cout << "------Sorted Purchase Order (PO) List Based on Date"
                                                              << " (Descending)------" << endl;
+
                                                         poll.showPOListAsc(poll.head);
                                                         cout << endl;
 
@@ -342,6 +382,15 @@ void runSoe() {
 
                                                         cout << "------Sorted Purchase Order (PO) List Based on Quantity"
                                                              << " (Descending)------" << endl;
+                                                        cout << "POID" << sn.spacePrinter(6,4)
+                                                             << "Date" << sn.spacePrinter(20, 4)
+                                                             << "Client ID" << sn.spacePrinter(15, 9)
+                                                             << "Item ID" << sn.spacePrinter(15, 7)
+                                                             << "Qty" << sn.spacePrinter(10, 3)
+                                                             << "Total" << sn.spacePrinter(15, 5)
+                                                             << "Delivery Status" << endl;
+                                                        cout << sn.headerUnderline(6 + 20 + 15 + 15 + 10 + 15 + 15) << endl; // number of dashes
+
                                                         poll.showPOListDsc(poll.head);
                                                         cout << endl;
 
@@ -386,7 +435,7 @@ void runSoe() {
 
                                                         cout << "------Sorted Purchase Order (PO) List Based on Total"
                                                              << " (Descending)------" << endl;
-                                                        poll.showPOListAsc(poll.head);
+                                                        poll.showPOListDsc(poll.head);
                                                         cout << endl;
 
                                                         break;
@@ -430,7 +479,7 @@ void runSoe() {
 
                                                         cout << "------Sorted Purchase Order (PO) List Based on Delivery Status"
                                                              << " (Descending)------" << endl;
-                                                        poll.showPOListAsc(poll.head);
+                                                        poll.showPOListDsc(poll.head);
                                                         cout << endl;
 
                                                         break;
@@ -810,6 +859,13 @@ void runSoe() {
 
                                                         cout << "------Sorted Client List Based on Client ID" <<
                                                              " (Descending)------" << endl;
+                                                        cout << "List of Users (Total Number of Client: " << client_size << "):" << endl;
+                                                        cout << "ID" << sn.spacePrinter(6, 2)
+                                                             << "Name" << sn.spacePrinter(15, 4)
+                                                             << "Address" << sn.spacePrinter(35, 7)
+                                                             << "Contact No" << endl;
+                                                        cout << sn.headerUnderline(6 + 15 + 35 + 10) << endl; // number of dashes
+
                                                         cll.showClientListDsc(cll.head);
                                                         cout << endl;
 
@@ -1120,6 +1176,12 @@ void runSoe() {
 
                                                         cout << "------Sorted Item List Based on Item ID" <<
                                                              " (Descending)------" << endl;
+
+                                                        cout << "ID" << sn.spacePrinter(6, 2)
+                                                             << "Name" << sn.spacePrinter(20, 4)
+                                                             << "Unit Price"  << endl;
+                                                        cout << sn.headerUnderline(6 + 20 + 11) << endl; // number of dashes
+
                                                         ill.showItemListDsc(ill.head);
                                                         cout << endl;
 
@@ -1164,6 +1226,12 @@ void runSoe() {
 
                                                         cout << "------Sorted User List Based on Unit Price" <<
                                                                 " (Descending)------" << endl;
+
+                                                        cout << "ID" << sn.spacePrinter(6, 2)
+                                                             << "Name" << sn.spacePrinter(20, 4)
+                                                             << "Unit Price"  << endl;
+                                                        cout << sn.headerUnderline(6 + 20 + 11) << endl; // number of dashes
+
                                                         ill.showItemListDsc(ill.head);
                                                         cout << endl;
 
@@ -2128,6 +2196,15 @@ void runAdmin() {
 
                                                         cout << "------Sorted Purchase Order (PO) List Based on PO ID"
                                                              << " (Descending)------" << endl;
+                                                        cout << "POID" << sn.spacePrinter(6,4)
+                                                             << "Date" << sn.spacePrinter(20, 4)
+                                                             << "Client ID" << sn.spacePrinter(15, 9)
+                                                             << "Item ID" << sn.spacePrinter(15, 7)
+                                                             << "Qty" << sn.spacePrinter(10, 3)
+                                                             << "Total" << sn.spacePrinter(15, 5)
+                                                             << "Delivery Status" << endl;
+                                                        cout << sn.headerUnderline(6 + 20 + 15 + 15 + 10 + 15 + 15) << endl; // number of dashes
+
                                                         poll.showPOListDsc(poll.head);
                                                         cout << endl;
 
@@ -2172,6 +2249,15 @@ void runAdmin() {
 
                                                         cout << "------Sorted Purchase Order (PO) List Based on Client ID"
                                                              << " (Descending)------" << endl;
+                                                        cout << "POID" << sn.spacePrinter(6,4)
+                                                             << "Date" << sn.spacePrinter(20, 4)
+                                                             << "Client ID" << sn.spacePrinter(15, 9)
+                                                             << "Item ID" << sn.spacePrinter(15, 7)
+                                                             << "Qty" << sn.spacePrinter(10, 3)
+                                                             << "Total" << sn.spacePrinter(15, 5)
+                                                             << "Delivery Status" << endl;
+                                                        cout << sn.headerUnderline(6 + 20 + 15 + 15 + 10 + 15 + 15) << endl; // number of dashes
+
                                                         poll.showPOListDsc(poll.head);
                                                         cout << endl;
 
@@ -2206,7 +2292,7 @@ void runAdmin() {
                                                         poll.sortPOItemID();
 
                                                         cout << "------Sorted Purchase Order (PO) List Based on Item ID"
-                                                             << " (Descending)------" << endl;
+                                                             << " (Ascending)------" << endl;
                                                         poll.showPOListAsc(poll.head);
                                                         cout << endl;
 
@@ -2216,6 +2302,15 @@ void runAdmin() {
 
                                                         cout << "------Sorted Purchase Order (PO) List Based on Item ID"
                                                              << " (Descending)------" << endl;
+                                                        cout << "POID" << sn.spacePrinter(6,4)
+                                                             << "Date" << sn.spacePrinter(20, 4)
+                                                             << "Client ID" << sn.spacePrinter(15, 9)
+                                                             << "Item ID" << sn.spacePrinter(15, 7)
+                                                             << "Qty" << sn.spacePrinter(10, 3)
+                                                             << "Total" << sn.spacePrinter(15, 5)
+                                                             << "Delivery Status" << endl;
+                                                        cout << sn.headerUnderline(6 + 20 + 15 + 15 + 10 + 15 + 15) << endl; // number of dashes
+
                                                         poll.showPOListDsc(poll.head);
                                                         cout << endl;
 
@@ -2252,6 +2347,15 @@ void runAdmin() {
 
                                                         cout << "------Sorted Purchase Order (PO) List Based on Date"
                                                              << " (Ascending)------" << endl;
+                                                        cout << "POID" << sn.spacePrinter(6,4)
+                                                             << "Date" << sn.spacePrinter(20, 4)
+                                                             << "Client ID" << sn.spacePrinter(15, 9)
+                                                             << "Item ID" << sn.spacePrinter(15, 7)
+                                                             << "Qty" << sn.spacePrinter(10, 3)
+                                                             << "Total" << sn.spacePrinter(15, 5)
+                                                             << "Delivery Status" << endl;
+                                                        cout << sn.headerUnderline(6 + 20 + 15 + 15 + 10 + 15 + 15) << endl; // number of dashes
+
                                                         poll.showPOListDsc(poll.head);
                                                         cout << endl;
 
@@ -2262,6 +2366,7 @@ void runAdmin() {
 
                                                         cout << "------Sorted Purchase Order (PO) List Based on Date"
                                                              << " (Descending)------" << endl;
+
                                                         poll.showPOListAsc(poll.head);
                                                         cout << endl;
 
@@ -2306,6 +2411,15 @@ void runAdmin() {
 
                                                         cout << "------Sorted Purchase Order (PO) List Based on Quantity"
                                                              << " (Descending)------" << endl;
+                                                        cout << "POID" << sn.spacePrinter(6,4)
+                                                             << "Date" << sn.spacePrinter(20, 4)
+                                                             << "Client ID" << sn.spacePrinter(15, 9)
+                                                             << "Item ID" << sn.spacePrinter(15, 7)
+                                                             << "Qty" << sn.spacePrinter(10, 3)
+                                                             << "Total" << sn.spacePrinter(15, 5)
+                                                             << "Delivery Status" << endl;
+                                                        cout << sn.headerUnderline(6 + 20 + 15 + 15 + 10 + 15 + 15) << endl; // number of dashes
+
                                                         poll.showPOListDsc(poll.head);
                                                         cout << endl;
 
@@ -2350,6 +2464,15 @@ void runAdmin() {
 
                                                         cout << "------Sorted Purchase Order (PO) List Based on Total"
                                                              << " (Descending)------" << endl;
+                                                        cout << "POID" << sn.spacePrinter(6,4)
+                                                             << "Date" << sn.spacePrinter(20, 4)
+                                                             << "Client ID" << sn.spacePrinter(15, 9)
+                                                             << "Item ID" << sn.spacePrinter(15, 7)
+                                                             << "Qty" << sn.spacePrinter(10, 3)
+                                                             << "Total" << sn.spacePrinter(15, 5)
+                                                             << "Delivery Status" << endl;
+                                                        cout << sn.headerUnderline(6 + 20 + 15 + 15 + 10 + 15 + 15) << endl; // number of dashes
+
                                                         poll.showPOListDsc(poll.head);
                                                         cout << endl;
 
@@ -2394,6 +2517,15 @@ void runAdmin() {
 
                                                         cout << "------Sorted User List Based on Delivery Status" <<
                                                              " (Descending)------" << endl;
+                                                        cout << "POID" << sn.spacePrinter(6,4)
+                                                             << "Date" << sn.spacePrinter(20, 4)
+                                                             << "Client ID" << sn.spacePrinter(15, 9)
+                                                             << "Item ID" << sn.spacePrinter(15, 7)
+                                                             << "Qty" << sn.spacePrinter(10, 3)
+                                                             << "Total" << sn.spacePrinter(15, 5)
+                                                             << "Delivery Status" << endl;
+                                                        cout << sn.headerUnderline(6 + 20 + 15 + 15 + 10 + 15 + 15) << endl; // number of dashes
+
                                                         poll.showPOListDsc(poll.head);
                                                         cout << endl;
 
@@ -2770,6 +2902,13 @@ void runAdmin() {
 
                                                         cout << "------Sorted Client List Based on Client ID" <<
                                                              " (Descending)------" << endl;
+                                                        cout << "List of Users (Total Number of Client: " << client_size << "):" << endl;
+                                                        cout << "ID" << sn.spacePrinter(6, 2)
+                                                             << "Name" << sn.spacePrinter(15, 4)
+                                                             << "Address" << sn.spacePrinter(35, 7)
+                                                             << "Contact No" << endl;
+                                                        cout << sn.headerUnderline(6 + 15 + 35 + 10) << endl; // number of dashes
+
                                                         cll.showClientListDsc(cll.head);
                                                         cout << endl;
 
@@ -3081,6 +3220,12 @@ void runAdmin() {
 
                                                         cout << "------Sorted Item List Based on Item ID" <<
                                                              " (Descending)------" << endl;
+
+                                                        cout << "ID" << sn.spacePrinter(6, 2)
+                                                             << "Name" << sn.spacePrinter(20, 4)
+                                                             << "Unit Price"  << endl;
+                                                        cout << sn.headerUnderline(6 + 20 + 11) << endl; // number of dashes
+
                                                         ill.showItemListDsc(ill.head);
                                                         cout << endl;
 
@@ -3125,6 +3270,12 @@ void runAdmin() {
 
                                                         cout << "------Sorted Item List Based on Unit Price" <<
                                                                 " (Descending)------" << endl;
+
+                                                        cout << "ID" << sn.spacePrinter(6, 2)
+                                                             << "Name" << sn.spacePrinter(20, 4)
+                                                             << "Unit Price"  << endl;
+                                                        cout << sn.headerUnderline(6 + 20 + 11) << endl; // number of dashes
+
                                                         ill.showItemListDsc(ill.head);
                                                         cout << endl;
 
@@ -3375,6 +3526,12 @@ void runAdmin() {
 
                                                         cout << "------Sorted User List Based on User ID" <<
                                                              " (Descending)------" << endl;
+                                                        cout << "ID" << sn.spacePrinter(6, 2)
+                                                             << "Username" << sn.spacePrinter(15, 8)
+                                                             << "Password" << sn.spacePrinter(15, 8)
+                                                             << "Role" << endl;
+                                                        cout << sn.headerUnderline(6 + 15 + 15 + 4) << endl; // number of dashes
+
                                                         ull.showUserListDsc(ull.head);
                                                         cout << endl;
 
@@ -3417,6 +3574,12 @@ void runAdmin() {
                                                         ull.sortRole();
 
                                                         cout << "------Sorted User List Based on Role" << " (Descending)------" << endl;
+                                                        cout << "ID" << sn.spacePrinter(6, 2)
+                                                             << "Username" << sn.spacePrinter(15, 8)
+                                                             << "Password" << sn.spacePrinter(15, 8)
+                                                             << "Role" << endl;
+                                                        cout << sn.headerUnderline(6 + 15 + 15 + 4) << endl; // number of dashes
+
                                                         ull.showUserListDsc(ull.head);
                                                         cout << endl;
 

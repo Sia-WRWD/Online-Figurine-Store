@@ -79,9 +79,17 @@ struct UserLinkedList {
     void showUserDetails() {
         User * curr = head;
         cout << "List of Users (Total Number of Users: " << user_size << "):" << endl;
-        cout << "ID" << " " << "Username" << " "  << "Password" << " " << "Role" << endl;
+        cout << "ID" << sn.spacePrinter(6, 2)
+            << "Username" << sn.spacePrinter(15, 8)
+            << "Password" << sn.spacePrinter(15, 8)
+            << "Role" << endl;
+        cout << sn.headerUnderline(6 + 15 + 15 + 4) << endl; // number of dashes
+        
         while (curr != nullptr) {
-            cout << curr->id << " " << curr->username << " " << curr->password << " " << curr->role << endl;
+            cout << curr->id << sn.spacePrinter(6, to_string(curr->id).size())
+                << curr->username << sn.spacePrinter(15, curr->username.size())
+                << curr->password << sn.spacePrinter(15, curr->password.size())
+                << curr->role << endl;
             curr = curr->next;
         }
         cout << endl;
@@ -89,8 +97,16 @@ struct UserLinkedList {
 
     void displayUserDetails(int id, string username, string password, string role) {
         cout << "List of Users (Total Number of Users: " << user_size << "):" << endl;
-        cout << "ID" << "Username" << "Password" << "Role" << endl;
-        cout << id << " " << username << " " << password << " " << role << endl << endl;
+        cout << "ID" << sn.spacePrinter(6, 2)
+             << "Username" << sn.spacePrinter(15, 8)
+             << "Password" << sn.spacePrinter(15, 8)
+             << "Role" << endl;
+        cout << sn.headerUnderline(6 + 15 + 15 + 4) << endl; // number of dashes
+
+        cout << id << sn.spacePrinter(6, to_string(id).size())
+             << username << sn.spacePrinter(15, username.size())
+             << password << sn.spacePrinter(15, password.size())
+             << role << endl;
     }
 
     void showUpdatedUser(int id) {
@@ -131,8 +147,17 @@ struct UserLinkedList {
 
     void showUserListAsc(User * n)
     {
+        cout << "ID" << sn.spacePrinter(6, 2)
+             << "Username" << sn.spacePrinter(15, 8)
+             << "Password" << sn.spacePrinter(15, 8)
+             << "Role" << endl;
+        cout << sn.headerUnderline(6 + 15 + 15 + 4) << endl; // number of dashes
+        
         while (n != nullptr) {
-            cout << n->id << " " << n->username << " " << n->password << " " << n->role << endl;
+            cout << n->id << sn.spacePrinter(6, to_string(n->id).size())
+                 << n->username << sn.spacePrinter(15, n->username.size())
+                 << n->password << sn.spacePrinter(15, n->password.size())
+                 << n->role << endl;
             n = n->next;
         }
     }
@@ -144,7 +169,10 @@ struct UserLinkedList {
 
         showUserListDsc(n->next);
 
-        cout << n->id << " " << n->username << " " << n->password << " " << n->role << endl;
+        cout << n->id << sn.spacePrinter(6, to_string(n->id).size())
+             << n->username << sn.spacePrinter(15, n->username.size())
+             << n->password << sn.spacePrinter(15, n->password.size())
+             << n->role << endl;
     }
 
     //Search---------------------------------------------------------------------------
