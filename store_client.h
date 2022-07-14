@@ -8,6 +8,8 @@
 #include <iostream>
 #include <iomanip>
 
+#include "store_namespacer.h"
+
 struct Client {
     int client_id;
     string client_name;
@@ -78,10 +80,17 @@ struct ClientLinkedList {
     void showClientDetails() {
         Client * curr = head;
         cout << "List of Users (Total Number of Client: " << client_size << "):" << endl;
-        cout << "ID" << " " << "Name" << " " << "Address" << " " << "Contact No" << endl;
+        cout << "ID" << sn.spacePrinter(6, 2)
+            << "Name" << sn.spacePrinter(15, 4)
+            << "Address" << sn.spacePrinter(35, 7)
+            << "Contact No" << endl;
+        cout << sn.headerUnderline(6 + 15 + 35 + 10) << endl; // number of dashes
+
         while (curr != nullptr) {
-            cout << curr->client_id << " " << curr->client_name << " " << curr->client_address
-                 << " " << curr->contact_no << endl;
+            cout << curr->client_id << sn.spacePrinter(6, to_string(curr->client_id).size())
+                << curr->client_name << sn.spacePrinter(15, curr->client_name.size())
+                << curr->client_address << sn.spacePrinter(35, curr->client_address.size())
+                << curr->contact_no << endl;
             curr = curr->next;
         }
         cout << endl;
@@ -89,8 +98,17 @@ struct ClientLinkedList {
 
     void displayClientSearchResult(int client_id, string client_name, string client_address,
                                    string contact_no) {
-        cout << "ID" << " " << "Name" << " " << "Address" << " " << "Contact No" << endl;
-        cout << client_id << " " << client_name << " " << client_address << " " << contact_no << endl << endl;
+        cout << "List of Users (Total Number of Client: " << client_size << "):" << endl;
+        cout << "ID" << sn.spacePrinter(6, 2)
+             << "Name" << sn.spacePrinter(15, 4)
+             << "Address" << sn.spacePrinter(35, 7)
+             << "Contact No" << endl;
+        cout << sn.headerUnderline(6 + 15 + 35 + 10) << endl; // number of dashes
+
+        cout << client_id << sn.spacePrinter(6, to_string(client_id).size())
+             << client_name << sn.spacePrinter(15, client_name.size())
+             << client_address << sn.spacePrinter(35, client_address.size())
+             << contact_no << endl << endl;
     }
 
     void showUpdatedClient(int id) {
@@ -112,8 +130,17 @@ struct ClientLinkedList {
 
     void showClientListAsc(Client * n)
     {
+        cout << "List of Users (Total Number of Client: " << client_size << "):" << endl;
+        cout << "ID" << sn.spacePrinter(6, 2)
+             << "Name" << sn.spacePrinter(15, 4)
+             << "Address" << sn.spacePrinter(35, 7)
+             << "Contact No" << endl;
+        cout << sn.headerUnderline(6 + 15 + 35 + 10) << endl; // number of dashes
+        
         while (n != nullptr) {
-            cout << n->client_id << " " << n->client_name << " " << n->client_address << " "
+            cout << n->client_id << sn.spacePrinter(6, to_string(n->client_id).size())
+                 << n->client_name << sn.spacePrinter(15, n->client_name.size())
+                 << n->client_address << sn.spacePrinter(35, n->client_address.size())
                  << n->contact_no << endl;
             n = n->next;
         }
@@ -126,7 +153,9 @@ struct ClientLinkedList {
 
         showClientListDsc(n->next);
 
-        cout << n->client_id << " " << n->client_name << " " << n->client_address << " "
+        cout << n->client_id << sn.spacePrinter(6, to_string(n->client_id).size())
+             << n->client_name << sn.spacePrinter(15, n->client_name.size())
+             << n->client_address << sn.spacePrinter(35, n->client_address.size())
              << n->contact_no << endl;
     }
 

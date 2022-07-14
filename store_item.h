@@ -73,17 +73,25 @@ struct ItemLinkedList {
     void showItemDetails() {
         Item * curr = head;
         cout << "List of Items (Total Number of Items: " << item_size << "):" << endl;
-        cout << "ID" << " " << "Name" << " " << "Unit Price"  << endl;
+        cout << "ID" << sn.spacePrinter(6, 2)
+            << "Name" << sn.spacePrinter(20, 4)
+            << "Unit Price"  << endl;
+        cout << sn.headerUnderline(6 + 20 + 11) << endl; // number of dashes
         while (curr != nullptr) {
-            cout << curr->item_id << " " << curr->item_name << " " << curr->unit_price << endl;
+            cout << curr->item_id << sn.spacePrinter(6, to_string(curr->item_id).size())
+                << curr->item_name << sn.spacePrinter(20, curr->item_name.size())
+                << curr->unit_price << endl;
             curr = curr->next;
         }
         cout << endl;
     }
 
     void displayItemSearchResult(int item_id, string item_name, string unit_price) {
-        cout << "ID" << " " << "Name" << " " << "Unit Price" << endl;
-        cout << item_id << " " << item_name << " " << unit_price << endl << endl;
+        cout << "ID" << sn.spacePrinter(6, 4) << "Name" << sn.spacePrinter(20, 4) << "Unit Price" << endl;
+        cout << sn.headerUnderline(6 + 20 + 11) << endl; // number of dashes
+        cout << item_id << sn.spacePrinter(6, to_string(item_id).size())
+            << item_name << sn.spacePrinter(20, item_name.size())
+            << unit_price << endl << endl;
     }
 
     void showUpdatedItem(int id) {
@@ -105,8 +113,15 @@ struct ItemLinkedList {
 
     void showItemListAsc(Item * n)
     {
+        cout << "ID" << sn.spacePrinter(6, 2)
+             << "Name" << sn.spacePrinter(20, 4)
+             << "Unit Price"  << endl;
+        cout << sn.headerUnderline(6 + 20 + 11) << endl; // number of dashes
+
         while (n != nullptr) {
-            cout << n->item_id << " " << n->item_name << " " << n->unit_price << endl;
+            cout << n->item_id << sn.spacePrinter(6, to_string(n->item_id).size())
+                << n->item_name << sn.spacePrinter(20, n->item_name.size())
+                << n->unit_price << endl;
             n = n->next;
         }
     }
@@ -118,7 +133,9 @@ struct ItemLinkedList {
 
         showItemListDsc(n->next);
 
-        cout << n->item_id << " " << n->item_name << " " << n->unit_price << endl;
+        cout << n->item_id << sn.spacePrinter(6, to_string(n->item_id).size())
+             << n->item_name << sn.spacePrinter(20, n->item_name.size())
+             << n->unit_price << endl;
     }
 
     //Search---------------------------------------------------------------------------
