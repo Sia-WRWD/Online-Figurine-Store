@@ -621,6 +621,8 @@ void runSoe() {
 
                                     switch (update_opt) {
                                         case 1: //Update Date
+                                            ss.str("");
+
                                             cout << "------Update PO's Date------" << endl;
 
                                             //Get Purchase Order ID to update
@@ -672,6 +674,8 @@ void runSoe() {
 
                                             break;
                                         case 2: //Update Quantity
+                                            ss.str("");
+
                                             cout << "------Update PO's Quantity------" << endl;
 
                                             //Get Purchase Order ID to update
@@ -1522,7 +1526,7 @@ void runSoe() {
                                                         poll.searchUpdatedPO(po_id_input);
 
                                                         break;
-                                                    case 2: //Update Quantity
+                                                        case 2: //Update Quantity
                                                         cout << "------Update PO's Quantity------" << endl;
 
                                                         //Get Purchase Order ID to update
